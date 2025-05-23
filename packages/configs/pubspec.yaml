@@ -32,11 +32,14 @@ dependencies:
 
 dev_dependencies:
   lints: 5.0.0
-  test: 1.24.0
 
 flutter_gen:
   output: lib/gen/assets/ # Optional (default: lib/gen/)
   line_length: 80 # Optional (default: 80)
+
+  assets:
+    outputs:
+      package_parameter_enabled: true
 
   # Optional
   integrations:
