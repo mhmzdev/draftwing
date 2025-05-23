@@ -11,24 +11,31 @@ part of '../configs_base.dart';
 class AppText extends StatelessWidget {
   final String text;
   final TextStyle style;
+  final TextAlign? textAlign;
 
-  const AppText({super.key, required this.text, required this.style});
+  const AppText({
+    super.key,
+    required this.text,
+    required this.style,
+    this.textAlign,
+  });
 
-  AppText.h1(this.text, {super.key, TextStyle? style})
+  AppText.h1(this.text, {super.key, TextStyle? style, this.textAlign})
     : style = style ?? _AppTextStyle.h1;
-  AppText.h2(this.text, {super.key, TextStyle? style})
+  AppText.h2(this.text, {super.key, TextStyle? style, this.textAlign})
     : style = style ?? _AppTextStyle.h2;
-  AppText.h3(this.text, {super.key, TextStyle? style})
+  AppText.h3(this.text, {super.key, TextStyle? style, this.textAlign})
     : style = style ?? _AppTextStyle.h3;
 
-  AppText.b1(this.text, {super.key, TextStyle? style})
+  AppText.b1(this.text, {super.key, TextStyle? style, this.textAlign})
     : style = style ?? _AppTextStyle.b1;
-  AppText.b2(this.text, {super.key, TextStyle? style})
+  AppText.b2(this.text, {super.key, TextStyle? style, this.textAlign})
     : style = style ?? _AppTextStyle.b2;
 
-  AppText.l1(this.text, {super.key, TextStyle? style})
+  AppText.l1(this.text, {super.key, TextStyle? style, this.textAlign})
     : style = style ?? _AppTextStyle.l1;
 
   @override
-  Widget build(BuildContext context) => Text(text, style: style);
+  Widget build(BuildContext context) =>
+      Text(text, style: style, textAlign: textAlign);
 }

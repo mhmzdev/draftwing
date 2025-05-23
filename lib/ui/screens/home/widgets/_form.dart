@@ -18,7 +18,29 @@ class _Form extends StatelessWidget {
               AppText.h2('Generate Article'),
             ],
           ),
+          Space.y.t28,
+          AppFormTextInput(
+            name: _FormKeys.title,
+            heading: 'Article Title',
+            placeholder: 'Enter your article title...',
+            validators: FormBuilderValidators.required(
+              errorText: 'Title is required',
+            ),
+            textCapitalization: TextCapitalization.words,
+          ),
           Space.y.t16,
+          AppFormSelectInput(
+            heading: 'Reading Length',
+            name: _FormKeys.readingLength,
+            data: ReadingLength.values,
+            modalLabel: 'Reading Length',
+            placeholder: 'Select reading length',
+            valueTransformer: (value) => value.parsed,
+            validators: FormBuilderValidators.required(
+              errorText: 'Reading Length is required',
+            ),
+            expanded: false,
+          ),
         ],
       ),
     );
