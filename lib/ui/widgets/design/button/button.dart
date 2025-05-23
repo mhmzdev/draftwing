@@ -17,7 +17,7 @@ class AppButton extends StatelessWidget {
     this.disabledCallback,
     this.state = AppButtonState.plain,
     this.style = AppButtonStyle.primary,
-    this.radius = AppButtonRadius.capsule,
+    this.radius = AppButtonRadius.medium,
     this.mainAxisSize = MainAxisSize.min,
     this.size = AppButtonSize.large,
     this.body,
@@ -54,20 +54,23 @@ class AppButton extends StatelessWidget {
     final borderRadius = _mapRadiusData()[radius];
     final textStyle = _mapSizeToFontSize()[size]!;
 
-    final color = data.backgroundColor[state]!;
+    final colors = data.backgroundColor[state]!;
     final textColor = frontColor ?? data.text[state]!;
 
     final plain = state == AppButtonState.plain;
     final disabled = state == AppButtonState.disabled;
     final bordered = state == AppButtonState.bordered;
 
-    final iconSize = 1.75 * textStyle.fontSize!;
+    final iconSize = 1.25 * textStyle.fontSize!;
 
     var boxShadows = <BoxShadow>[];
     if (!plain && !disabled && !bordered) {
       boxShadows = [
         BoxShadow(
-          color: color.withValues(alpha: 0.5),
+          color:
+              colors.isEmpty
+                  ? Colors.black.withValues(alpha: 0.1)
+                  : colors.first.withValues(alpha: 0.5),
           blurRadius: 8,
           offset: const Offset(0, 4),
         ),
@@ -80,25 +83,36 @@ class AppButton extends StatelessWidget {
       AppButtonSize.small,
     ].contains(size);
 
-    final verticalSpace = hasSmallSize ? Space.v.t12 : Space.v.t16;
+    final verticalSpace = hasSmallSize ? Space.v.t08 : Space.v.t12;
+
+    var padding = this.padding;
+    if (mainAxisSize == MainAxisSize.min) {
+      padding = padding ?? Space.h.t16;
+    } else {
+      padding = padding ?? Space.h.t24;
+    }
 
     return InkWell(
       onTap: !disabled ? onPressed : disabledCallback,
       child: Container(
         margin: margin,
-        padding:
-            padding ??
-            (mainAxisSize == MainAxisSize.min ? Space.h.t16 : Space.h.t24) +
-                verticalSpace,
+        padding: padding + verticalSpace,
         decoration: BoxDecoration(
           shape:
               label == null && icon != null
                   ? BoxShape.circle
                   : BoxShape.rectangle,
-          border: Border.all(color: bordered ? textColor : color, width: 1),
-          color: color,
+          border:
+              bordered
+                  ? Border.all(color: textColor, width: 2)
+                  : Border.all(color: Colors.transparent, width: 1),
+          color: disabled ? colors.first : null,
           borderRadius: label == null ? null : borderRadius,
           boxShadow: boxShadows,
+          gradient:
+              disabled
+                  ? null
+                  : LinearGradient(colors: colors, stops: const [0.1, 0.9]),
         ),
         child:
             body ??

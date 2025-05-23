@@ -1,6 +1,6 @@
 part of 'button.dart';
 
-enum AppButtonStyle { primary, info, danger, warning, success, grey, white }
+enum AppButtonStyle { primary, danger, success }
 
 enum AppButtonState { elevated, disabled, plain, bordered }
 

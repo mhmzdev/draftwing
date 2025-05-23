@@ -7,7 +7,7 @@ class _Form extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: AppProps.cardDec,
-      padding: Space.a.t12,
+      padding: Space.a.t16,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,6 +40,13 @@ class _Form extends StatelessWidget {
               errorText: 'Reading Length is required',
             ),
             expanded: false,
+          ),
+          Space.y.t20,
+          AppButton(
+            onPressed: () {},
+            icon: Iconsax.magic_star_copy,
+            label: 'Generate Article',
+            mainAxisSize: MainAxisSize.max,
           ),
         ],
       ),

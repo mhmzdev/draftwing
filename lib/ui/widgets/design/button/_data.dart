@@ -10,10 +10,10 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
         AppButtonState.disabled: AppTheme.c.cardBg,
       },
       backgroundColor: {
-        AppButtonState.bordered: Colors.transparent,
-        AppButtonState.elevated: AppTheme.c.secondary,
-        AppButtonState.plain: AppTheme.c.secondary,
-        AppButtonState.disabled: AppTheme.c.textDim,
+        AppButtonState.bordered: [Colors.transparent, Colors.transparent],
+        AppButtonState.elevated: [AppTheme.c.primary, AppTheme.c.secondary],
+        AppButtonState.plain: [AppTheme.c.primary, AppTheme.c.secondary],
+        AppButtonState.disabled: [AppTheme.c.textDim, AppTheme.c.textDim],
       },
     ),
     AppButtonStyle.danger: _AppButtonModel(
@@ -24,10 +24,10 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
         AppButtonState.disabled: AppTheme.c.cardBg,
       },
       backgroundColor: {
-        AppButtonState.elevated: AppTheme.c.error,
-        AppButtonState.plain: AppTheme.c.error,
-        AppButtonState.bordered: Colors.transparent,
-        AppButtonState.disabled: AppTheme.c.textDim,
+        AppButtonState.elevated: [AppTheme.c.error, AppTheme.c.error],
+        AppButtonState.plain: [AppTheme.c.error, AppTheme.c.error],
+        AppButtonState.bordered: [Colors.transparent, Colors.transparent],
+        AppButtonState.disabled: [AppTheme.c.textDim, AppTheme.c.textDim],
       },
     ),
     AppButtonStyle.success: _AppButtonModel(
@@ -38,66 +38,10 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
         AppButtonState.disabled: AppTheme.c.cardBg,
       },
       backgroundColor: {
-        AppButtonState.bordered: Colors.transparent,
-        AppButtonState.elevated: AppTheme.c.success,
-        AppButtonState.plain: AppTheme.c.success,
-        AppButtonState.disabled: AppTheme.c.textDim,
-      },
-    ),
-    AppButtonStyle.warning: _AppButtonModel(
-      text: {
-        AppButtonState.elevated: AppTheme.c.appBg,
-        AppButtonState.plain: AppTheme.c.appBg,
-        AppButtonState.bordered: AppTheme.c.warning,
-        AppButtonState.disabled: AppTheme.c.cardBg,
-      },
-      backgroundColor: {
-        AppButtonState.bordered: Colors.transparent,
-        AppButtonState.elevated: AppTheme.c.warning,
-        AppButtonState.plain: AppTheme.c.warning,
-        AppButtonState.disabled: AppTheme.c.textDim,
-      },
-    ),
-    AppButtonStyle.info: _AppButtonModel(
-      text: {
-        AppButtonState.elevated: AppTheme.c.appBg,
-        AppButtonState.plain: AppTheme.c.appBg,
-        AppButtonState.bordered: AppTheme.c.info,
-        AppButtonState.disabled: AppTheme.c.cardBg,
-      },
-      backgroundColor: {
-        AppButtonState.bordered: Colors.transparent,
-        AppButtonState.elevated: AppTheme.c.info,
-        AppButtonState.plain: AppTheme.c.info,
-        AppButtonState.disabled: AppTheme.c.textDim,
-      },
-    ),
-    AppButtonStyle.grey: _AppButtonModel(
-      text: {
-        AppButtonState.elevated: AppTheme.c.appBg,
-        AppButtonState.plain: AppTheme.c.appBg,
-        AppButtonState.bordered: AppTheme.c.textBody,
-        AppButtonState.disabled: AppTheme.c.cardBg,
-      },
-      backgroundColor: {
-        AppButtonState.bordered: Colors.transparent,
-        AppButtonState.elevated: AppTheme.c.textBody,
-        AppButtonState.plain: AppTheme.c.textBody,
-        AppButtonState.disabled: AppTheme.c.textDim,
-      },
-    ),
-    AppButtonStyle.white: _AppButtonModel(
-      text: {
-        AppButtonState.elevated: AppTheme.c.appBg,
-        AppButtonState.plain: AppTheme.c.textBody,
-        AppButtonState.bordered: AppTheme.c.cardBg,
-        AppButtonState.disabled: AppTheme.c.cardBg,
-      },
-      backgroundColor: {
-        AppButtonState.bordered: Colors.transparent,
-        AppButtonState.elevated: AppTheme.c.cardBg,
-        AppButtonState.plain: AppTheme.c.cardBg,
-        AppButtonState.disabled: AppTheme.c.textDim,
+        AppButtonState.bordered: [Colors.transparent, Colors.transparent],
+        AppButtonState.elevated: [AppTheme.c.success, AppTheme.c.success],
+        AppButtonState.plain: [AppTheme.c.success, AppTheme.c.success],
+        AppButtonState.disabled: [AppTheme.c.textDim, AppTheme.c.textDim],
       },
     ),
   };
@@ -105,9 +49,9 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
 
 Map<AppButtonRadius, BorderRadius> _mapRadiusData() {
   return {
-    AppButtonRadius.less: 10.radius(),
-    AppButtonRadius.medium: 15.radius(),
-    AppButtonRadius.round: 20.radius(),
+    AppButtonRadius.less: 4.radius(),
+    AppButtonRadius.medium: 8.radius(),
+    AppButtonRadius.round: 12.radius(),
     AppButtonRadius.capsule: 360.radius(),
   };
 }
