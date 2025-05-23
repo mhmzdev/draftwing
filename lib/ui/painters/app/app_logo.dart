@@ -1,5 +1,4 @@
-import 'dart:ui' as ui;
-import 'package:flutter/material.dart';
+part of '../painters.dart';
 
 class AppLogoPainter extends CustomPainter {
   const AppLogoPainter();
