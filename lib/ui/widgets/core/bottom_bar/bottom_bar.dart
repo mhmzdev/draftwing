@@ -1,6 +1,8 @@
 import 'package:configs/configs.dart';
 import 'package:draftwing/router/routes.dart';
+import 'package:draftwing/ui/widgets/design/gradients/icon.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 part '_data.dart';
 part '_model.dart';
@@ -17,7 +19,12 @@ class BottomBar extends StatelessWidget {
       padding: Space.z.sb(8).t(8),
       decoration: BoxDecoration(
         color: AppTheme.c.cardBg,
-        border: Border(top: BorderSide(color: AppTheme.c.textDim, width: 1)),
+        border: Border(
+          top: BorderSide(
+            color: AppTheme.c.textDim.withValues(alpha: .25),
+            width: 1,
+          ),
+        ),
       ),
       child: Material(
         color: Colors.transparent,
@@ -26,7 +33,7 @@ class BottomBar extends StatelessWidget {
               _tabs.map((tab) {
                 final isActive = tab.path == currentPath;
                 final color =
-                    isActive ? AppTheme.c.secondary : AppTheme.c.textBody;
+                    isActive ? AppTheme.c.primary : AppTheme.c.textDim;
 
                 return Expanded(
                   child: InkWell(
@@ -38,7 +45,10 @@ class BottomBar extends StatelessWidget {
                     child: Column(
                       children: [
                         Space.y.t04,
-                        Icon(tab.icon, color: color),
+                        if (isActive)
+                          GradientIcon(tab.icon)
+                        else
+                          Icon(tab.icon, color: color),
                         Space.y.t04,
                         AppText.b1(tab.label).cl(color),
                       ],
