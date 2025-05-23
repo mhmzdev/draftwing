@@ -16,10 +16,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: 3.7.2
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,6 +35,34 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  # configs
+  configs:
+    path: packages/configs
+
+  # brain
+  brain:
+    path: packages/brain
+
+  # forms
+  flutter_form_builder: 9.5.0
+  form_builder_validators: 11.0.0
+
+  # state mangament
+  flutter_bloc: 9.1.0
+  equatable: 2.0.7
+  provider: 6.1.2
+
+  # models generation
+  freezed_annotation: 2.4.4
+  json_annotation: 4.9.0
+
+  # cache
+  hive_flutter: 1.1.0
+  path_provider: 2.1.5
+
+  # utils
+  flash: 3.0.5+2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -45,6 +73,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+
+  mockito: 5.4.4
+  
+  freezed: 2.5.7
+  build_runner: 2.4.13
+  json_serializable: 6.8.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
