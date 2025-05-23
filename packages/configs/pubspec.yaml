@@ -4,6 +4,9 @@ version: 1.0.0
 publish_to: none
 # repository: https://github.com/my_org/my_repo
 
+# for melos to work
+resolution: workspace
+
 environment:
   sdk: 3.7.2
 
