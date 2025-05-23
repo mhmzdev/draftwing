@@ -16,8 +16,8 @@ class BottomBar extends StatelessWidget {
     return Container(
       padding: Space.z.sb(8).t(8),
       decoration: BoxDecoration(
-        color: AppTheme.c.appBg,
-        boxShadow: [AppProps.sectionShadow.first],
+        color: AppTheme.c.cardBg,
+        border: Border(top: BorderSide(color: AppTheme.c.textDim, width: 1)),
       ),
       child: Material(
         color: Colors.transparent,

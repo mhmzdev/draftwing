@@ -1,27 +1,27 @@
 part of '../configs_base.dart';
 
 const _lightTheme = _ThemeModel(
-  primary: AppColors.primary,
-  secondary: AppColors.secondary,
+  primary: AppBaseColors.primary,
+  secondary: AppBaseColors.secondary,
   //
-  cardBg: AppColors.cardBg,
-  appBg: AppColors.appBg,
-  shadow: AppColors.shadow,
-  lightStroke: AppColors.lightStroke,
+  cardBg: AppColorsLight.cardBg,
+  appBg: AppColorsLight.appBg,
+  shadow: AppColorsLight.shadow,
+  lightStroke: AppColorsLight.lightStroke,
   //
-  textHeading: AppColors.textHeading,
-  textBody: AppColors.textBody,
-  textDim: AppColors.textDim,
+  textHeading: AppColorsLight.textHeading,
+  textBody: AppColorsLight.textBody,
+  textDim: AppColorsLight.textDim,
   //
-  info: AppColors.info,
-  error: AppColors.error,
-  success: AppColors.success,
-  warning: AppColors.warning,
+  info: AppBaseColors.info,
+  error: AppBaseColors.error,
+  success: AppBaseColors.success,
+  warning: AppBaseColors.warning,
 );
 
 const _darkTheme = _ThemeModel(
-  primary: AppColors.primary,
-  secondary: AppColorsDark.secondary,
+  primary: AppBaseColors.primary,
+  secondary: AppBaseColors.secondary,
   //
   cardBg: AppColorsDark.cardBg,
   appBg: AppColorsDark.appBg,
@@ -32,8 +32,8 @@ const _darkTheme = _ThemeModel(
   textBody: AppColorsDark.textBody,
   textDim: AppColorsDark.textDim,
   //
-  info: AppColorsDark.info,
-  error: AppColorsDark.error,
-  success: AppColorsDark.success,
-  warning: AppColorsDark.warning,
+  info: AppBaseColors.info,
+  error: AppBaseColors.error,
+  success: AppBaseColors.success,
+  warning: AppBaseColors.warning,
 );

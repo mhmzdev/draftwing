@@ -6,34 +6,28 @@ abstract class AppProps {
   static final medium = 300.milliseconds;
   static final normal = 500.milliseconds;
 
-  static const radiusTop = BorderRadius.vertical(top: Radius.circular(10));
+  static const radiusTop = BorderRadius.vertical(top: Radius.circular(8));
 
   static final topRadiusDec = BoxDecoration(
     color: AppTheme.c.shadow,
-    borderRadius: 10.top(),
+    borderRadius: 8.top(),
   );
 
-  static final sectionShadow = [
-    BoxShadow(
-      blurRadius: 10,
-      offset: const Offset(0, -1),
-      color: Colors.black.withValues(alpha: .1),
-    ),
-    BoxShadow(
-      blurRadius: 10,
-      offset: const Offset(0, 1),
-      color: Colors.black.withValues(alpha: .1),
-    ),
-  ];
+  static final gradient = LinearGradient(
+    colors: [AppTheme.c.primary, AppTheme.c.secondary],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+    stops: const [0.1, 1.0],
+  );
 
   static final cardDec = BoxDecoration(
     color: AppTheme.c.cardBg,
-    borderRadius: 16.radius(),
+    borderRadius: 8.radius(),
     boxShadow: [
       BoxShadow(
         color: AppTheme.c.shadow,
-        blurRadius: 6,
-        offset: const Offset(1, 1),
+        blurRadius: 4,
+        offset: const Offset(0, 3),
       ),
     ],
   );
