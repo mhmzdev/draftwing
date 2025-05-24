@@ -46,7 +46,7 @@ When the user provides input, your job is to:
     "tags": [
         "tag1",
         "tag2"
-        /// Include 3-5 relevant tags
+        /// Include max 4 relevant tags
     ]
 }
 ```
