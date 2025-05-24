@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../write.dart';
 
 class _Body extends StatefulWidget {
   const _Body();

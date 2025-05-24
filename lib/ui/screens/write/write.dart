@@ -25,8 +25,8 @@ part '_state.dart';
 part 'static/_form_data.dart';
 part 'static/_form_keys.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class WriteScreen extends StatelessWidget {
+  const WriteScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

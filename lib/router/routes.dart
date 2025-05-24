@@ -4,6 +4,6 @@ class AppRoutes {
   static const drafts = '/drafts';
   static const splash = '/splash';
   static const profile = '/profile';
-  static const home = '/home';
+  static const write = '/write';
   static const login = '/login';
 }

@@ -1,7 +1,7 @@
 part of 'bottom_bar.dart';
 
 final _tabs = [
-  _BottomBar(label: 'Home', path: AppRoutes.home, icon: Iconsax.home_2),
+  _BottomBar(label: 'Write', path: AppRoutes.write, icon: Iconsax.edit_2),
   _BottomBar(
     label: 'Drafts',
     path: AppRoutes.drafts,

@@ -3,7 +3,7 @@ import 'package:draftwing/ui/screens/settings/settings.dart';
 import 'package:draftwing/ui/screens/drafts/drafts.dart';
 import 'package:draftwing/ui/screens/splash/splash.dart';
 import 'package:draftwing/ui/screens/profile/profile.dart';
-import 'package:draftwing/ui/screens/home/home.dart';
+import 'package:draftwing/ui/screens/write/write.dart';
 import 'package:draftwing/ui/screens/login/login.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +19,8 @@ final appRoutes = <String, WidgetBuilder>{
 
 Route<dynamic>? onGenerateRoutes(RouteSettings settings) {
   switch (settings.name) {
-    case AppRoutes.home:
-      return FadeRoute(child: const HomeScreen(), settings: settings);
+    case AppRoutes.write:
+      return FadeRoute(child: const WriteScreen(), settings: settings);
     case AppRoutes.drafts:
       return FadeRoute(child: const DraftsScreen(), settings: settings);
     case AppRoutes.settings:

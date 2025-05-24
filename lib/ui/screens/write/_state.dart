@@ -1,4 +1,4 @@
-part of 'home.dart';
+part of 'write.dart';
 
 class _ScreenState extends ChangeNotifier {
   // ignore: unused_element

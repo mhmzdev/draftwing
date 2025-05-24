@@ -9,7 +9,7 @@ class _Listener extends StatelessWidget {
       listenWhen: (a, b) => a.me != b.me,
       listener: (_, state) {
         if (state.me.isSuccess) {
-          AppRoutes.home.pushReplace(context);
+          AppRoutes.write.pushReplace(context);
         }
       },
       child: const SizedBox.shrink(),

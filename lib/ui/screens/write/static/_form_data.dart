@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../write.dart';
 
 class _FormData {
   static Map<String, dynamic> initialValues() {

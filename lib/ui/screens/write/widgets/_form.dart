@@ -1,4 +1,4 @@
-part of '../home.dart';
+part of '../write.dart';
 
 class _Form extends StatelessWidget {
   const _Form();
