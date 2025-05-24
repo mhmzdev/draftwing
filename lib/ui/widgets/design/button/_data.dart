@@ -4,8 +4,8 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
   return {
     AppButtonStyle.primary: _AppButtonModel(
       text: {
-        AppButtonState.elevated: AppTheme.c.appBg,
-        AppButtonState.plain: AppTheme.c.appBg,
+        AppButtonState.elevated: AppTheme.c.cardBg,
+        AppButtonState.plain: AppTheme.c.cardBg,
         AppButtonState.bordered: AppTheme.c.primary,
         AppButtonState.disabled: AppTheme.c.cardBg,
       },
@@ -18,8 +18,8 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
     ),
     AppButtonStyle.danger: _AppButtonModel(
       text: {
-        AppButtonState.elevated: AppTheme.c.appBg,
-        AppButtonState.plain: AppTheme.c.appBg,
+        AppButtonState.elevated: AppTheme.c.cardBg,
+        AppButtonState.plain: AppTheme.c.cardBg,
         AppButtonState.bordered: AppTheme.c.error,
         AppButtonState.disabled: AppTheme.c.cardBg,
       },
@@ -32,8 +32,8 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
     ),
     AppButtonStyle.success: _AppButtonModel(
       text: {
-        AppButtonState.elevated: AppTheme.c.appBg,
-        AppButtonState.plain: AppTheme.c.appBg,
+        AppButtonState.elevated: AppTheme.c.cardBg,
+        AppButtonState.plain: AppTheme.c.cardBg,
         AppButtonState.bordered: AppTheme.c.success,
         AppButtonState.disabled: AppTheme.c.cardBg,
       },
