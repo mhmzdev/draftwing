@@ -1,4 +1,4 @@
-import 'package:draftwing/models/draft/draft.dart';
+import 'package:draftwing/models/article/article.dart';
 import 'package:draftwing/ui/painters/painters.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';

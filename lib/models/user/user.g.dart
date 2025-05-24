@@ -7,20 +7,28 @@ part of 'user.dart';
 // **************************************************************************
 
 _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
-      uid: json['uid'] as String,
+      id: (json['id'] as num).toInt(),
+      username: json['username'] as String,
       name: json['name'] as String,
-      email: json['email'] as String,
-      phone: json['phone'] as String,
-      gender: json['gender'] as String,
-      dob: DateTime.parse(json['dob'] as String),
+      summary: json['summary'] as String,
+      location: json['location'] as String?,
+      twitterUsername: json['twitter_username'] as String?,
+      githubUsername: json['github_username'] as String?,
+      websiteUrl: json['website_url'] as String?,
+      joinedAt: DateTime.parse(json['joined_at'] as String),
+      profileImage: json['profile_image'] as String?,
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
     <String, dynamic>{
-      'uid': instance.uid,
+      'id': instance.id,
+      'username': instance.username,
       'name': instance.name,
-      'email': instance.email,
-      'phone': instance.phone,
-      'gender': instance.gender,
-      'dob': instance.dob.toIso8601String(),
+      'summary': instance.summary,
+      'location': instance.location,
+      'twitter_username': instance.twitterUsername,
+      'github_username': instance.githubUsername,
+      'website_url': instance.websiteUrl,
+      'joined_at': instance.joinedAt.toIso8601String(),
+      'profile_image': instance.profileImage,
     };

@@ -19,5 +19,20 @@ dependencies:
   configs:
     path: ../configs
 
+  # network
+  dio: 5.7.0
+  alice:
+    path: ../alice
+
+  # notification
+  flutter_local_notifications: 18.0.1
+
+  # dotenv
+  flutter_dotenv: 5.2.1
+
 dev_dependencies:
   lints: 5.0.0
+
+flutter:
+  assets:
+    - .env

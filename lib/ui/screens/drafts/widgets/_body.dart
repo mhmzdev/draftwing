@@ -31,7 +31,7 @@ class _BodyState extends State<_Body> {
                 size: SpaceToken.t32,
               ),
               title: 'Drafts',
-              subTitle: '${mockDrafts.length} drafts created',
+              subTitle: '${mockArticles.length} drafts created',
             ),
             Space.y.t04,
             Expanded(
@@ -39,8 +39,8 @@ class _BodyState extends State<_Body> {
                 padding: Space.h.t16,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  ...mockDrafts.map((draft) {
-                    return _DraftCard(draft: draft);
+                  ...mockArticles.map((article) {
+                    return _DraftCard(article: article);
                   }),
                   Space.y.t12,
                   SizedBox(height: bottomBarHeight),

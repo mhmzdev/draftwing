@@ -20,12 +20,21 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  String get uid => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get gender => throw _privateConstructorUsedError;
-  DateTime get dob => throw _privateConstructorUsedError;
+  String get summary => throw _privateConstructorUsedError;
+  String? get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'twitter_username')
+  String? get twitterUsername => throw _privateConstructorUsedError;
+  @JsonKey(name: 'github_username')
+  String? get githubUsername => throw _privateConstructorUsedError;
+  @JsonKey(name: 'website_url')
+  String? get websiteUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'joined_at')
+  DateTime get joinedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profile_image')
+  String? get profileImage => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,12 +51,16 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {String uid,
+      {int id,
+      String username,
       String name,
-      String email,
-      String phone,
-      String gender,
-      DateTime dob});
+      String summary,
+      String? location,
+      @JsonKey(name: 'twitter_username') String? twitterUsername,
+      @JsonKey(name: 'github_username') String? githubUsername,
+      @JsonKey(name: 'website_url') String? websiteUrl,
+      @JsonKey(name: 'joined_at') DateTime joinedAt,
+      @JsonKey(name: 'profile_image') String? profileImage});
 }
 
 /// @nodoc
@@ -65,38 +78,58 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = null,
+    Object? id = null,
+    Object? username = null,
     Object? name = null,
-    Object? email = null,
-    Object? phone = null,
-    Object? gender = null,
-    Object? dob = null,
+    Object? summary = null,
+    Object? location = freezed,
+    Object? twitterUsername = freezed,
+    Object? githubUsername = freezed,
+    Object? websiteUrl = freezed,
+    Object? joinedAt = null,
+    Object? profileImage = freezed,
   }) {
     return _then(_value.copyWith(
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      summary: null == summary
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String,
-      dob: null == dob
-          ? _value.dob
-          : dob // ignore: cast_nullable_to_non_nullable
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      twitterUsername: freezed == twitterUsername
+          ? _value.twitterUsername
+          : twitterUsername // ignore: cast_nullable_to_non_nullable
+              as String?,
+      githubUsername: freezed == githubUsername
+          ? _value.githubUsername
+          : githubUsername // ignore: cast_nullable_to_non_nullable
+              as String?,
+      websiteUrl: freezed == websiteUrl
+          ? _value.websiteUrl
+          : websiteUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      joinedAt: null == joinedAt
+          ? _value.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      profileImage: freezed == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -109,12 +142,16 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String uid,
+      {int id,
+      String username,
       String name,
-      String email,
-      String phone,
-      String gender,
-      DateTime dob});
+      String summary,
+      String? location,
+      @JsonKey(name: 'twitter_username') String? twitterUsername,
+      @JsonKey(name: 'github_username') String? githubUsername,
+      @JsonKey(name: 'website_url') String? websiteUrl,
+      @JsonKey(name: 'joined_at') DateTime joinedAt,
+      @JsonKey(name: 'profile_image') String? profileImage});
 }
 
 /// @nodoc
@@ -129,38 +166,58 @@ class __$$UserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? uid = null,
+    Object? id = null,
+    Object? username = null,
     Object? name = null,
-    Object? email = null,
-    Object? phone = null,
-    Object? gender = null,
-    Object? dob = null,
+    Object? summary = null,
+    Object? location = freezed,
+    Object? twitterUsername = freezed,
+    Object? githubUsername = freezed,
+    Object? websiteUrl = freezed,
+    Object? joinedAt = null,
+    Object? profileImage = freezed,
   }) {
     return _then(_$UserImpl(
-      uid: null == uid
-          ? _value.uid
-          : uid // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
+      summary: null == summary
+          ? _value.summary
+          : summary // ignore: cast_nullable_to_non_nullable
               as String,
-      phone: null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      gender: null == gender
-          ? _value.gender
-          : gender // ignore: cast_nullable_to_non_nullable
-              as String,
-      dob: null == dob
-          ? _value.dob
-          : dob // ignore: cast_nullable_to_non_nullable
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as String?,
+      twitterUsername: freezed == twitterUsername
+          ? _value.twitterUsername
+          : twitterUsername // ignore: cast_nullable_to_non_nullable
+              as String?,
+      githubUsername: freezed == githubUsername
+          ? _value.githubUsername
+          : githubUsername // ignore: cast_nullable_to_non_nullable
+              as String?,
+      websiteUrl: freezed == websiteUrl
+          ? _value.websiteUrl
+          : websiteUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      joinedAt: null == joinedAt
+          ? _value.joinedAt
+          : joinedAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      profileImage: freezed == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -169,32 +226,49 @@ class __$$UserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserImpl implements _User {
   const _$UserImpl(
-      {required this.uid,
+      {required this.id,
+      required this.username,
       required this.name,
-      required this.email,
-      required this.phone,
-      required this.gender,
-      required this.dob});
+      required this.summary,
+      this.location,
+      @JsonKey(name: 'twitter_username') this.twitterUsername,
+      @JsonKey(name: 'github_username') this.githubUsername,
+      @JsonKey(name: 'website_url') this.websiteUrl,
+      @JsonKey(name: 'joined_at') required this.joinedAt,
+      @JsonKey(name: 'profile_image') this.profileImage});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
-  final String uid;
+  final int id;
+  @override
+  final String username;
   @override
   final String name;
   @override
-  final String email;
+  final String summary;
   @override
-  final String phone;
+  final String? location;
   @override
-  final String gender;
+  @JsonKey(name: 'twitter_username')
+  final String? twitterUsername;
   @override
-  final DateTime dob;
+  @JsonKey(name: 'github_username')
+  final String? githubUsername;
+  @override
+  @JsonKey(name: 'website_url')
+  final String? websiteUrl;
+  @override
+  @JsonKey(name: 'joined_at')
+  final DateTime joinedAt;
+  @override
+  @JsonKey(name: 'profile_image')
+  final String? profileImage;
 
   @override
   String toString() {
-    return 'User(uid: $uid, name: $name, email: $email, phone: $phone, gender: $gender, dob: $dob)';
+    return 'User(id: $id, username: $username, name: $name, summary: $summary, location: $location, twitterUsername: $twitterUsername, githubUsername: $githubUsername, websiteUrl: $websiteUrl, joinedAt: $joinedAt, profileImage: $profileImage)';
   }
 
   @override
@@ -202,18 +276,39 @@ class _$UserImpl implements _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
-            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email) &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.gender, gender) || other.gender == gender) &&
-            (identical(other.dob, dob) || other.dob == dob));
+            (identical(other.summary, summary) || other.summary == summary) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.twitterUsername, twitterUsername) ||
+                other.twitterUsername == twitterUsername) &&
+            (identical(other.githubUsername, githubUsername) ||
+                other.githubUsername == githubUsername) &&
+            (identical(other.websiteUrl, websiteUrl) ||
+                other.websiteUrl == websiteUrl) &&
+            (identical(other.joinedAt, joinedAt) ||
+                other.joinedAt == joinedAt) &&
+            (identical(other.profileImage, profileImage) ||
+                other.profileImage == profileImage));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, uid, name, email, phone, gender, dob);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      username,
+      name,
+      summary,
+      location,
+      twitterUsername,
+      githubUsername,
+      websiteUrl,
+      joinedAt,
+      profileImage);
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -233,27 +328,44 @@ class _$UserImpl implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final String uid,
+      {required final int id,
+      required final String username,
       required final String name,
-      required final String email,
-      required final String phone,
-      required final String gender,
-      required final DateTime dob}) = _$UserImpl;
+      required final String summary,
+      final String? location,
+      @JsonKey(name: 'twitter_username') final String? twitterUsername,
+      @JsonKey(name: 'github_username') final String? githubUsername,
+      @JsonKey(name: 'website_url') final String? websiteUrl,
+      @JsonKey(name: 'joined_at') required final DateTime joinedAt,
+      @JsonKey(name: 'profile_image') final String? profileImage}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
-  String get uid;
+  int get id;
+  @override
+  String get username;
   @override
   String get name;
   @override
-  String get email;
+  String get summary;
   @override
-  String get phone;
+  String? get location;
   @override
-  String get gender;
+  @JsonKey(name: 'twitter_username')
+  String? get twitterUsername;
   @override
-  DateTime get dob;
+  @JsonKey(name: 'github_username')
+  String? get githubUsername;
+  @override
+  @JsonKey(name: 'website_url')
+  String? get websiteUrl;
+  @override
+  @JsonKey(name: 'joined_at')
+  DateTime get joinedAt;
+  @override
+  @JsonKey(name: 'profile_image')
+  String? get profileImage;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

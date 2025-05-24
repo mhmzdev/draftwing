@@ -1,5 +1,5 @@
-import 'package:draftwing/models/draft/draft.dart';
-import 'package:draftwing/static/fakes/drafts.dart';
+import 'package:draftwing/models/article/article.dart';
+import 'package:draftwing/static/fakes/fakes.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
 import 'package:draftwing/ui/widgets/design/chip/chip.dart';

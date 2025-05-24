@@ -1,4 +1,5 @@
 import 'package:flash/flash_helper.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:configs/configs.dart';
@@ -17,8 +18,23 @@ import 'blocs/user/cubit.dart';
 // provider-imports-start
 import 'providers/app.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    AppFCM.init();
+
+    if (kDebugMode) {
+      AppAlice.setNavigatorKey(navigator);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
