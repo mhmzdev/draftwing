@@ -56,7 +56,13 @@ class _DraftCard extends StatelessWidget {
             children: [
               Expanded(
                 child: AppButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (article.isPublished) {
+                      LauncherHelper.url(article.url);
+                    } else {
+                      LauncherHelper.url('https://dev.to/dashboard');
+                    }
+                  },
                   icon: Icons.open_in_new_rounded,
                   label: 'Edit',
                   state: AppButtonState.bordered,
@@ -64,7 +70,7 @@ class _DraftCard extends StatelessWidget {
               ),
               Space.x.t08,
               AppButton(
-                onPressed: () {},
+                onPressed: () => LauncherHelper.url('https://dev.to/dashboard'),
                 icon: Iconsax.trash_copy,
                 style: AppButtonStyle.danger,
                 state: AppButtonState.bordered,

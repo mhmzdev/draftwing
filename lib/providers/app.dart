@@ -8,7 +8,7 @@ final themeMap = {
   'light': ThemeMode.light,
 };
 
-enum Cache { theme, locale, firstOpen }
+enum Cache { theme, locale, firstOpen, fetchPublished }
 
 class AppProvider extends ChangeNotifier {
   static AppProvider s(BuildContext context, [bool listen = false]) =>
@@ -17,6 +17,7 @@ class AppProvider extends ChangeNotifier {
   var themeMode = ThemeMode.light;
   var key = const Key('app');
   var firstOpen = false;
+  var fetchPublished = true;
   late Box<dynamic> _cache;
 
   AppProvider() {
@@ -32,6 +33,11 @@ class AppProvider extends ChangeNotifier {
 
     final hasOpened = _cache.get(Cache.firstOpen.toString());
     firstOpen = hasOpened == null;
+
+    final cachedFetchPublished = _cache.get(Cache.fetchPublished.toString());
+    fetchPublished =
+        cachedFetchPublished == null ? false : cachedFetchPublished == 'true';
+
     notifyListeners();
   }
 
@@ -48,9 +54,17 @@ class AppProvider extends ChangeNotifier {
     _cache.put(Cache.firstOpen.toString(), 'true');
   }
 
+  void setFetchPublished(bool value) {
+    if (fetchPublished == value) return;
+    fetchPublished = value;
+    notifyListeners();
+    _cache.put(Cache.fetchPublished.toString(), value.toString());
+  }
+
   void reset() async {
     firstOpen = true;
     themeMode = ThemeMode.system;
+    fetchPublished = false;
     await _cache.clear();
     key = Key(DateTime.now().toString());
     notifyListeners();

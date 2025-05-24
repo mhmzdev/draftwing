@@ -66,6 +66,9 @@ dependencies:
   freezed_annotation: 2.4.4
   json_annotation: 4.9.0
 
+  # launcher
+  url_launcher: 6.3.0
+
   # cache
   hive_flutter: 1.1.0
   path_provider: 2.1.5
@@ -75,6 +78,7 @@ dependencies:
   flutter_keyboard_visibility: 6.0.0
   # flutter_native_splash: 2.4.6
   flutter_dotenv: 5.2.1
+  shimmer: 3.0.0
 
 dev_dependencies:
   flutter_test:

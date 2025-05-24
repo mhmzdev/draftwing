@@ -16,6 +16,15 @@ class _BodyState extends State<_Body> {
     final userState = userCubit.state;
     final user = userState.me.data ?? userState.user!;
 
+    final articleCubit = ArticleCubit.c(context, true);
+    final articleState = articleCubit.state;
+    final draftsList = articleState.draftsList;
+    final publishedList = articleState.publishedList;
+    final list = [...draftsList, ...publishedList];
+
+    final app = AppProvider.s(context, true);
+    final fetchPublished = app.fetchPublished;
+
     return Screen(
       keyboardHandler: true,
       bottomBar: true,
@@ -86,14 +95,18 @@ class _BodyState extends State<_Body> {
                 children: [
                   ...[
                     {
-                      'label': 'Articles Created',
+                      'label': fetchPublished ? 'Articles Created' : 'Drafts',
                       'icon': Iconsax.document_text_copy,
-                      'value': '12',
+                      'value': list.length.toString(),
                     },
                     {
-                      'label': 'Published',
+                      'label':
+                          fetchPublished ? 'Published' : 'Enable from settings',
                       'icon': Iconsax.trend_up_copy,
-                      'value': '8',
+                      'value':
+                          fetchPublished
+                              ? publishedList.length.toString()
+                              : 'Published',
                     },
                     {
                       'label': 'Member Since',
@@ -114,22 +127,22 @@ class _BodyState extends State<_Body> {
                   ),
                 ],
               ),
-              Space.y.t04,
-              Container(
-                margin: Space.a.t16,
-                padding: Space.a.t16,
-                decoration: AppProps.cardDec,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppText.h1('About'),
-                    Space.y.t12,
-                    AppText.b1(
-                      'Passionate writer exploring the realms of creativity through words. Always seeking new stories to tell and adventures to share.',
-                    ),
-                  ],
+              if (user.summary.available) ...[
+                Space.y.t04,
+                Container(
+                  margin: Space.a.t16,
+                  padding: Space.a.t16,
+                  decoration: AppProps.cardDec,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppText.h1('About'),
+                      Space.y.t12,
+                      AppText.b1(user.summary),
+                    ],
+                  ),
                 ),
-              ),
+              ],
               SizedBox(height: bottomBarHeight),
             ],
           ),

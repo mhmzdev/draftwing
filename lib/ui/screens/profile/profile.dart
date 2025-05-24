@@ -1,4 +1,6 @@
+import 'package:draftwing/blocs/article/cubit.dart';
 import 'package:draftwing/blocs/user/cubit.dart';
+import 'package:draftwing/providers/app.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
 import 'package:draftwing/ui/widgets/design/gradients/icon.dart';

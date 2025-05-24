@@ -1,5 +1,7 @@
+import 'package:draftwing/blocs/article/cubit.dart';
+import 'package:draftwing/helpers/launcher.dart';
 import 'package:draftwing/models/article/article.dart';
-import 'package:draftwing/static/fakes/fakes.dart';
+import 'package:draftwing/providers/app.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
 import 'package:draftwing/ui/widgets/design/chip/chip.dart';
@@ -12,14 +14,34 @@ import 'package:provider/provider.dart';
 import 'package:configs/configs.dart';
 
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
+import 'package:shimmer/shimmer.dart';
 
 part 'widgets/_body.dart';
 part 'widgets/_card.dart';
+part 'widgets/_skeleton.dart';
 
 part '_state.dart';
 
-class DraftsScreen extends StatelessWidget {
+class DraftsScreen extends StatefulWidget {
   const DraftsScreen({super.key});
+
+  @override
+  State<DraftsScreen> createState() => _DraftsScreenState();
+}
+
+class _DraftsScreenState extends State<DraftsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final app = AppProvider.s(context);
+    final fetchPublished = app.fetchPublished;
+    final cubit = ArticleCubit.c(context);
+    final state = cubit.state;
+    cubit.drafts(force: state.drafts.isDefault);
+    if (fetchPublished) {
+      cubit.published(force: state.published.isDefault);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

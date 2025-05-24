@@ -11,6 +11,7 @@ import 'router/router.dart';
 import 'router/routes.dart';
 
 // bloc-imports-start
+import 'blocs/article/cubit.dart';
 import 'blocs/user/cubit.dart';
 
 // bloc-imports-end
@@ -41,6 +42,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         // bloc-initiate-start
+        BlocProvider(create: (_) => ArticleCubit()),
         BlocProvider(create: (_) => UserCubit()),
         // bloc-initiate-end
 
