@@ -1,4 +1,4 @@
-import 'package:flash/flash_helper.dart';
+import 'package:draftwing/global/bloc_sync/bloc_sync.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +11,7 @@ import 'router/router.dart';
 import 'router/routes.dart';
 
 // bloc-imports-start
+import 'blocs/agent/cubit.dart';
 import 'blocs/article/cubit.dart';
 import 'blocs/user/cubit.dart';
 
@@ -42,6 +43,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         // bloc-initiate-start
+        BlocProvider(create: (_) => AgentCubit()),
         BlocProvider(create: (_) => ArticleCubit()),
         BlocProvider(create: (_) => UserCubit()),
         // bloc-initiate-end
@@ -63,23 +65,10 @@ class _MyAppState extends State<MyApp> {
             navigatorObservers: [RouteLogger(navigatorKey: navigator)],
             onGenerateRoute: onGenerateRoutes,
             initialRoute: AppRoutes.splash,
-            builder: (context, child) => _AppChild(child: child!),
+            builder: (context, child) => BlocSync(child: child!),
           );
         },
       ),
     );
-  }
-}
-
-class _AppChild extends StatelessWidget {
-  const _AppChild({required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    App.init(context);
-
-    return Toast(navigatorKey: navigator, child: child);
   }
 }
