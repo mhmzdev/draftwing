@@ -6,22 +6,22 @@ class _Listener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ArticleCubit, ArticleState>(
-      listenWhen: (a, b) => a.create != b.create,
+      listenWhen: (a, b) => a.saveDraft != b.saveDraft,
       listener: (_, state) {
-        if (state.create.isFailed) {
+        if (state.saveDraft.isFailed) {
           UIFlash.error(
             context,
-            state.create.fault?.message ?? 'Failed to perform action',
+            state.saveDraft.fault?.message ?? 'Failed to perform action',
           );
         }
-        if (state.create.isSuccess) {
+        if (state.saveDraft.isSuccess) {
           UIFlash.success(context, 'Draft saved successfully');
           ''.pop(context);
           AppRoutes.drafts.pushReplace(context);
         }
       },
       builder: (context, state) {
-        final loading = state.create.isLoading;
+        final loading = state.saveDraft.isLoading;
         return FullScreenLoader(loading: loading);
       },
     );

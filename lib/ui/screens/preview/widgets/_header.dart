@@ -21,7 +21,7 @@ class _Header extends StatelessWidget {
                     child: CoreHeader(
                       leading: IconButton(
                         onPressed: () {
-                          if (state.create.isSuccess) {
+                          if (state.saveDraft.isSuccess) {
                             ''.pop(context);
                             return;
                           }

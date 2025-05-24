@@ -35,4 +35,29 @@ class AgentTools {
       ),
     },
   );
+
+  FunctionDeclaration get saveDraft => FunctionDeclaration(
+    'save_draft',
+    'Save a draft of the article to dev.to via api',
+    parameters: {
+      'title': Schema(SchemaType.string, description: 'The article title'),
+      'body_markdown': Schema(
+        SchemaType.string,
+        description: 'The article content in markdown format',
+      ),
+      'published': Schema(
+        SchemaType.boolean,
+        description: 'Publication status (always false for drafts)',
+      ),
+      'tags': Schema(
+        SchemaType.array,
+        items: Schema(SchemaType.string),
+        description: 'List of relevant tags for the article',
+      ),
+    },
+  );
+
+  List<Tool> get tools => [
+    Tool.functionDeclarations([saveDraft]),
+  ];
 }

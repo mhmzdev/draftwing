@@ -42,7 +42,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
   @override
   void initState() {
     super.initState();
-    ArticleCubit.c(context).resetCreate();
+    ArticleCubit.c(context).resetSaveDraft();
   }
 
   @override
