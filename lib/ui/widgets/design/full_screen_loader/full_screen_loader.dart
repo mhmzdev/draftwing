@@ -40,7 +40,7 @@ class _FullScreenLoaderState extends State<FullScreenLoader> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const AppIconLoader(),
-          Space.y.t20,
+          Space.y.t12,
           AppText.b1(widget.loadingText).cl(Colors.white).w(600),
         ],
       ),
@@ -62,8 +62,8 @@ class AppIconLoader extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         CustomPaint(
-          painter: const AppLogoPainter(),
-          size: AppLogoPainter.s(icon),
+          painter: const AppLogoRoundPainter(),
+          size: AppLogoRoundPainter.s(icon),
         ),
         SizedBox(
           height: radius - stroke,

@@ -28,9 +28,10 @@ mixin _$Draft {
   @JsonKey(name: 'additional_context')
   String get additionalContext => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  String get createdAt => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
-  String get updatedAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+  DraftStatus get status => throw _privateConstructorUsedError;
 
   /// Serializes this Draft to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,8 +53,9 @@ abstract class $DraftCopyWith<$Res> {
       List<String> tags,
       @JsonKey(name: 'reading_length') ReadingLength readingLength,
       @JsonKey(name: 'additional_context') String additionalContext,
-      @JsonKey(name: 'created_at') String createdAt,
-      @JsonKey(name: 'updated_at') String updatedAt});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt,
+      DraftStatus status});
 }
 
 /// @nodoc
@@ -78,6 +80,7 @@ class _$DraftCopyWithImpl<$Res, $Val extends Draft>
     Object? additionalContext = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -103,11 +106,15 @@ class _$DraftCopyWithImpl<$Res, $Val extends Draft>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as DraftStatus,
     ) as $Val);
   }
 }
@@ -125,8 +132,9 @@ abstract class _$$DraftImplCopyWith<$Res> implements $DraftCopyWith<$Res> {
       List<String> tags,
       @JsonKey(name: 'reading_length') ReadingLength readingLength,
       @JsonKey(name: 'additional_context') String additionalContext,
-      @JsonKey(name: 'created_at') String createdAt,
-      @JsonKey(name: 'updated_at') String updatedAt});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'updated_at') DateTime updatedAt,
+      DraftStatus status});
 }
 
 /// @nodoc
@@ -149,6 +157,7 @@ class __$$DraftImplCopyWithImpl<$Res>
     Object? additionalContext = null,
     Object? createdAt = null,
     Object? updatedAt = null,
+    Object? status = null,
   }) {
     return _then(_$DraftImpl(
       uid: null == uid
@@ -174,11 +183,15 @@ class __$$DraftImplCopyWithImpl<$Res>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as DraftStatus,
     ));
   }
 }
@@ -193,7 +206,8 @@ class _$DraftImpl implements _Draft {
       @JsonKey(name: 'reading_length') required this.readingLength,
       @JsonKey(name: 'additional_context') required this.additionalContext,
       @JsonKey(name: 'created_at') required this.createdAt,
-      @JsonKey(name: 'updated_at') required this.updatedAt})
+      @JsonKey(name: 'updated_at') required this.updatedAt,
+      required this.status})
       : _tags = tags;
 
   factory _$DraftImpl.fromJson(Map<String, dynamic> json) =>
@@ -219,14 +233,16 @@ class _$DraftImpl implements _Draft {
   final String additionalContext;
   @override
   @JsonKey(name: 'created_at')
-  final String createdAt;
+  final DateTime createdAt;
   @override
   @JsonKey(name: 'updated_at')
-  final String updatedAt;
+  final DateTime updatedAt;
+  @override
+  final DraftStatus status;
 
   @override
   String toString() {
-    return 'Draft(uid: $uid, title: $title, tags: $tags, readingLength: $readingLength, additionalContext: $additionalContext, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Draft(uid: $uid, title: $title, tags: $tags, readingLength: $readingLength, additionalContext: $additionalContext, createdAt: $createdAt, updatedAt: $updatedAt, status: $status)';
   }
 
   @override
@@ -244,7 +260,8 @@ class _$DraftImpl implements _Draft {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+                other.updatedAt == updatedAt) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -257,7 +274,8 @@ class _$DraftImpl implements _Draft {
       readingLength,
       additionalContext,
       createdAt,
-      updatedAt);
+      updatedAt,
+      status);
 
   /// Create a copy of Draft
   /// with the given fields replaced by the non-null parameter values.
@@ -277,16 +295,16 @@ class _$DraftImpl implements _Draft {
 
 abstract class _Draft implements Draft {
   const factory _Draft(
-          {required final String uid,
-          required final String title,
-          required final List<String> tags,
-          @JsonKey(name: 'reading_length')
-          required final ReadingLength readingLength,
-          @JsonKey(name: 'additional_context')
-          required final String additionalContext,
-          @JsonKey(name: 'created_at') required final String createdAt,
-          @JsonKey(name: 'updated_at') required final String updatedAt}) =
-      _$DraftImpl;
+      {required final String uid,
+      required final String title,
+      required final List<String> tags,
+      @JsonKey(name: 'reading_length')
+      required final ReadingLength readingLength,
+      @JsonKey(name: 'additional_context')
+      required final String additionalContext,
+      @JsonKey(name: 'created_at') required final DateTime createdAt,
+      @JsonKey(name: 'updated_at') required final DateTime updatedAt,
+      required final DraftStatus status}) = _$DraftImpl;
 
   factory _Draft.fromJson(Map<String, dynamic> json) = _$DraftImpl.fromJson;
 
@@ -304,10 +322,12 @@ abstract class _Draft implements Draft {
   String get additionalContext;
   @override
   @JsonKey(name: 'created_at')
-  String get createdAt;
+  DateTime get createdAt;
   @override
   @JsonKey(name: 'updated_at')
-  String get updatedAt;
+  DateTime get updatedAt;
+  @override
+  DraftStatus get status;
 
   /// Create a copy of Draft
   /// with the given fields replaced by the non-null parameter values.

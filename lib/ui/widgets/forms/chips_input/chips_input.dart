@@ -158,7 +158,7 @@ class _AppFormChipsInputState<T> extends State<AppFormChipsInput<T>> {
               if (_values.isNotEmpty) Space.y.t12,
               Wrap(
                 spacing: SpaceToken.t08,
-                runSpacing: 0,
+                runSpacing: SpaceToken.t08,
                 children:
                     _values
                         .map(

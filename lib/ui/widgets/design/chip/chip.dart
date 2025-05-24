@@ -5,28 +5,50 @@ class AppChip extends StatelessWidget {
   const AppChip({
     super.key,
     required this.label,
-    required this.onDeleted,
-    this.borderColor,
+    this.onDeleted,
+    this.color,
     this.margin,
+    this.prefixIcon,
   });
 
   final String label;
-  final void Function() onDeleted;
-  final Color? borderColor;
+  final Color? color;
+  final IconData? prefixIcon;
   final EdgeInsetsGeometry? margin;
+
+  final void Function()? onDeleted;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: margin ?? Space.z,
-      child: Chip(
-        elevation: 0,
-        padding: Space.sym(2, 0),
-        visualDensity: VisualDensity.compact,
-        label: AppText.b1(label).cl(AppTheme.c.primary).w(700),
-        backgroundColor: AppTheme.c.primary.withValues(alpha: .25),
-        deleteIcon: Icon(Icons.close, color: AppTheme.c.primary, size: 20),
-        onDeleted: onDeleted,
+    return Container(
+      margin: margin ?? Space.z,
+      padding: Space.sym(8, 4),
+      decoration: BoxDecoration(
+        color:
+            color?.withValues(alpha: .15) ??
+            AppTheme.c.primary.withValues(alpha: .15),
+        borderRadius: 16.radius(),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (prefixIcon != null) ...[
+            Icon(prefixIcon, size: 16, color: color ?? AppTheme.c.primary),
+            Space.x.t04,
+          ],
+          AppText.b2(label).cl(color ?? AppTheme.c.primary).w(700),
+          if (onDeleted != null) ...[
+            Space.x.t04,
+            GestureDetector(
+              onTap: onDeleted,
+              child: Icon(
+                Icons.close,
+                color: color ?? AppTheme.c.primary,
+                size: 16,
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }

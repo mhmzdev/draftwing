@@ -1,4 +1,7 @@
+import 'package:draftwing/ui/widgets/core/header/core_header.dart';
+import 'package:draftwing/ui/widgets/design/gradients/icon.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'package:configs/configs.dart';

@@ -13,8 +13,9 @@ _$DraftImpl _$$DraftImplFromJson(Map<String, dynamic> json) => _$DraftImpl(
       readingLength:
           $enumDecode(_$ReadingLengthEnumMap, json['reading_length']),
       additionalContext: json['additional_context'] as String,
-      createdAt: json['created_at'] as String,
-      updatedAt: json['updated_at'] as String,
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
+      status: $enumDecode(_$DraftStatusEnumMap, json['status']),
     );
 
 Map<String, dynamic> _$$DraftImplToJson(_$DraftImpl instance) =>
@@ -24,8 +25,9 @@ Map<String, dynamic> _$$DraftImplToJson(_$DraftImpl instance) =>
       'tags': instance.tags,
       'reading_length': _$ReadingLengthEnumMap[instance.readingLength]!,
       'additional_context': instance.additionalContext,
-      'created_at': instance.createdAt,
-      'updated_at': instance.updatedAt,
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'status': _$DraftStatusEnumMap[instance.status]!,
     };
 
 const _$ReadingLengthEnumMap = {
@@ -34,4 +36,10 @@ const _$ReadingLengthEnumMap = {
   ReadingLength.sizeToEight: 'sizeToEight',
   ReadingLength.nineToTwelve: 'nineToTwelve',
   ReadingLength.thirteenPlus: 'thirteenPlus',
+};
+
+const _$DraftStatusEnumMap = {
+  DraftStatus.draft: 'draft',
+  DraftStatus.published: 'published',
+  DraftStatus.archived: 'archived',
 };

@@ -6,7 +6,7 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
       text: {
         AppButtonState.elevated: AppTheme.c.appBg,
         AppButtonState.plain: AppTheme.c.appBg,
-        AppButtonState.bordered: AppTheme.c.secondary,
+        AppButtonState.bordered: AppTheme.c.primary,
         AppButtonState.disabled: AppTheme.c.cardBg,
       },
       backgroundColor: {
@@ -58,10 +58,10 @@ Map<AppButtonRadius, BorderRadius> _mapRadiusData() {
 
 Map<AppButtonSize, TextStyle> _mapSizeToFontSize() {
   return {
-    AppButtonSize.large: AppText.b1('').style,
-    AppButtonSize.medium: AppText.b1('').style,
-    AppButtonSize.small: AppText.b2('').style,
-    AppButtonSize.mini: AppText.b2('').style,
-    AppButtonSize.tiny: AppText.l1('').style,
+    AppButtonSize.large: AppText.b1('').style!,
+    AppButtonSize.medium: AppText.b1('').style!,
+    AppButtonSize.small: AppText.b2('').style!,
+    AppButtonSize.mini: AppText.b2('').style!,
+    AppButtonSize.tiny: AppText.l1('').style!,
   };
 }

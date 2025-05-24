@@ -26,6 +26,7 @@ part 'extension/_context.dart';
 part 'extension/_list.dart';
 part 'extension/_global_key.dart';
 part 'extension/_map.dart';
+part 'extension/_enum.dart';
 
 part 'space/_data.dart';
 part 'space/_model_edge_insets.dart';
@@ -40,6 +41,7 @@ part 'theme/_theme_model.dart';
 part 'theme/_theme.dart';
 part 'theme/_typography.dart';
 part 'theme/_app_text.dart';
+
 part 'ui/_breakpoints.dart';
 part 'ui/_media.dart';
 part 'ui/_screen.dart';

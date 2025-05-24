@@ -29,21 +29,13 @@ class _BodyState extends State<_Body> {
         child: ScrollColumnExpandable(
           padding: Space.a.t16,
           children: [
-            Row(
-              children: [
-                CustomPaint(
-                  painter: const AppLogoRoundPainter(),
-                  size: AppLogoRoundPainter.s(42),
-                ),
-                Space.x.t08,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppText.h1('Draft Wing'),
-                    AppText.b1('Create amazing drafts with AI'),
-                  ],
-                ),
-              ],
+            CoreHeader(
+              leading: CustomPaint(
+                painter: const AppLogoRoundPainter(),
+                size: AppLogoRoundPainter.s(42),
+              ),
+              title: 'Draft Wing',
+              subTitle: 'Create amazing drafts with AI',
             ),
             Space.y.t20,
             const _Form(),

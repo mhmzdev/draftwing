@@ -87,27 +87,27 @@ class AppButton extends StatelessWidget {
 
     var padding = this.padding;
     if (mainAxisSize == MainAxisSize.min) {
-      padding = padding ?? Space.h.t16;
+      padding = (padding ?? Space.h.t16) + verticalSpace;
     } else {
-      padding = padding ?? Space.h.t24;
+      padding = (padding ?? Space.h.t24) + verticalSpace;
+    }
+
+    if (label == null && icon != null) {
+      padding = Space.a.t12;
     }
 
     return InkWell(
       onTap: !disabled ? onPressed : disabledCallback,
       child: Container(
         margin: margin,
-        padding: padding + verticalSpace,
+        padding: padding,
         decoration: BoxDecoration(
-          shape:
-              label == null && icon != null
-                  ? BoxShape.circle
-                  : BoxShape.rectangle,
           border:
               bordered
-                  ? Border.all(color: textColor, width: 2)
+                  ? Border.all(color: textColor, width: 1)
                   : Border.all(color: Colors.transparent, width: 1),
           color: disabled ? colors.first : null,
-          borderRadius: label == null ? null : borderRadius,
+          borderRadius: borderRadius,
           boxShadow: boxShadows,
           gradient:
               disabled
