@@ -19,6 +19,68 @@ class _Body extends StatelessWidget {
               subTitle: 'Customize your app experience',
             ),
             Space.y.t20,
+            Container(
+              padding: Space.a.t16,
+              decoration: AppProps.cardDec,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.color_lens_outlined,
+                        color: AppTheme.c.primary,
+                      ),
+                      Space.x.t04,
+                      AppText.h2('Appearance'),
+                    ],
+                  ),
+                  Space.y.t12,
+                  AppText.b1('Theme and display options coming soon...'),
+                ],
+              ),
+            ),
+            Space.y.t20,
+            Container(
+              padding: Space.a.t16,
+              decoration: AppProps.cardDec,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Iconsax.info_circle_copy, color: AppTheme.c.primary),
+                      Space.x.t04,
+                      AppText.h2('About'),
+                    ],
+                  ),
+                  Space.y.t12,
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Version: ',
+                          style: AppText.b1('').w(600).style!,
+                        ),
+                        TextSpan(text: '0.2.5', style: AppText.b1('').style),
+                      ],
+                    ),
+                  ),
+                  Space.y.t08,
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Build Number: ',
+                          style: AppText.b1('').w(600).style!,
+                        ),
+                        TextSpan(text: '234', style: AppText.b1('').style),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
