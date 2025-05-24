@@ -76,7 +76,6 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final userCubit = UserCubit.c(context, true);
     final userState = userCubit.state;
-    final isLoading = userState.me.isLoading;
     final isFailed = userState.me.isFailed;
 
     return Screen(
@@ -115,8 +114,6 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    if (isLoading)
-                      const CircularProgressIndicator(color: Colors.white),
                     if (isFailed) ...[
                       Space.y.t12,
                       AppText.b1(
