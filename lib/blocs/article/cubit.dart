@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:draftwing/models/agent/draft_response.dart';
 import 'package:draftwing/models/article/article.dart';
 
 import 'package:flutter/material.dart';
@@ -47,15 +48,20 @@ class ArticleCubit extends Cubit<ArticleState> with _ArticleEmitter {
     }
   }
 
-  Future<void> create() async {
+  Future<void> create(DraftResponse draft) async {
     _createLoading();
     try {
-      final data = await _ArticleProvider.create();
-      _createSuccess(data);
+      final parsed = draft.copyWith(
+        tags: draft.tags.map((tag) => tag.replaceAll('-', '')).toList(),
+      );
+      await _ArticleProvider.create(parsed);
+      _createSuccess();
     } on Fault catch (e) {
       _createFailed(e);
     }
   }
+
+  void resetCreate() => emit(state.copyWith(create: CubitState()));
 
   void resetPublished() => _publishedSuccess([]);
 

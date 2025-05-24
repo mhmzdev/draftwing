@@ -23,10 +23,12 @@ class _ArticleProvider {
     }
   }
 
-  static Future<Article> create() async {
+  static Future<void> create(DraftResponse draft) async {
     try {
-      final raw = <String, dynamic>{};
-      return Article.fromJson(raw);
+      await DevToApi.ins.post(
+        '/articles',
+        data: {'article': draft.toJson()},
+      );
     } catch (e, st) {
       throw UnknownFault('Something went wrong!', st);
     }

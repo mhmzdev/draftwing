@@ -6,6 +6,8 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenState = _ScreenState.s(context);
+    final articleCubit = ArticleCubit.c(context, true);
+    final state = articleCubit.state;
 
     return KeyboardVisibilityBuilder(
       builder: (context, isVisible) {
@@ -19,6 +21,11 @@ class _Header extends StatelessWidget {
                     child: CoreHeader(
                       leading: IconButton(
                         onPressed: () {
+                          if (state.create.isSuccess) {
+                            ''.pop(context);
+                            return;
+                          }
+
                           showDialog(
                             context: context,
                             builder:

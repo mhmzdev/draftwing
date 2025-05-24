@@ -23,6 +23,7 @@ class AppButton extends StatelessWidget {
     this.body,
     this.padding,
     this.margin,
+    this.loading = false,
   });
 
   final String? label;
@@ -46,9 +47,16 @@ class AppButton extends StatelessWidget {
   final EdgeInsets? padding;
   final EdgeInsets? margin;
 
+  final bool loading;
+
   @override
   Widget build(BuildContext context) {
     App.init(context);
+
+    var state = this.state;
+    if (loading) {
+      state = AppButtonState.loading;
+    }
 
     final data = _mapPropsToData()[style]!;
     final borderRadius = _mapRadiusData()[radius];
@@ -58,7 +66,7 @@ class AppButton extends StatelessWidget {
     final textColor = frontColor ?? data.text[state]!;
 
     final plain = state == AppButtonState.plain;
-    final disabled = state == AppButtonState.disabled;
+    final disabled = state == AppButtonState.disabled || loading;
     final bordered = state == AppButtonState.bordered;
 
     final iconSize = 1.25 * textStyle.fontSize!;
@@ -115,29 +123,42 @@ class AppButton extends StatelessWidget {
                   : LinearGradient(colors: colors, stops: const [0.1, 0.9]),
         ),
         child:
-            body ??
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: mainAxisSize,
-              children: [
-                if (icon != null && !iconToEnd)
-                  Icon(icon, size: iconSize, color: textColor),
-                if (label != null && icon != null) Space.x.t08,
-                if (label != null)
-                  AppText.b1(
-                    label!,
-                    style:
-                        labelStyle ??
-                        TextStyle(
-                          fontSize: textStyle.fontSize!,
-                          color: textColor,
-                        ),
+            loading
+                ? Center(
+                  child: SizedBox(
+                    width: SpaceToken.t16,
+                    height: SpaceToken.t16,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(textColor),
+                      strokeWidth: 2.5,
+                      strokeAlign: SpaceToken.t04,
+                    ),
                   ),
-                if (label != null && icon != null && iconToEnd) Space.x.t08,
-                if (icon != null && iconToEnd)
-                  Icon(icon, size: iconSize, color: textColor),
-              ],
-            ),
+                )
+                : body ??
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: mainAxisSize,
+                      children: [
+                        if (icon != null && !iconToEnd)
+                          Icon(icon, size: iconSize, color: textColor),
+                        if (label != null && icon != null) Space.x.t08,
+                        if (label != null)
+                          AppText.b1(
+                            label!,
+                            style:
+                                labelStyle ??
+                                TextStyle(
+                                  fontSize: textStyle.fontSize!,
+                                  color: textColor,
+                                ),
+                          ),
+                        if (label != null && icon != null && iconToEnd)
+                          Space.x.t08,
+                        if (icon != null && iconToEnd)
+                          Icon(icon, size: iconSize, color: textColor),
+                      ],
+                    ),
       ),
     );
   }

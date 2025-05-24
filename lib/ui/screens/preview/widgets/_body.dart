@@ -12,6 +12,7 @@ class _Body extends StatelessWidget {
       initialFormValue: _FormData.initialValues(screenState.draft.toJson()),
       keyboardHandler: true,
       resizeToAvoidBottomInset: true,
+      overlayBuilders: const [_Listener()],
       child: SafeArea(
         child: Padding(
           padding: Space.a.t16,
@@ -22,6 +23,15 @@ class _Body extends StatelessWidget {
               const _Header(),
               Row(
                 children: [
+                  AppButton(
+                    onPressed: () => screenState.onSave(context),
+                    label: 'Save',
+                    icon: Iconsax.document_download_copy,
+                    size: AppButtonSize.small,
+                    radius: AppButtonRadius.capsule,
+                    state: AppButtonState.bordered,
+                  ),
+                  Space.x.t12,
                   AppButton(
                     onPressed: () => screenState.onCopy(context),
                     label: 'Copy',

@@ -65,10 +65,10 @@ mixin _ArticleEmitter on Cubit<ArticleState> {
     );
   }
 
-  void _createSuccess(Article data) {
+  void _createSuccess() {
     emit(
       state.copyWith(
-        create: state.create.copyWith(action: CubitAction.success, data: data),
+        create: state.create.copyWith(action: CubitAction.success),
       ),
     );
   }

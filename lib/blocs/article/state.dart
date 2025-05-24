@@ -5,7 +5,7 @@ part of 'cubit.dart';
 class ArticleState extends Equatable {
   final CubitState<List<Article>> published;
   final CubitState<List<Article>> drafts;
-  final CubitState<Article> create;
+  final CubitState<void> create;
 
   final List<Article> publishedList;
   final List<Article> draftsList;
@@ -29,7 +29,7 @@ class ArticleState extends Equatable {
   ArticleState copyWith({
     CubitState<List<Article>>? published,
     CubitState<List<Article>>? drafts,
-    CubitState<Article>? create,
+    CubitState<void>? create,
     List<Article>? publishedList,
     List<Article>? draftsList,
   }) {

@@ -24,4 +24,8 @@ class _ScreenState extends ChangeNotifier {
       }
     });
   }
+
+  void onSave(BuildContext context) {
+    ArticleCubit.c(context).create(draft);
+  }
 }

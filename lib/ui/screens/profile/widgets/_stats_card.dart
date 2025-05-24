@@ -5,16 +5,20 @@ class _StatsCard extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.value,
+    this.padding,
   });
 
   final String label;
   final IconData icon;
   final String value;
 
+  final EdgeInsets? padding;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: AppProps.cardDec,
+      padding: padding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

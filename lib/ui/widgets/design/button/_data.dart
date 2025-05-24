@@ -8,12 +8,17 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
         AppButtonState.plain: AppTheme.c.cardBg,
         AppButtonState.bordered: AppTheme.c.primary,
         AppButtonState.disabled: AppTheme.c.cardBg,
+        AppButtonState.loading: AppTheme.c.textDim,
       },
       backgroundColor: {
         AppButtonState.bordered: [Colors.transparent, Colors.transparent],
         AppButtonState.elevated: [AppTheme.c.primary, AppTheme.c.secondary],
         AppButtonState.plain: [AppTheme.c.primary, AppTheme.c.secondary],
         AppButtonState.disabled: [AppTheme.c.textDim, AppTheme.c.textDim],
+        AppButtonState.loading: [
+          AppTheme.c.lightStroke,
+          AppTheme.c.lightStroke,
+        ],
       },
     ),
     AppButtonStyle.danger: _AppButtonModel(
@@ -22,12 +27,14 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
         AppButtonState.plain: AppTheme.c.cardBg,
         AppButtonState.bordered: AppTheme.c.error,
         AppButtonState.disabled: AppTheme.c.cardBg,
+        AppButtonState.loading: AppTheme.c.textDim,
       },
       backgroundColor: {
         AppButtonState.elevated: [AppTheme.c.error, AppTheme.c.error],
         AppButtonState.plain: [AppTheme.c.error, AppTheme.c.error],
         AppButtonState.bordered: [Colors.transparent, Colors.transparent],
         AppButtonState.disabled: [AppTheme.c.textDim, AppTheme.c.textDim],
+        AppButtonState.loading: [AppTheme.c.textDim, AppTheme.c.textDim],
       },
     ),
     AppButtonStyle.success: _AppButtonModel(
@@ -36,12 +43,14 @@ Map<AppButtonStyle, _AppButtonModel> _mapPropsToData() {
         AppButtonState.plain: AppTheme.c.cardBg,
         AppButtonState.bordered: AppTheme.c.success,
         AppButtonState.disabled: AppTheme.c.cardBg,
+        AppButtonState.loading: AppTheme.c.textDim,
       },
       backgroundColor: {
         AppButtonState.bordered: [Colors.transparent, Colors.transparent],
         AppButtonState.elevated: [AppTheme.c.success, AppTheme.c.success],
         AppButtonState.plain: [AppTheme.c.success, AppTheme.c.success],
         AppButtonState.disabled: [AppTheme.c.textDim, AppTheme.c.textDim],
+        AppButtonState.loading: [AppTheme.c.textDim, AppTheme.c.textDim],
       },
     ),
   };

@@ -75,7 +75,10 @@ class _BodyState extends State<_Body> {
                     Space.y.t16,
                     AppButton(
                       mainAxisSize: MainAxisSize.max,
-                      onPressed: () {},
+                      onPressed:
+                          () => LauncherHelper.url(
+                            'https://dev.to/${user.username}',
+                          ),
                       icon: Icons.open_in_new_rounded,
                       label: 'Edit Profile',
                       state: AppButtonState.bordered,
@@ -92,6 +95,7 @@ class _BodyState extends State<_Body> {
                 mainAxisSpacing: SpaceToken.t16,
                 crossAxisSpacing: SpaceToken.t16,
                 physics: const NeverScrollableScrollPhysics(),
+
                 children: [
                   ...[
                     {
@@ -99,6 +103,7 @@ class _BodyState extends State<_Body> {
                       'icon': Iconsax.document_text_copy,
                       'value': list.length.toString(),
                     },
+
                     {
                       'label':
                           fetchPublished ? 'Published' : 'Enable from settings',
@@ -108,16 +113,6 @@ class _BodyState extends State<_Body> {
                               ? publishedList.length.toString()
                               : 'Published',
                     },
-                    {
-                      'label': 'Member Since',
-                      'icon': Iconsax.calendar_2_copy,
-                      'value': user.joinedAt,
-                    },
-                    {
-                      'label': 'Dev.to Followers',
-                      'icon': Iconsax.people_copy,
-                      'value': '345',
-                    },
                   ].map(
                     (stat) => _StatsCard(
                       label: stat['label'] as String,
@@ -126,6 +121,16 @@ class _BodyState extends State<_Body> {
                     ),
                   ),
                 ],
+              ),
+              Space.y.t16,
+              Padding(
+                padding: Space.h.t16,
+                child: _StatsCard(
+                  label: 'Member Since',
+                  icon: Iconsax.calendar_2_copy,
+                  value: user.joinedAt,
+                  padding: Space.v.t16,
+                ),
               ),
               if (user.summary.available) ...[
                 Space.y.t04,
