@@ -34,14 +34,19 @@ class _FullScreenLoaderState extends State<FullScreenLoader> {
       width: AppMedia.width,
       height: AppMedia.height,
       alignment: Alignment.center,
-      color: widget.bg ?? Colors.black.withValues(alpha: 0.80),
+      color:
+          widget.bg?.withValues(alpha: 0.80) ??
+          Colors.black.withValues(alpha: 0.80),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const AppIconLoader(),
           Space.y.t12,
-          AppText.b1(widget.loadingText).cl(Colors.white).w(600),
+          AppText.b1(
+            widget.loadingText,
+            textAlign: TextAlign.center,
+          ).cl(Colors.white).w(600),
         ],
       ),
     );

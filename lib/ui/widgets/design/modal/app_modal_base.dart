@@ -12,6 +12,7 @@ class AppModalBase extends StatelessWidget {
     required this.child,
     this.canPop = true,
     this.bottomSafe = true,
+    this.dragger = true,
   });
 
   final Widget child;
@@ -19,6 +20,7 @@ class AppModalBase extends StatelessWidget {
   final bool canPop;
   final EdgeInsets? padding;
   final bool bottomSafe;
+  final bool dragger;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class AppModalBase extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Space.y.t20,
+                if (dragger)
                 Center(
                   child: Container(
                     width: 50,
