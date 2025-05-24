@@ -22,6 +22,19 @@ class ArticleCubit extends Cubit<ArticleState> with _ArticleEmitter {
       BlocProvider.of<ArticleCubit>(context, listen: listen);
   ArticleCubit() : super(ArticleState.def());
 
+  Future<void> saveDraft(DraftResponse draft) async {
+    _saveDraftLoading();
+    try {
+      final parsed = draft.copyWith(
+        tags: draft.tags.map((tag) => tag.replaceAll('-', '')).toList(),
+      );
+      await _ArticleProvider.saveDraft(parsed);
+      _saveDraftSuccess();
+    } on Fault catch (e) {
+      _saveDraftFailed(e);
+    }
+  }
+
   Future<void> published({bool force = false}) async {
     if (force) {
       emit(state.copyWith(published: CubitState(), publishedList: []));
@@ -48,20 +61,7 @@ class ArticleCubit extends Cubit<ArticleState> with _ArticleEmitter {
     }
   }
 
-  Future<void> create(DraftResponse draft) async {
-    _createLoading();
-    try {
-      final parsed = draft.copyWith(
-        tags: draft.tags.map((tag) => tag.replaceAll('-', '')).toList(),
-      );
-      await _ArticleProvider.create(parsed);
-      _createSuccess();
-    } on Fault catch (e) {
-      _createFailed(e);
-    }
-  }
-
-  void resetCreate() => emit(state.copyWith(create: CubitState()));
+  void resetSaveDraft() => emit(state.copyWith(saveDraft: CubitState()));
 
   void resetPublished() => _publishedSuccess([]);
 

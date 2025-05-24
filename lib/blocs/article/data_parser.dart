@@ -3,6 +3,8 @@
 part of 'cubit.dart';
 
 class _ArticleParser {
+  static Map saveDraft(Map data) => data;
+
   static Map published(Map data) => data;
 
   static Map drafts(Map data) => data;

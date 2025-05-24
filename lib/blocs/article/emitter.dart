@@ -1,6 +1,33 @@
 part of 'cubit.dart';
 
 mixin _ArticleEmitter on Cubit<ArticleState> {
+  void _saveDraftLoading() {
+    emit(
+      state.copyWith(
+        saveDraft: state.saveDraft.copyWith(action: CubitAction.loading),
+      ),
+    );
+  }
+
+  void _saveDraftSuccess() {
+    emit(
+      state.copyWith(
+        saveDraft: state.saveDraft.copyWith(action: CubitAction.success),
+      ),
+    );
+  }
+
+  void _saveDraftFailed(Fault e) {
+    emit(
+      state.copyWith(
+        saveDraft: state.saveDraft.copyWith(
+          action: CubitAction.failed,
+          fault: e,
+        ),
+      ),
+    );
+  }
+
   void _publishedLoading() {
     emit(
       state.copyWith(
@@ -53,30 +80,6 @@ mixin _ArticleEmitter on Cubit<ArticleState> {
     emit(
       state.copyWith(
         drafts: state.drafts.copyWith(action: CubitAction.failed, fault: e),
-      ),
-    );
-  }
-
-  void _createLoading() {
-    emit(
-      state.copyWith(
-        create: state.create.copyWith(action: CubitAction.loading),
-      ),
-    );
-  }
-
-  void _createSuccess() {
-    emit(
-      state.copyWith(
-        create: state.create.copyWith(action: CubitAction.success),
-      ),
-    );
-  }
-
-  void _createFailed(Fault e) {
-    emit(
-      state.copyWith(
-        create: state.create.copyWith(action: CubitAction.failed, fault: e),
       ),
     );
   }

@@ -3,6 +3,10 @@
 part of 'cubit.dart';
 
 class _ArticleMocks {
+  static Future<Map> saveDraft() {
+    return Future.value({'message': 'mock', 'data': ''});
+  }
+
   static Future<Map> published() {
     return Future.value({'message': 'mock', 'data': ''});
   }

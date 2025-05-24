@@ -34,6 +34,7 @@ class _AgentProvider {
         responseMimeType: 'application/json',
         responseSchema: AgentTools.ins.jsonSchema,
       ),
+      tools: AgentTools.ins.tools,
     );
     return model;
   }

@@ -3,40 +3,39 @@ part of 'cubit.dart';
 // root-state
 @immutable
 class ArticleState extends Equatable {
+  final CubitState<void> saveDraft;
   final CubitState<List<Article>> published;
   final CubitState<List<Article>> drafts;
-  final CubitState<void> create;
-
   final List<Article> publishedList;
   final List<Article> draftsList;
 
   const ArticleState({
+    required this.saveDraft,
     required this.published,
     required this.drafts,
-    required this.create,
     this.publishedList = const [],
     this.draftsList = const [],
   });
 
   ArticleState.def()
     : // root-def-constructor
+      saveDraft = CubitState(),
       published = CubitState(),
       drafts = CubitState(),
-      create = CubitState(),
       publishedList = const [],
       draftsList = const [];
 
   ArticleState copyWith({
+    CubitState<void>? saveDraft,
     CubitState<List<Article>>? published,
     CubitState<List<Article>>? drafts,
-    CubitState<void>? create,
     List<Article>? publishedList,
     List<Article>? draftsList,
   }) {
     return ArticleState(
+      saveDraft: saveDraft ?? this.saveDraft,
       published: published ?? this.published,
       drafts: drafts ?? this.drafts,
-      create: create ?? this.create,
       publishedList: publishedList ?? this.publishedList,
       draftsList: draftsList ?? this.draftsList,
     );
@@ -45,9 +44,9 @@ class ArticleState extends Equatable {
   @override
   List<Object> get props => [
     // root-state-props
+    saveDraft,
     published,
     drafts,
-    create,
     publishedList,
     draftsList,
   ];
