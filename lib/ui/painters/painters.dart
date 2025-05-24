@@ -6,3 +6,4 @@ part 'app/app_logo.dart';
 part 'app/app_logo_round.dart';
 
 part 'misc/feather.dart';
+part 'misc/medium_branding.dart';

@@ -3,8 +3,15 @@ part of '../configs_base.dart';
 extension SuperAppText on AppText {
   /// Pass in color, majorly from [AppTheme.c] constructor to keep
   /// color dynamic and consistent.
-  AppText cl(Color color) =>
-      AppText(data ?? '', style: style?.copyWith(color: color));
+  AppText cl(Color color) => AppText(
+    data ?? '',
+    style: style?.copyWith(color: color),
+    textAlign: textAlign,
+    maxLines: maxLines,
+    overflow: overflow,
+    textDirection: textDirection,
+    softWrap: softWrap,
+  );
 
   /// Use 100 for FontWeight.w100, 200 for FontWeight.w200, etc.
   AppText w(int weight) {
@@ -21,6 +28,14 @@ extension SuperAppText on AppText {
       _ => FontWeight.normal,
     };
 
-    return AppText(data ?? '', style: style?.copyWith(fontWeight: fontWeight));
+    return AppText(
+      data ?? '',
+      style: style?.copyWith(fontWeight: fontWeight),
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
+      textDirection: textDirection,
+      softWrap: softWrap,
+    );
   }
 }
