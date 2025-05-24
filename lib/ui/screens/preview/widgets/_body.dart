@@ -23,15 +23,6 @@ class _Body extends StatelessWidget {
               Row(
                 children: [
                   AppButton(
-                    onPressed: () {},
-                    label: 'Save',
-                    icon: Iconsax.document_download_copy,
-                    state: AppButtonState.bordered,
-                    size: AppButtonSize.small,
-                    radius: AppButtonRadius.capsule,
-                  ),
-                  Space.x.t12,
-                  AppButton(
                     onPressed: () => screenState.onCopy(context),
                     label: 'Copy',
                     icon: Iconsax.copy_copy,

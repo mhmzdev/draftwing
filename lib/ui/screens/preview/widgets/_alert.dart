@@ -9,9 +9,9 @@ class _BackAlert extends StatelessWidget {
     final screenState = _ScreenState.s(context);
 
     return AlertDialog(
-      title: AppText.h1('Save Changes?'),
+      title: AppText.h1('Discard Draft?'),
       content: AppText.b1(
-        'Your changes will be discarded if you don\'t save or copy them.\n\nPress \'Copy\' to save the body markdown to clipboard.',
+        'Your changes will be discarded if you don\'t copy them.\n\nPress \'Copy\' to save the body markdown to clipboard.',
         textAlign: TextAlign.center,
       ),
       icon: const GradientIcon(Iconsax.warning_2, size: 48),
