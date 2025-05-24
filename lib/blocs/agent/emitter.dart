@@ -11,7 +11,7 @@ mixin _AgentEmitter on Cubit<AgentState> {
     );
   }
 
-  void _generateDraftSuccess(DraftResponse? data) {
+  void _generateDraftSuccess(AgentResponse? data) {
     emit(
       state.copyWith(
         generateDraft: state.generateDraft.copyWith(

@@ -3,7 +3,7 @@ part of 'cubit.dart';
 // root-state
 @immutable
 class AgentState extends Equatable {
-  final CubitState<DraftResponse?> generateDraft;
+  final CubitState<AgentResponse?> generateDraft;
 
   const AgentState({required this.generateDraft});
 
@@ -11,7 +11,7 @@ class AgentState extends Equatable {
     : // root-def-constructor
       generateDraft = CubitState();
 
-  AgentState copyWith({CubitState<DraftResponse?>? generateDraft}) {
+  AgentState copyWith({CubitState<AgentResponse?>? generateDraft}) {
     return AgentState(generateDraft: generateDraft ?? this.generateDraft);
   }
 

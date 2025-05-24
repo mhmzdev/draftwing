@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:draftwing/gen/assets/assets.gen.dart';
+import 'package:draftwing/models/agent/agent_response.dart';
 import 'package:draftwing/models/agent/draft_response.dart';
 import 'package:draftwing/models/article/article.dart';
 import 'package:draftwing/router/routes.dart';
