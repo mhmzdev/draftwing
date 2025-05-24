@@ -24,9 +24,6 @@ dependencies:
   alice:
     path: ../alice
 
-  # notification
-  flutter_local_notifications: 18.0.1
-
   # dotenv
   flutter_dotenv: 5.2.1
 

@@ -1,51 +1,23 @@
 part of 'cubit.dart';
 
 mixin _UserEmitter on Cubit<UserState> {
-  void _loginLoading() {
-    emit(
-      state.copyWith(login: state.login.copyWith(action: CubitAction.loading)),
-    );
+  void _meLoading() {
+    emit(state.copyWith(me: state.me.copyWith(action: CubitAction.loading)));
   }
 
-  void _loginSuccess(User data) {
+  void _meSuccess(User data) {
     emit(
       state.copyWith(
-        login: state.login.copyWith(action: CubitAction.success, data: data),
+        me: state.me.copyWith(action: CubitAction.success, data: data),
+        user: data,
       ),
     );
   }
 
-  void _loginFailed(Fault e) {
+  void _meFailed(Fault e) {
     emit(
       state.copyWith(
-        login: state.login.copyWith(action: CubitAction.failed, fault: e),
-      ),
-    );
-  }
-
-  void _registerLoading() {
-    emit(
-      state.copyWith(
-        register: state.register.copyWith(action: CubitAction.loading),
-      ),
-    );
-  }
-
-  void _registerSuccess(User data) {
-    emit(
-      state.copyWith(
-        register: state.register.copyWith(
-          action: CubitAction.success,
-          data: data,
-        ),
-      ),
-    );
-  }
-
-  void _registerFailed(Fault e) {
-    emit(
-      state.copyWith(
-        register: state.register.copyWith(action: CubitAction.failed, fault: e),
+        me: state.me.copyWith(action: CubitAction.failed, fault: e),
       ),
     );
   }

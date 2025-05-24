@@ -29,14 +29,4 @@ extension SuperContext on BuildContext {
   EdgeInsets get modalBottomKeyboard => EdgeInsets.only(
     bottom: MediaQueryData.fromView(View.of(this)).viewInsets.bottom,
   );
-
-  // bool isLoggedIn([bool listen = true]) {
-  //   final state = UserCubit.c(this, listen).state;
-  //   return state.profile != null;
-  // }
-
-  // UserData? user([bool listen = true]) {
-  //   final state = UserCubit.c(this, listen).state;
-  //   return state.profile;
-  // }
 }

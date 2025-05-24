@@ -3,27 +3,23 @@ part of 'cubit.dart';
 // root-state
 @immutable
 class UserState extends Equatable {
-  final CubitState<User> login;
-  final CubitState<User> register;
+  final CubitState<User> me;
+  final User? user;
 
-  const UserState({required this.login, required this.register});
+  const UserState({required this.me, this.user});
 
   UserState.def()
     : // root-def-constructor
-      login = CubitState(),
-      register = CubitState();
+      me = CubitState(),
+      user = null;
 
-  UserState copyWith({CubitState<User>? login, CubitState<User>? register}) {
-    return UserState(
-      login: login ?? this.login,
-      register: register ?? this.register,
-    );
+  UserState copyWith({CubitState<User>? me, User? user}) {
+    return UserState(me: me ?? this.me, user: user ?? this.user);
   }
 
   @override
   List<Object> get props => [
     // root-state-props
-    login,
-    register,
+    me,
   ];
 }

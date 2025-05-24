@@ -1,19 +1,12 @@
 part of 'cubit.dart';
 
 class _UserProvider {
-  static Future<User> login() async {
+  static Future<User> me() async {
     try {
-      final raw = <String, dynamic>{};
-      return User.fromJson(raw);
-    } catch (e, st) {
-      throw UnknownFault('Something went wrong!', st);
-    }
-  }
-
-  static Future<User> register() async {
-    try {
-      final raw = <String, dynamic>{};
-      return User.fromJson(raw);
+      final response = await DevToApi.ins.get('/users/me');
+      return User.fromJson(response.data);
+    } on DioException catch (e) {
+      throw HttpFault.fromDioException(e, StackTrace.current);
     } catch (e, st) {
       throw UnknownFault('Something went wrong!', st);
     }

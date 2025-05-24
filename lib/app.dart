@@ -29,8 +29,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    AppFCM.init();
-
     if (kDebugMode) {
       AppAlice.setNavigatorKey(navigator);
     }

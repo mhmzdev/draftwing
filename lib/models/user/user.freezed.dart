@@ -32,7 +32,7 @@ mixin _$User {
   @JsonKey(name: 'website_url')
   String? get websiteUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'joined_at')
-  DateTime get joinedAt => throw _privateConstructorUsedError;
+  String get joinedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_image')
   String? get profileImage => throw _privateConstructorUsedError;
 
@@ -59,7 +59,7 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'twitter_username') String? twitterUsername,
       @JsonKey(name: 'github_username') String? githubUsername,
       @JsonKey(name: 'website_url') String? websiteUrl,
-      @JsonKey(name: 'joined_at') DateTime joinedAt,
+      @JsonKey(name: 'joined_at') String joinedAt,
       @JsonKey(name: 'profile_image') String? profileImage});
 }
 
@@ -125,7 +125,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       joinedAt: null == joinedAt
           ? _value.joinedAt
           : joinedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       profileImage: freezed == profileImage
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
@@ -150,7 +150,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'twitter_username') String? twitterUsername,
       @JsonKey(name: 'github_username') String? githubUsername,
       @JsonKey(name: 'website_url') String? websiteUrl,
-      @JsonKey(name: 'joined_at') DateTime joinedAt,
+      @JsonKey(name: 'joined_at') String joinedAt,
       @JsonKey(name: 'profile_image') String? profileImage});
 }
 
@@ -213,7 +213,7 @@ class __$$UserImplCopyWithImpl<$Res>
       joinedAt: null == joinedAt
           ? _value.joinedAt
           : joinedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       profileImage: freezed == profileImage
           ? _value.profileImage
           : profileImage // ignore: cast_nullable_to_non_nullable
@@ -261,7 +261,7 @@ class _$UserImpl implements _User {
   final String? websiteUrl;
   @override
   @JsonKey(name: 'joined_at')
-  final DateTime joinedAt;
+  final String joinedAt;
   @override
   @JsonKey(name: 'profile_image')
   final String? profileImage;
@@ -336,7 +336,7 @@ abstract class _User implements User {
       @JsonKey(name: 'twitter_username') final String? twitterUsername,
       @JsonKey(name: 'github_username') final String? githubUsername,
       @JsonKey(name: 'website_url') final String? websiteUrl,
-      @JsonKey(name: 'joined_at') required final DateTime joinedAt,
+      @JsonKey(name: 'joined_at') required final String joinedAt,
       @JsonKey(name: 'profile_image') final String? profileImage}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -362,7 +362,7 @@ abstract class _User implements User {
   String? get websiteUrl;
   @override
   @JsonKey(name: 'joined_at')
-  DateTime get joinedAt;
+  String get joinedAt;
   @override
   @JsonKey(name: 'profile_image')
   String? get profileImage;

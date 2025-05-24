@@ -3,11 +3,7 @@
 part of 'cubit.dart';
 
 class _UserMocks {
-  static Future<Map> login() {
-    return Future.value({'message': 'mock', 'data': ''});
-  }
-
-  static Future<Map> register() {
+  static Future<Map> me() {
     return Future.value({'message': 'mock', 'data': ''});
   }
 }

@@ -15,7 +15,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       twitterUsername: json['twitter_username'] as String?,
       githubUsername: json['github_username'] as String?,
       websiteUrl: json['website_url'] as String?,
-      joinedAt: DateTime.parse(json['joined_at'] as String),
+      joinedAt: json['joined_at'] as String,
       profileImage: json['profile_image'] as String?,
     );
 
@@ -29,6 +29,6 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'twitter_username': instance.twitterUsername,
       'github_username': instance.githubUsername,
       'website_url': instance.websiteUrl,
-      'joined_at': instance.joinedAt.toIso8601String(),
+      'joined_at': instance.joinedAt,
       'profile_image': instance.profileImage,
     };

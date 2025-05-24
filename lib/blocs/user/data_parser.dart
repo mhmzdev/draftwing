@@ -3,7 +3,5 @@
 part of 'cubit.dart';
 
 class _UserParser {
-  static Map login(Map data) => data;
-
-  static Map register(Map data) => data;
+  static Map me(Map data) => data;
 }

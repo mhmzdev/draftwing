@@ -1,4 +1,6 @@
+import 'package:brain/brain.dart';
 import 'package:configs/configs.dart';
+import 'package:dio/dio.dart';
 
 /// [Fault] is a sealed class that represents a fault in the system.
 /// It handles exceptions, errors, unknown faults, and custom faults.
@@ -12,6 +14,23 @@ sealed class Fault<T> {
         final Error err => ErrorFault(err, stackTrace),
         _ => UnknownFault(object.toString(), stackTrace),
       };
+}
+
+/// Represents a fault caused by a http calls
+final class HttpFault<T> extends Fault<T> {
+  final HttpFailure body;
+  const HttpFault(this.body, StackTrace stackTrace)
+    : super._internal(stackTrace);
+
+  factory HttpFault.fromDioException(DioException ex, StackTrace stackTrace) {
+    AppLog.log(ex.response?.data.toString() ?? 'Unknown error');
+
+    final httpFailure = (
+      body: {'error': ex.response?.data['error'] ?? 'Unknown error'},
+      statusCode: ex.response?.statusCode,
+    );
+    return HttpFault(httpFailure, stackTrace);
+  }
 }
 
 /// Represents a fault caused by an exception
@@ -49,5 +68,6 @@ extension FaultExtension on Fault {
     final ErrorFault err => err.error.toString(),
     final UnknownFault text => text.text,
     final CustomFault fault => fault.faultInfo.toString(),
+    final HttpFault httpFault => httpFault.body.body['error'],
   };
 }

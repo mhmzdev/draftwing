@@ -14,7 +14,7 @@ class User with _$User {
     @JsonKey(name: 'twitter_username') String? twitterUsername,
     @JsonKey(name: 'github_username') String? githubUsername,
     @JsonKey(name: 'website_url') String? websiteUrl,
-    @JsonKey(name: 'joined_at') required DateTime joinedAt,
+    @JsonKey(name: 'joined_at') required String joinedAt,
     @JsonKey(name: 'profile_image') String? profileImage,
   }) = _User;
 

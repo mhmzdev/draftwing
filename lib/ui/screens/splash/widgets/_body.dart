@@ -24,10 +24,9 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
 
     _controller.forward();
 
-    _controller.addListener(() async {
+    _controller.addListener(() {
       if (_controller.isCompleted) {
-        await 1.seconds.delay;
-        if (mounted) AppRoutes.home.pushReplace(context);
+        UserCubit.c(context).me();
       }
     });
   }
@@ -75,8 +74,13 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final userCubit = UserCubit.c(context, true);
+    final userState = userCubit.state;
+    final isLoading = userState.me.isLoading;
+    final isFailed = userState.me.isFailed;
+
     return Screen(
-      keyboardHandler: true,
+      belowBuilders: const [_Listener()],
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -97,11 +101,38 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
                 );
               },
             ),
-
             Center(
               child: CustomPaint(
                 painter: const FeatherPainter(),
                 size: FeatherPainter.s(200),
+              ),
+            ),
+            Positioned(
+              bottom: context.bottomSafe(),
+              left: SpaceToken.t16,
+              right: SpaceToken.t16,
+              child: SafeArea(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (isLoading)
+                      const CircularProgressIndicator(color: Colors.white),
+                    if (isFailed) ...[
+                      Space.y.t12,
+                      AppText.b1(
+                        'Something went wrong!',
+                        textAlign: TextAlign.center,
+                      ).cl(Colors.white),
+                      Space.y.t12,
+                      AppButton(
+                        mainAxisSize: MainAxisSize.max,
+                        onPressed: () => userCubit.me(),
+                        label: 'Try again',
+                        style: AppButtonStyle.danger,
+                      ),
+                    ],
+                  ],
+                ),
               ),
             ),
           ],

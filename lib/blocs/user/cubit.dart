@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:draftwing/models/user/user.dart';
 
 import 'package:flutter/material.dart';
@@ -21,23 +22,13 @@ class UserCubit extends Cubit<UserState> with _UserEmitter {
       BlocProvider.of<UserCubit>(context, listen: listen);
   UserCubit() : super(UserState.def());
 
-  Future<void> login() async {
-    _loginLoading();
+  Future<void> me() async {
+    _meLoading();
     try {
-      final data = await _UserProvider.login();
-      _loginSuccess(data);
+      final data = await _UserProvider.me();
+      _meSuccess(data);
     } on Fault catch (e) {
-      _loginFailed(e);
-    }
-  }
-
-  Future<void> register() async {
-    _registerLoading();
-    try {
-      final data = await _UserProvider.register();
-      _registerSuccess(data);
-    } on Fault catch (e) {
-      _registerFailed(e);
+      _meFailed(e);
     }
   }
 

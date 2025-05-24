@@ -1,3 +1,5 @@
+import 'package:brain/brain.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -130,6 +132,18 @@ class _ScreenState extends State<Screen> {
           children: [
             if (widget.belowBuilders != null) ...widget.belowBuilders!,
             Positioned.fill(child: body),
+            if (kDebugMode)
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: SizedBox(
+                  height: 200,
+                  child: GestureDetector(
+                    onLongPress: () => AppAlice.showInspector(),
+                  ),
+                ),
+              ),
             if (widget.bottomBar)
               Positioned(
                 key: bottomBarKey,

@@ -12,6 +12,10 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
+    final userCubit = UserCubit.c(context);
+    final userState = userCubit.state;
+    final user = userState.me.data ?? userState.user!;
+
     return Screen(
       keyboardHandler: true,
       bottomBar: true,
@@ -47,12 +51,18 @@ class _BodyState extends State<_Body> {
                         gradient: AppProps.gradient,
                       ),
                       alignment: Alignment.center,
-                      child: AppText.h1('JD').cl(Colors.white),
+                      child: AppText.h1(
+                        user.name
+                            .split(' ')
+                            .map((e) => e[0])
+                            .join('')
+                            .toUpperCase(),
+                      ).cl(Colors.white),
                     ),
                     Space.y.t16,
-                    AppText.h2('John Doe'),
+                    AppText.h2(user.name),
                     Space.y.t04,
-                    AppText.b1('john_writes'),
+                    AppText.b1('@${user.username}'),
                     Space.y.t16,
                     AppButton(
                       mainAxisSize: MainAxisSize.max,
@@ -86,12 +96,12 @@ class _BodyState extends State<_Body> {
                       'value': '8',
                     },
                     {
-                      'label': 'Days Active',
+                      'label': 'Member Since',
                       'icon': Iconsax.calendar_2_copy,
-                      'value': '12',
+                      'value': user.joinedAt,
                     },
                     {
-                      'label': 'Medium Followers',
+                      'label': 'Dev.to Followers',
                       'icon': Iconsax.people_copy,
                       'value': '345',
                     },
