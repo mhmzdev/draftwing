@@ -54,6 +54,13 @@ class _DraftCard extends StatelessWidget {
           Space.y.t12,
           Row(
             children: [
+              AppButton(
+                onPressed: () => LauncherHelper.url('https://dev.to/dashboard'),
+                icon: Iconsax.trash_copy,
+                style: AppButtonStyle.danger,
+                state: AppButtonState.bordered,
+              ),
+              Space.x.t08,
               Expanded(
                 child: AppButton(
                   onPressed: () {
@@ -70,10 +77,21 @@ class _DraftCard extends StatelessWidget {
               ),
               Space.x.t08,
               AppButton(
-                onPressed: () => LauncherHelper.url('https://dev.to/dashboard'),
-                icon: Iconsax.trash_copy,
-                style: AppButtonStyle.danger,
-                state: AppButtonState.bordered,
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    useSafeArea: true,
+                    builder:
+                        (context) => MarkdownPreviewModal(
+                          title: article.title,
+                          body: article.bodyMarkdown,
+                        ),
+                  );
+                },
+                icon: Iconsax.eye_copy,
+                style: AppButtonStyle.primary,
               ),
             ],
           ),

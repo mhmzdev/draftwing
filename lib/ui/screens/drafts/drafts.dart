@@ -6,6 +6,7 @@ import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
 import 'package:draftwing/ui/widgets/design/chip/chip.dart';
 import 'package:draftwing/ui/widgets/design/gradients/icon.dart';
+import 'package:draftwing/ui/widgets/design/modal/_preview_modal.dart';
 import 'package:draftwing/ui/widgets/headless/scroll_column_expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';

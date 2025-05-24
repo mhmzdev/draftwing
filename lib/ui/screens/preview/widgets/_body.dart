@@ -40,7 +40,7 @@ class _Body extends StatelessWidget {
                           backgroundColor: Colors.transparent,
                           useSafeArea: true,
                           builder:
-                              (context) => _PreviewModal(
+                              (context) => MarkdownPreviewModal(
                                 title: screenState.draft.title,
                                 body: screenState.draft.bodyMarkdown,
                               ),

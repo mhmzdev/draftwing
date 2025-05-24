@@ -33,18 +33,21 @@ class FloatingLoader extends StatelessWidget {
       bottom: bottom ?? SpaceToken.t12 + context.bottomSafe(),
       child: Container(
         padding: Space.a.t16,
-        decoration: AppProps.cardDec.copyWith(color: AppTheme.c.appBg),
+        decoration: AppProps.cardDec.copyWith(
+          color: AppTheme.c.cardBg,
+          gradient: AppProps.gradient,
+        ),
         child: Row(
           children: [
-            const AppIconLoader(radius: 36),
+            const AppIconLoader(radius: 36, overlayColor: Colors.white),
             Space.x.t16,
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppText.h3(title ?? 'Loading'),
-                  AppText.b1(message).cl(AppTheme.c.textDim),
+                  AppText.h3(title ?? 'Loading').cl(Colors.white),
+                  AppText.b1(message).cl(Colors.white),
                 ],
               ),
             ),
