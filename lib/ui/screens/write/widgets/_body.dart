@@ -25,6 +25,7 @@ class _BodyState extends State<_Body> {
           bottomBarHeight = height;
         });
       },
+      overlayBuilders: const [_SaveDraftListener()],
       child: SafeArea(
         child: ScrollColumnExpandable(
           padding: Space.a.t16,

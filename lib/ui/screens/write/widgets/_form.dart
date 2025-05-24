@@ -55,7 +55,19 @@ class _Form extends StatelessWidget {
             helper:
                 'These could be notes, ideas, or any other information that you want to include in the article.',
           ),
-          Space.y.t20,
+          Space.y.t08,
+          FormBuilderCheckbox(
+            name: _FormKeys.saveDraft,
+            title: AppText.b1('Save Draft'),
+            visualDensity: VisualDensity.compact,
+            contentPadding: EdgeInsets.zero,
+            subtitle: AppText.b2(
+              'Save the draft to your dev.to profile',
+            ).cl(AppTheme.c.textDim),
+            decoration: const InputDecoration.collapsed(hintText: ''),
+            controlAffinity: ListTileControlAffinity.trailing,
+          ),
+          Space.y.t08,
           BlocBuilder<AgentCubit, AgentState>(
             buildWhen:
                 (previous, current) =>

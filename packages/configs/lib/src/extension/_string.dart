@@ -24,4 +24,22 @@ extension SuperString<T> on String {
       NavigationHistoryObserver().top?.settings.name == this;
 
   String get splitError => split(': ').lastOrNull ?? 'Unknown error';
+
+  String get extractJsonFromResponse {
+    // Remove markdown code block markers
+    String cleaned = trim();
+
+    // Check for ```json ... ``` pattern
+    if (cleaned.startsWith('```json') && cleaned.endsWith('```')) {
+      cleaned = cleaned.substring(7); // Remove ```json
+      cleaned = cleaned.substring(0, cleaned.length - 3); // Remove ```
+    }
+    // Check for ``` ... ``` pattern (without json specifier)
+    else if (cleaned.startsWith('```') && cleaned.endsWith('```')) {
+      cleaned = cleaned.substring(3); // Remove ```
+      cleaned = cleaned.substring(0, cleaned.length - 3); // Remove ```
+    }
+
+    return cleaned.trim();
+  }
 }

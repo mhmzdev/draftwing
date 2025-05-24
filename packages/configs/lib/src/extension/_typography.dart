@@ -38,4 +38,12 @@ extension SuperAppText on AppText {
       softWrap: softWrap,
     );
   }
+
+  SelectableText selectable() => SelectableText(
+    data ?? '',
+    style: style,
+    textAlign: textAlign,
+    maxLines: maxLines,
+    textDirection: textDirection,
+  );
 }

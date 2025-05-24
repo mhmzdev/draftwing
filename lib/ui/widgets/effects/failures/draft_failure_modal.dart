@@ -23,7 +23,7 @@ class GenerateArticleFailedModal extends StatelessWidget {
           Space.y.t12,
           AppText.h1('Draft Generation Failed').cl(AppTheme.c.error),
           Space.y.t16,
-          AppText.b1(error, textAlign: TextAlign.center),
+          AppText.b1(error, textAlign: TextAlign.center).selectable(),
           Space.y.t24,
           AppButton(
             onPressed: () => ''.pop(context),

@@ -1,10 +1,13 @@
-part of 'preview.dart';
+part of 'write.dart';
 
 class _SaveDraftListener extends StatelessWidget {
   const _SaveDraftListener();
 
   @override
   Widget build(BuildContext context) {
+    final currentRoute = context.currentPath;
+    if (currentRoute != AppRoutes.write) return const SizedBox.shrink();
+
     return BlocConsumer<ArticleCubit, ArticleState>(
       listenWhen: (a, b) => a.saveDraft != b.saveDraft,
       listener: (_, state) {
@@ -15,8 +18,10 @@ class _SaveDraftListener extends StatelessWidget {
           );
         }
         if (state.saveDraft.isSuccess) {
-          UIFlash.success(context, 'Draft saved successfully');
-          ''.pop(context);
+          UIFlash.success(
+            context,
+            'Draft saved in your dev.to profile successfully',
+          );
           AppRoutes.drafts.pushReplace(context);
         }
       },
