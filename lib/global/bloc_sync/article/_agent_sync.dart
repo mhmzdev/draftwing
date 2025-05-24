@@ -12,10 +12,20 @@ class _AgentSync extends BlocListener<AgentCubit, AgentState> {
     AppLog.log('📦 BlocSync: AgentCubit triggered');
     if (state.generateDraft.isSuccess) {
       final navigatorContext = navigator.currentContext!;
-      AppRoutes.preview.push(
-        navigatorContext,
-        arguments: state.generateDraft.data?.toJson(),
-      );
+      final data = state.generateDraft.data;
+      final functionCalls = data?.functionCalls ?? [];
+      if (functionCalls.available) {
+        UIFlash.success(
+          navigatorContext,
+          'Saving draft to your dev.to profile...',
+        );
+        return AgentTools.ins.handleFunctionCall(
+          navigatorContext,
+          functionName: functionCalls.first.name,
+          arguments: functionCalls.first.args,
+        );
+      }
+      AppRoutes.preview.push(navigatorContext, arguments: data?.draft.toJson());
     }
 
     if (state.generateDraft.isFailed) {
