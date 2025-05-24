@@ -57,8 +57,9 @@ class _DraftCard extends StatelessWidget {
               Space.x.t08,
               AppButton(
                 onPressed: () {},
-                icon: Iconsax.trash,
+                icon: Iconsax.trash_copy,
                 style: AppButtonStyle.danger,
+                state: AppButtonState.bordered,
               ),
             ],
           ),
