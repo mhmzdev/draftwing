@@ -23,6 +23,10 @@ class Assets {
   Assets._();
 
   static const $AssetsAppGen app = $AssetsAppGen();
+  static const String prompt = 'assets/prompt.md';
+
+  /// List of all assets
+  static List<String> get values => [prompt];
 }
 
 class AssetGenImage {

@@ -23,7 +23,7 @@ dependencies:
   sensors_plus: 3.0.2
   share_plus: 10.1.2
   chopper: 6.1.4
-  url_launcher: 6.3.0
+  url_launcher: 6.3.1
 
 dev_dependencies:
   lint: 2.1.2

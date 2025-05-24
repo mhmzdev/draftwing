@@ -1,4 +1,5 @@
 class AppRoutes {
+  static const preview = '/preview';
   static const mediumAuth = '/mediumAuth';
   static const settings = '/settings';
   static const drafts = '/drafts';

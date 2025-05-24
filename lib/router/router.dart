@@ -1,3 +1,4 @@
+import 'package:draftwing/ui/screens/preview/preview.dart';
 import 'package:draftwing/ui/screens/medium_auth/medium_auth.dart';
 import 'package:draftwing/ui/screens/settings/settings.dart';
 import 'package:draftwing/ui/screens/drafts/drafts.dart';
@@ -12,6 +13,7 @@ import 'routes.dart';
 final navigator = GlobalKey<NavigatorState>();
 
 final appRoutes = <String, WidgetBuilder>{
+  AppRoutes.preview: (_) => const PreviewScreen(),
   AppRoutes.mediumAuth: (_) => const MediumAuthScreen(),
   AppRoutes.splash: (_) => const SplashScreen(),
   AppRoutes.login: (_) => const LoginScreen(),
