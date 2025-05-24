@@ -7,10 +7,15 @@ class _FormData {
     }
 
     return {
-      _FormKeys.title: 'Draft Title',
-      _FormKeys.tags: ['draft', 'article', 'blog'],
-      _FormKeys.readingLength: ReadingLength.fourToFive,
-      _FormKeys.additionalContext: 'Draft additional context',
+      _FormKeys.title: 'Agentic Flutter Apps',
+      _FormKeys.tags: ['flutter', 'ai', 'agentic'],
+      _FormKeys.readingTime: ReadingLength.oneToThree,
+      _FormKeys.additionalContext: '''
+- Keep it simple
+- Introduce Vertex AI
+- Share codelabs from flutter.dev links
+- Comparison between Agentic Workflows and Agentic App.
+''',
     };
   }
 }
