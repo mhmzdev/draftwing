@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:draftwing/models/agent/draft_response.dart';
 import 'package:draftwing/models/article/article.dart';
 

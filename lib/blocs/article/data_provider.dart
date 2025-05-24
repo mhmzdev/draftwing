@@ -3,10 +3,9 @@ part of 'cubit.dart';
 class _ArticleProvider {
   static Future<void> saveDraft(DraftResponse draft) async {
     try {
-      await DevToApi.ins.post(
-        '/articles',
-        data: {'article': draft.toJson()},
-      );
+      await DevToApi.ins.post('/articles', data: {'article': draft.toJson()});
+    } on DioException catch (e) {
+      throw HttpFault.fromDioException(e, StackTrace.current);
     } catch (e, st) {
       throw UnknownFault('Something went wrong!', st);
     }
@@ -18,6 +17,8 @@ class _ArticleProvider {
       final data = response.data;
       final list = data as List<dynamic>;
       return list.map((e) => Article.fromJson(e)).toList();
+    } on DioException catch (e) {
+      throw HttpFault.fromDioException(e, StackTrace.current);
     } catch (e, st) {
       throw UnknownFault('Something went wrong!', st);
     }
@@ -29,6 +30,8 @@ class _ArticleProvider {
       final data = response.data;
       final list = data as List<dynamic>;
       return list.map((e) => Article.fromJson(e)).toList();
+    } on DioException catch (e) {
+      throw HttpFault.fromDioException(e, StackTrace.current);
     } catch (e, st) {
       throw UnknownFault('Something went wrong!', st);
     }
