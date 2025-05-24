@@ -1,6 +1,8 @@
 import 'package:configs/configs.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
 import 'package:draftwing/ui/widgets/design/modal/app_modal_base.dart';
+import 'package:draftwing/ui/widgets/design/chip/chip.dart';
+import 'package:draftwing/utils/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -34,4 +36,5 @@ part 'text_input/text_input.dart';
 part 'date_input/date_input.dart';
 // part 'select_input/select_input.dart';
 // part 'toggle/toggle.dart';
+part 'chips_input/chips_selector.dart';
 part 'chips_input/chips_input.dart';

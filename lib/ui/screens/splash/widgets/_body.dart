@@ -24,9 +24,10 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
 
     _controller.forward();
 
-    _controller.addListener(() {
+    _controller.addListener(() async {
       if (_controller.isCompleted) {
-        AppRoutes.home.pushReplace(context);
+        await 1.seconds.delay;
+        if (mounted) AppRoutes.home.pushReplace(context);
       }
     });
   }

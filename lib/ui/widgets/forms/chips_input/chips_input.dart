@@ -1,81 +1,184 @@
 part of '../form.dart';
 
-class AppFormMultiChipsInput<T extends Enum> extends StatelessWidget {
-  final String name;
-  final List<T> options;
-  final List<T>? initialValue;
-  final FormFieldValidator<List<T>>? validator;
-  final ValueChanged<List<T>?>? onChanged;
-  final AutovalidateMode autovalidateMode;
-  final String? Function(T)? displayTransformer;
-
-  const AppFormMultiChipsInput({
+class AppFormChipsInput<T> extends StatefulWidget {
+  const AppFormChipsInput({
     super.key,
     required this.name,
-    required this.options,
+    this.helper,
+    this.placeholder,
+    this.label,
+    this.heading,
+    this.subHeading,
     this.initialValue,
-    this.validator,
+    this.focusNode,
+    this.keyboardType,
+    this.textInputAction = TextInputAction.done,
+    this.controller,
     this.onChanged,
-    this.autovalidateMode = AutovalidateMode.onUserInteraction,
-    this.displayTransformer,
+    this.inputFormatters,
+    this.validators,
+    this.autofillHints,
+    this.autofocus = false,
+    this.state = AppFormState.def,
+    this.margin = EdgeInsets.zero,
+    required this.valueTransformer,
   });
+
+  final String? helper;
+  final String name;
+  final String? placeholder;
+  final String? label;
+  final String? heading;
+  final String? subHeading;
+  final AppFormState state;
+  final EdgeInsets margin;
+  final List<T>? initialValue;
+  final FocusNode? focusNode;
+  final TextInputType? keyboardType;
+  final TextInputAction textInputAction;
+  final TextEditingController? controller;
+  final void Function(List<T>?)? onChanged;
+  final List<TextInputFormatter>? inputFormatters;
+  final FormFieldValidator<List<T>>? validators;
+  final List<String>? autofillHints;
+  final bool autofocus;
+  final String Function(T) valueTransformer;
+
+  @override
+  State<AppFormChipsInput<T>> createState() => _AppFormChipsInputState<T>();
+}
+
+class _AppFormChipsInputState<T> extends State<AppFormChipsInput<T>> {
+  late TextEditingController _controller;
+  late List<T> _values;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = widget.controller ?? TextEditingController();
+    _values = [];
+
+    final form = FormBuilder.of(context);
+    if (form == null) return;
+    final initialValues = form.initialValue;
+    final List<T>? initialValue =
+        initialValues[widget.name] ?? widget.initialValue;
+    if (initialValue != null) {
+      _values = List.from(initialValue);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _addValue(String value) {
+    if (value.isEmpty) return;
+
+    final transformedValue = value as T;
+    final exists = _values.any(
+      (v) =>
+          widget.valueTransformer(v) ==
+          widget.valueTransformer(transformedValue),
+    );
+    if (exists) {
+      UIFlash.error(context, 'Tag already exists');
+      return;
+    }
+
+    setState(() {
+      _values.add(transformedValue);
+      _controller.clear();
+    });
+  }
+
+  void _removeValue(int index) {
+    setState(() {
+      _values.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderField<List<T>>(
-      name: name,
-      initialValue: initialValue,
-      validator: validator,
-      onChanged: onChanged,
-      autovalidateMode: autovalidateMode,
-      builder: (field) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Wrap(
-              spacing: SpaceToken.t08,
-              runSpacing: 0,
-              children:
-                  options.map((option) {
-                    final isSelected = field.value?.contains(option) ?? false;
-                    final labelColor =
-                        isSelected ? AppTheme.c.cardBg : AppTheme.c.textBody;
+    App.init(context);
 
-                    final displayText =
-                        displayTransformer?.call(option) ??
-                        option.name.titleCase;
-                    return ChoiceChip(
-                      labelPadding: Space.z,
-                      padding: Space.h.t16 + Space.v.t04,
-                      side: BorderSide.none,
-                      label: AppText.b1(displayText).cl(labelColor),
-                      selected: isSelected,
-                      selectedColor: AppTheme.c.secondary,
-                      backgroundColor:
-                          field.hasError
-                              ? AppTheme.c.error.withValues(alpha: .12)
-                              : AppTheme.c.textBody.withValues(alpha: .12),
-                      onSelected: (selected) {
-                        final newSelection = List<T>.from(field.value ?? []);
-                        if (selected) {
-                          newSelection.add(option);
-                        } else {
-                          newSelection.remove(option);
-                        }
-                        field.didChange(newSelection);
+    return Padding(
+      padding: widget.margin,
+      child: FormBuilderField<List<T>>(
+        name: widget.name,
+        validator: widget.validators,
+        initialValue: widget.initialValue,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        builder: (field) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                crossAxisAlignment:
+                    field.hasError
+                        ? CrossAxisAlignment.center
+                        : CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: AppFormTextInputContent(
+                      state: widget.state,
+                      fieldState: field,
+                      helper: widget.helper,
+                      name: widget.name,
+                      placeholder: widget.placeholder,
+                      label: widget.label,
+                      heading: widget.heading,
+                      subHeading: widget.subHeading,
+                      controller: _controller,
+                      autofillHints: widget.autofillHints,
+                      autofocus: widget.autofocus,
+                      keyboardType: widget.keyboardType,
+                      textInputAction: widget.textInputAction,
+                      inputFormatters: widget.inputFormatters ?? [],
+                      onFieldSubmitted: (value) {
+                        _addValue(value);
+                        field.didChange(_values);
                       },
-                    );
-                  }).toList(),
-            ),
-            if (field.hasError)
-              Padding(
-                padding: Space.t.t04,
-                child: AppText.b2(field.errorText ?? '').cl(AppTheme.c.error),
+                    ),
+                  ),
+                  Space.x.t08,
+                  AppButton(
+                    onPressed: () {
+                      _addValue(_controller.text);
+                      field.didChange(_values);
+                    },
+                    label: 'Add',
+                    style: AppButtonStyle.primary,
+                    state: AppButtonState.bordered,
+                  ),
+                ],
               ),
-          ],
-        );
-      },
+              if (_values.isNotEmpty) Space.y.t12,
+              Wrap(
+                spacing: SpaceToken.t08,
+                runSpacing: 0,
+                children:
+                    _values
+                        .map(
+                          (value) => AppChip(
+                            label: widget.valueTransformer(value),
+                            onDeleted: () {
+                              _removeValue(_values.indexOf(value));
+                              field.didChange(_values);
+                              if (widget.onChanged != null) {
+                                widget.onChanged!(_values);
+                              }
+                            },
+                          ),
+                        )
+                        .toList(),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

@@ -29,6 +29,17 @@ class _Form extends StatelessWidget {
             textCapitalization: TextCapitalization.words,
           ),
           Space.y.t16,
+          AppFormChipsInput<String>(
+            name: _FormKeys.tags,
+            valueTransformer: (value) => value.toLowerCase(),
+            heading: 'Tags',
+            placeholder: 'Add tags...',
+            validators: FormBuilderValidators.required(
+              errorText: 'At least one tag is required',
+            ),
+            inputFormatters: [FilteringTextInputFormatter.deny(RegExp(r'\s'))],
+          ),
+          Space.y.t16,
           AppFormSelectInput(
             heading: 'Reading Length',
             name: _FormKeys.readingLength,
@@ -40,6 +51,16 @@ class _Form extends StatelessWidget {
               errorText: 'Reading Length is required',
             ),
             expanded: false,
+          ),
+          Space.y.t16,
+          const AppFormTextInput(
+            name: _FormKeys.additionalContext,
+            heading: 'Additional Context (Notes)',
+            placeholder: 'Enter your additional context...',
+            keyboardType: TextInputType.multiline,
+            textCapitalization: TextCapitalization.sentences,
+            helper:
+                'These could be notes, ideas, or any other information that you want to include in the article.',
           ),
           Space.y.t20,
           AppButton(

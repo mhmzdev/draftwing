@@ -163,11 +163,15 @@ class _AppFormBaseState extends State<AppFormBase> {
             ],
           ),
         ),
-        if (widget.helper != null) ...[
-          Space.y.t12,
+        if (widget.helper != null && !widget.error.available) ...[
+          Space.y.t08,
           Row(
             children: [
-              Icon(Iconsax.info_circle, color: AppTheme.c.textBody, size: 18),
+              Icon(
+                Iconsax.info_circle_copy,
+                color: AppTheme.c.textBody,
+                size: 16,
+              ),
               Space.x.t04,
               Expanded(
                 child: AppText.b2(widget.helper!).cl(AppTheme.c.textBody),
@@ -175,17 +179,21 @@ class _AppFormBaseState extends State<AppFormBase> {
             ],
           ),
         ],
-        if (widget.error != null)
-          Align(
-            alignment: Alignment.centerLeft,
-            child: AnimatedSwitcher(
-              duration: AppProps.medium,
-              child: Padding(
-                padding: Space.t.t08,
-                child: AppText.b2(widget.error!).cl(AppTheme.c.error),
-              ),
-            ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: AnimatedSwitcher(
+            duration: AppProps.medium,
+            child:
+                widget.error.available
+                    ? Padding(
+                      padding: Space.t.t08,
+                      child: AppText.b2(
+                        widget.error!,
+                      ).cl(AppTheme.c.error).w(600),
+                    )
+                    : const SizedBox.shrink(),
           ),
+        ),
       ],
     );
   }

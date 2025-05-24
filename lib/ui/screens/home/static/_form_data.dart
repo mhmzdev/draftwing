@@ -8,7 +8,7 @@ class _FormData {
 
     return {
       _FormKeys.title: 'Draft Title',
-      _FormKeys.tags: ['Draft', 'Article', 'Blog'],
+      _FormKeys.tags: ['draft', 'article', 'blog'],
       _FormKeys.readingLength: ReadingLength.fourToFive,
       _FormKeys.additionalContext: 'Draft additional context',
     };

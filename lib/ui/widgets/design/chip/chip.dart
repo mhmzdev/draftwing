@@ -1,6 +1,5 @@
 import 'package:configs/configs.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class AppChip extends StatelessWidget {
   const AppChip({
@@ -22,16 +21,11 @@ class AppChip extends StatelessWidget {
       padding: margin ?? Space.z,
       child: Chip(
         elevation: 0,
-        padding: Space.a.t04,
+        padding: Space.sym(2, 0),
         visualDensity: VisualDensity.compact,
-        label: AppText.b1(label),
-        backgroundColor: AppTheme.c.cardBg,
-        side: BorderSide(color: borderColor ?? AppTheme.c.secondary, width: 1),
-        deleteIcon: Icon(
-          Iconsax.close_circle,
-          color: AppTheme.c.error,
-          size: 20,
-        ),
+        label: AppText.b1(label).cl(AppTheme.c.primary).w(700),
+        backgroundColor: AppTheme.c.primary.withValues(alpha: .25),
+        deleteIcon: Icon(Icons.close, color: AppTheme.c.primary, size: 20),
         onDeleted: onDeleted,
       ),
     );

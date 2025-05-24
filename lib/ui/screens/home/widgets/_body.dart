@@ -1,7 +1,14 @@
 part of '../home.dart';
 
-class _Body extends StatelessWidget {
+class _Body extends StatefulWidget {
   const _Body();
+
+  @override
+  State<_Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<_Body> {
+  double bottomBarHeight = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +19,12 @@ class _Body extends StatelessWidget {
       bottomBar: true,
       formKey: screenState.formKey,
       initialFormValue: _FormData.initialValues(),
+      resizeToAvoidBottomInset: true,
+      bottomBarHeightChanged: (height) {
+        setState(() {
+          bottomBarHeight = height;
+        });
+      },
       child: SafeArea(
         child: ScrollColumnExpandable(
           padding: Space.a.t16,
@@ -34,6 +47,8 @@ class _Body extends StatelessWidget {
             ),
             Space.y.t20,
             const _Form(),
+            Space.y.t12,
+            SizedBox(height: bottomBarHeight),
           ],
         ),
       ),
