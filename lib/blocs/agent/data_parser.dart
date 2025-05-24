@@ -6,7 +6,6 @@ class _AgentParser {
   static String generateDraft(Map<String, dynamic> data) {
     try {
       final title = data['title'] as String;
-      final tags = data['tags'] as List<String>;
       final readingTime = data['readingTime'] as ReadingLength;
       final additionalContext = data['additionalContext'] as String?;
 
@@ -14,7 +13,6 @@ class _AgentParser {
 Please generate an article draft with the following specifications:
 
 **Title:** $title
-**Tags:** $tags
 **Reading Time:** ${readingTime.parsed}
 ${additionalContext?.isNotEmpty == true ? '**Additional Context:**\n$additionalContext' : ''}
 

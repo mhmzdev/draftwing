@@ -8,7 +8,6 @@ class _FormData {
 
     return {
       _FormKeys.title: 'Agentic Flutter Apps',
-      _FormKeys.tags: ['flutter', 'ai', 'agentic'],
       _FormKeys.readingTime: ReadingLength.oneToThree,
       _FormKeys.additionalContext: '''
 - Keep it simple
