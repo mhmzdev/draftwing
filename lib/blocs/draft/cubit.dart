@@ -21,9 +21,7 @@ part 'state.dart';
 class DraftCubit extends Cubit<DraftState> with _DraftEmitter {
   static DraftCubit c(BuildContext context, [bool listen = false]) =>
       BlocProvider.of<DraftCubit>(context, listen: listen);
-  DraftCubit() : super(DraftState.def()) {
-    setupDraftsCount();
-  }
+  DraftCubit() : super(DraftState.def());
 
   Future<void> delete(String id) async {
     _deleteLoading();
@@ -36,14 +34,13 @@ class DraftCubit extends Cubit<DraftState> with _DraftEmitter {
     }
   }
 
-  Future<void> saveDraft(DraftResponse draft) async {
+  Future<void> saveDraft(DraftResponse draft, {bool isEdit = false}) async {
     _saveDraftLoading();
     try {
       final parsed = draft.copyWith(
         tags: draft.tags.map((tag) => tag.replaceAll('-', '')).toList(),
       );
-      await _DraftProvider.saveDraft(parsed);
-      incrementDraftsCount();
+      await _DraftProvider.saveDraft(parsed, isEdit: isEdit);
       _saveDraftSuccess();
     } on Fault catch (e) {
       _saveDraftFailed(e);
@@ -63,7 +60,8 @@ class DraftCubit extends Cubit<DraftState> with _DraftEmitter {
     }
   }
 
-  void setupDraftsCount() {
+  void setupDraftsCount() async {
+    await Hive.openBox('app');
     final box = Hive.box('app');
     final count = box.get(AppHiveKeys.draftsGeneratedCount) ?? 0;
     box.put(AppHiveKeys.draftsGeneratedCount, count + 1);

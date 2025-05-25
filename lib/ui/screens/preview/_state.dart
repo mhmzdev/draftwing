@@ -7,11 +7,13 @@ class _ScreenState extends ChangeNotifier {
 
   _ScreenState({required Map<String, dynamic> args}) {
     draft = DraftResponse.fromJson(args);
+    isEdit = args['isEdit'] as bool? ?? false;
   }
 
   final formKey = GlobalKey<FormBuilderState>();
 
   late DraftResponse draft;
+  bool isEdit = false;
 
   void onCopy(BuildContext context, {bool fromAlert = false}) async {
     await Clipboard.setData(ClipboardData(text: draft.bodyMarkdown));
@@ -26,6 +28,19 @@ class _ScreenState extends ChangeNotifier {
   }
 
   void onSave(BuildContext context) {
+    context.dismissKeyboard();
+
+    if (isEdit) {
+      final form = formKey.currentState!;
+      final isValid = form.saveAndValidate();
+      if (!isValid) return;
+      final values = form.value;
+      final title = values['title'] as String;
+      final bodyMarkdown = values['bodyMarkdown'] as String;
+      final updated = draft.copyWith(title: title, bodyMarkdown: bodyMarkdown);
+      DraftCubit.c(context).saveDraft(updated, isEdit: isEdit);
+      return;
+    }
     DraftCubit.c(context).saveDraft(draft);
   }
 }

@@ -54,7 +54,14 @@ class _DraftCard extends StatelessWidget {
               Space.x.t08,
               Expanded(
                 child: AppButton(
-                  onPressed: () {},
+                  onPressed:
+                      () => AppRoutes.preview.push(
+                        context,
+                        arguments: {
+                          ...draft.toJson(),
+                          'isEdit': true,
+                        },
+                      ),
                   icon: Icons.open_in_new_rounded,
                   label: 'Edit',
                   state: AppButtonState.bordered,

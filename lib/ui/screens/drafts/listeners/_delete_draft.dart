@@ -16,7 +16,6 @@ class _DeleteDraft extends StatelessWidget {
         }
         if (state.delete.isSuccess) {
           UIFlash.success(context, 'Draft deleted successfully!');
-          DraftCubit.c(context).drafts(force: true);
         }
       },
       builder: (context, state) {

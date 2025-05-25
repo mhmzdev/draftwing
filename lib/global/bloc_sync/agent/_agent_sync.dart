@@ -11,6 +11,8 @@ class _AgentSync extends BlocListener<AgentCubit, AgentState> {
   static void _listener(BuildContext context, AgentState state) {
     AppLog.log('📦 BlocSync: AgentCubit triggered');
     if (state.generateDraft.isSuccess) {
+      DraftCubit.c(context).incrementDraftsCount();
+
       final navigatorContext = navigator.currentContext!;
       final data = state.generateDraft.data;
       final functionCalls = data?.functionCalls ?? [];
@@ -23,6 +25,7 @@ class _AgentSync extends BlocListener<AgentCubit, AgentState> {
           navigatorContext,
           functionName: functionCalls.first.name,
           arguments: functionCalls.first.args,
+          extra: data?.draft.toJson(),
         );
       }
       AppRoutes.preview.push(navigatorContext, arguments: data?.draft.toJson());

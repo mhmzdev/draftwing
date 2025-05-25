@@ -68,10 +68,11 @@ class AgentTools {
     BuildContext context, {
     required String functionName,
     required Map<String, dynamic> arguments,
+    Map<String, dynamic>? extra,
   }) {
     switch (functionName) {
       case 'save_draft':
-        final draft = DraftResponse.fromJson(arguments);
+        final draft = DraftResponse.fromJson({...arguments, ...?extra});
         DraftCubit.c(context).saveDraft(draft);
       default:
         break;

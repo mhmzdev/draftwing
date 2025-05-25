@@ -1,3 +1,4 @@
+import 'package:draftwing/blocs/draft/cubit.dart';
 import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/blocs/agent/cubit.dart';
 import 'package:draftwing/router/router.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'agent/_agent_sync.dart';
+part 'draft/_draft_sync.dart';
 
 /*
 
@@ -29,6 +31,7 @@ class BlocSync extends StatelessWidget {
     return MultiBlocListener(
       listeners: const [
         _AgentSync(), //
+        _DraftSync(), //
       ],
       child: child,
     );

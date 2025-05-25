@@ -5,6 +5,9 @@ class _SaveDraftListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenState = _ScreenState.s(context, true);
+    final isEdit = screenState.isEdit;
+
     return BlocConsumer<DraftCubit, DraftState>(
       listenWhen: (a, b) => a.saveDraft != b.saveDraft,
       listener: (_, state) {
@@ -17,7 +20,7 @@ class _SaveDraftListener extends StatelessWidget {
         if (state.saveDraft.isSuccess) {
           UIFlash.success(context, 'Draft saved successfully');
           ''.pop(context);
-          AppRoutes.drafts.pushReplace(context);
+          if (!isEdit) AppRoutes.drafts.pushReplace(context);
         }
       },
       builder: (context, state) {

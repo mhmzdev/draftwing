@@ -13,9 +13,16 @@ class _DraftProvider {
     }
   }
 
-  static Future<void> saveDraft(DraftResponse draft) async {
+  static Future<void> saveDraft(
+    DraftResponse draft, {
+    bool isEdit = false,
+  }) async {
     try {
-      await draftsBox.add(draft);
+      if (isEdit) {
+        await draftsBox.put(draft.id, draft);
+      } else {
+        await draftsBox.add(draft);
+      }
     } on HiveError catch (e) {
       throw HiveFault(e, StackTrace.current);
     } catch (e, st) {
