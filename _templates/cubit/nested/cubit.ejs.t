@@ -16,14 +16,13 @@ import '<%= importPath %>';
 <%  }
 }); %>
 
-
+import 'package:draftwing/services/fault/faults.dart';
 import 'package:flutter/material.dart';
-import 'package:brain/brain.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
 part 'data_provider.dart';
 part 'data_parser.dart';

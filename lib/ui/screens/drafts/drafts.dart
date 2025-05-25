@@ -1,7 +1,7 @@
-import 'package:draftwing/blocs/article/cubit.dart';
+import 'package:draftwing/blocs/draft/cubit.dart';
 import 'package:draftwing/helpers/launcher.dart';
-import 'package:draftwing/models/article/article.dart';
-import 'package:draftwing/providers/app.dart';
+import 'package:draftwing/models/response/draft_response.dart';
+import 'package:draftwing/services/fault/faults.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
 import 'package:draftwing/ui/widgets/design/chip/chip.dart';
@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
 import 'package:shimmer/shimmer.dart';
@@ -34,14 +34,9 @@ class _DraftsScreenState extends State<DraftsScreen> {
   @override
   void initState() {
     super.initState();
-    final app = AppProvider.s(context);
-    final fetchPublished = app.fetchPublished;
-    final cubit = ArticleCubit.c(context);
+    final cubit = DraftCubit.c(context);
     final state = cubit.state;
     cubit.drafts(force: state.drafts.isDefault);
-    if (fetchPublished) {
-      cubit.published(force: state.published.isDefault);
-    }
   }
 
   @override

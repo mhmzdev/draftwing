@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
 class ScrollColumnExpandable extends StatelessWidget {
   final List<Widget> children;

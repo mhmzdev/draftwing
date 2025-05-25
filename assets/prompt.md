@@ -41,8 +41,8 @@ When the user provides input, your job is to:
 ```json
 {
     "title": "<final article title>",
-    "published": false,
-    "body_markdown": "<markdown formatted article body>",
+    "bodyMarkdown": "<markdown formatted article body>",
+    "readingLength": "<estimated reading length from enum>", // oneToThree, fourToFive, sizeToEight, nineToTweleve, thirteenPlus
     "tags": [
         "tag1",
         "tag2"
@@ -71,8 +71,8 @@ User:
 ```json
 {
   "title": "Getting started with Gen AI as noob",
-  "published": false,
-  "body_markdown": "# Getting Started with Gen AI as a Noob\n\n> \"The best way to predict the future is to invent it.\" – Alan Kay\n\nGenerative AI (Gen AI) can feel overwhelming at first, especially if you're just stepping into the world of large language models, agents, and automation. But don't worry — here's your beginner-friendly guide.\n\n## 🧠 What is Generative AI?\n\nGenerative AI refers to AI systems that can create new content — like text, images, code, or even music — based on prompts you give it.\n\n### Common Use Cases\n- Writing articles (like this one)\n- Generating UI code\n- Creating summaries or outlines\n- Automating research or tasks\n\n## ⚙️ Tools You Need\n\nYou can get started with any of these:\n\n- **GPT-4o (OpenAI)**\n- **Gemini 1.5 (Google)**\n- **Claude 3 (Anthropic)**\n\nEach has strengths — experiment and see which fits your needs.\n\n## ✍️ Example: Ask it to write Flutter UI code\n\n```dart\nContainer(\n  padding: EdgeInsets.all(16),\n  decoration: BoxDecoration(\n    color: Colors.blueAccent,\n    borderRadius: BorderRadius.circular(12),\n  ),\n  child: Text('Hello Gen AI!'),\n)\n```\n\n## 🧪 Pro Tip\nStart small. Ask your Gen AI assistant to:\n\n- Generate blog outlines\n- Summarize your notes\n- Suggest improvements to your Flutter code\n\n> \"You don't have to be great to start, but you have to start to be great.\"\n\n## 🚀 Final Thoughts\n\nWith tools like GPT or Gemini, you can build agentic apps that do the heavy lifting for you — even if you're just starting out. The key is to keep experimenting and learning.\n\nHappy building, noob!\n",
+  "bodyMarkdown": "# Getting Started with Gen AI as a Noob\n\n> \"The best way to predict the future is to invent it.\" – Alan Kay\n\nGenerative AI (Gen AI) can feel overwhelming at first, especially if you're just stepping into the world of large language models, agents, and automation. But don't worry — here's your beginner-friendly guide.\n\n## 🧠 What is Generative AI?\n\nGenerative AI refers to AI systems that can create new content — like text, images, code, or even music — based on prompts you give it.\n\n### Common Use Cases\n- Writing articles (like this one)\n- Generating UI code\n- Creating summaries or outlines\n- Automating research or tasks\n\n## ⚙️ Tools You Need\n\nYou can get started with any of these:\n\n- **GPT-4o (OpenAI)**\n- **Gemini 1.5 (Google)**\n- **Claude 3 (Anthropic)**\n\nEach has strengths — experiment and see which fits your needs.\n\n## ✍️ Example: Ask it to write Flutter UI code\n\n```dart\nContainer(\n  padding: EdgeInsets.all(16),\n  decoration: BoxDecoration(\n    color: Colors.blueAccent,\n    borderRadius: BorderRadius.circular(12),\n  ),\n  child: Text('Hello Gen AI!'),\n)\n```\n\n## 🧪 Pro Tip\nStart small. Ask your Gen AI assistant to:\n\n- Generate blog outlines\n- Summarize your notes\n- Suggest improvements to your Flutter code\n\n> \"You don't have to be great to start, but you have to start to be great.\"\n\n## 🚀 Final Thoughts\n\nWith tools like GPT or Gemini, you can build agentic apps that do the heavy lifting for you — even if you're just starting out. The key is to keep experimenting and learning.\n\nHappy building, noob!\n",
+  "readingLength": "oneToThree",
   "tags": [
     "genai",
     "flutter",

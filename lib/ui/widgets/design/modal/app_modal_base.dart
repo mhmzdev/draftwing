@@ -1,4 +1,4 @@
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/ui/widgets/headless/focus_handler.dart';
 import 'package:flutter/material.dart';
 
@@ -54,16 +54,16 @@ class AppModalBase extends StatelessWidget {
               children: [
                 Space.y.t20,
                 if (dragger)
-                Center(
-                  child: Container(
-                    width: 50,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      borderRadius: 360.radius(),
-                      color: AppTheme.c.secondary,
+                  Center(
+                    child: Container(
+                      width: 50,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        borderRadius: 360.radius(),
+                        color: AppTheme.c.secondary,
+                      ),
                     ),
                   ),
-                ),
                 body,
                 if (bottomSafe) Space.bottom,
               ],

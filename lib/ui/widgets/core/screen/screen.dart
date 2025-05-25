@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/ui/widgets/core/bottom_bar/bottom_bar.dart';
 import 'package:draftwing/ui/widgets/headless/focus_handler.dart';
 
@@ -157,8 +157,8 @@ class _ScreenState extends State<Screen> {
                   if (!loading) return const SizedBox.shrink();
 
                   return FloatingLoader(
-                    title: 'Generating article',
-                    message: 'You will be navigated to the article soon...',
+                    title: 'Generating draft',
+                    message: 'You will be navigated to the draft soon...',
                     bottom: _getBottomBarHeight + SpaceToken.t12,
                   );
                 },

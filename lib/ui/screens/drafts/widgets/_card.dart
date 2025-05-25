@@ -1,8 +1,8 @@
 part of '../drafts.dart';
 
 class _DraftCard extends StatelessWidget {
-  final Article article;
-  const _DraftCard({required this.article});
+  final DraftResponse draft;
+  const _DraftCard({required this.draft});
 
   @override
   Widget build(BuildContext context) {
@@ -14,40 +14,26 @@ class _DraftCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(child: AppText.h3(article.title, maxLines: 3)),
-              Space.x.t12,
-              AppChip(
-                label: article.isPublished ? 'Published' : 'Draft',
-                color:
-                    article.isPublished
-                        ? AppTheme.c.success
-                        : AppTheme.c.textBody,
-              ),
-            ],
-          ),
+          AppText.h3(draft.title, maxLines: 3),
           Space.y.t12,
           Wrap(
             spacing: SpaceToken.t08,
             runSpacing: SpaceToken.t08,
             children:
-                article.tagList.map((tag) {
+                draft.tags.map((tag) {
                   return AppChip(label: tag, prefixIcon: Iconsax.tag_copy);
                 }).toList(),
           ),
           Space.y.t12,
           Row(
             children: [
-              if (article.publishedAt != null) ...[
-                Icon(Iconsax.calendar, size: 20, color: AppTheme.c.textDim),
-                Space.x.t04,
-                AppText.b2(article.publishedAt!.date),
-                Space.x.t12,
-              ],
+              Icon(Iconsax.calendar, size: 20, color: AppTheme.c.textDim),
+              Space.x.t04,
+              AppText.b2(draft.generatedAt.date),
+              Space.x.t12,
               AppChip(
-                label: article.readingLength.descriptive.titleCase,
-                color: article.readingLength.color,
+                label: draft.readingLength.descriptive.titleCase,
+                color: draft.readingLength.color,
               ),
             ],
           ),
@@ -63,13 +49,7 @@ class _DraftCard extends StatelessWidget {
               Space.x.t08,
               Expanded(
                 child: AppButton(
-                  onPressed: () {
-                    if (article.isPublished) {
-                      LauncherHelper.url(article.url);
-                    } else {
-                      LauncherHelper.url('https://dev.to/dashboard');
-                    }
-                  },
+                  onPressed: () {},
                   icon: Icons.open_in_new_rounded,
                   label: 'Edit',
                   state: AppButtonState.bordered,
@@ -85,8 +65,8 @@ class _DraftCard extends StatelessWidget {
                     useSafeArea: true,
                     builder:
                         (context) => MarkdownPreviewModal(
-                          title: article.title,
-                          body: article.bodyMarkdown,
+                          title: draft.title,
+                          body: draft.bodyMarkdown,
                         ),
                   );
                 },

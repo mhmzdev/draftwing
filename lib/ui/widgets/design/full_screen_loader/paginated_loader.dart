@@ -1,4 +1,4 @@
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
 import 'package:flutter/material.dart';
 

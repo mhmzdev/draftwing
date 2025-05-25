@@ -2,20 +2,19 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:draftwing/gen/assets/assets.gen.dart';
-import 'package:draftwing/models/agent/agent_response.dart';
-import 'package:draftwing/models/agent/draft_response.dart';
-import 'package:draftwing/models/article/article.dart';
+import 'package:draftwing/models/response/agent_response.dart';
+import 'package:draftwing/models/response/draft_response.dart';
 import 'package:draftwing/services/agent_tools.dart';
+import 'package:draftwing/services/fault/faults.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 
 import 'package:flutter/material.dart';
-import 'package:brain/brain.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
 part 'data_provider.dart';
 part 'data_parser.dart';

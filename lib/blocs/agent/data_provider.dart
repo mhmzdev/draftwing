@@ -15,13 +15,15 @@ class _AgentProvider {
         /// This is because we are NOT allowed to use TOOLS and MIMETYPE
         /// in the same request. Hence, we are letting the model decide
         /// whether to use the tools or not.
-        var raw = <String, dynamic>{};
+        var raw = <String, dynamic>{
+          'generatedAt': DateTime.now().toIso8601String(),
+        };
         if (response.text.available) {
           final cleaned = response.text!.extractJsonFromResponse;
-          raw = json.decode(cleaned);
+          raw = {...raw, ...json.decode(cleaned)};
         }
         if (response.functionCalls.toList().available) {
-          raw = response.functionCalls.toList().first.args;
+          raw = {...raw, ...response.functionCalls.toList().first.args};
         }
         final draft = DraftResponse.fromJson(raw);
         return AgentResponse(
@@ -47,7 +49,7 @@ class _AgentProvider {
         systemInstruction: Content.system(promptFile),
 
         /// If you are not using tools, you can use the following config to
-      /// define the response schema.
+        /// define the response schema.
         // generationConfig: GenerationConfig(
         //   responseMimeType: 'application/json',
         //   responseSchema: AgentTools.ins.jsonSchema,

@@ -12,16 +12,13 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    final articleCubit = ArticleCubit.c(context, true);
-    final articleState = articleCubit.state;
-    final draftsList = articleState.draftsList;
-    final publishedList = articleState.publishedList;
-    final list = [...draftsList, ...publishedList];
-    final isLoading =
-        articleState.drafts.isLoading || articleState.published.isLoading;
-    final isFailed =
-        articleState.drafts.isFailed || articleState.published.isFailed;
-    final isSuccess = articleState.drafts.isSuccess;
+    final draftCubit = DraftCubit.c(context, true);
+    final draftState = draftCubit.state;
+    final draftsList = draftState.draftsList;
+    final list = draftsList;
+    final isLoading = draftState.drafts.isLoading;
+    final isFailed = draftState.drafts.isFailed;
+    final isSuccess = draftState.drafts.isSuccess;
 
     return Screen(
       keyboardHandler: true,
@@ -64,29 +61,27 @@ class _BodyState extends State<_Body> {
                           Icon(Icons.error, size: 48, color: AppTheme.c.error),
                           Space.y.t12,
                           AppText.b1(
-                            'Something went wrong!',
+                            draftState.drafts.fault?.message ??
+                                'Something went wrong!',
+                            textAlign: TextAlign.center,
                           ).cl(AppTheme.c.error),
                           Space.y.t16,
                           AppButton(
                             style: AppButtonStyle.danger,
                             padding: Space.h.t32,
                             label: 'Try Again',
-                            onPressed: () => articleCubit.drafts(force: true),
+                            onPressed: () => draftCubit.drafts(force: true),
                           ),
                         ],
                       ),
                     )
                   else if (list.isNotEmpty)
-                    ...list.map((article) {
-                      return _DraftCard(article: article);
+                    ...list.map((draft) {
+                      return _DraftCard(draft: draft);
                     })
                   else if (isSuccess && list.isEmpty)
                     Expanded(
-                      child: Center(
-                        child: AppText.b2(
-                          'No drafts or published articles found!',
-                        ),
-                      ),
+                      child: Center(child: AppText.b2('No drafts saved yet!')),
                     ),
                   Space.y.t12,
                   SizedBox(height: bottomBarHeight),

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
 

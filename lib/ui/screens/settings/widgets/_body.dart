@@ -7,8 +7,6 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     App.init(context);
     final screenState = _ScreenState.s(context, true);
-    final app = AppProvider.s(context, true);
-    final articleCubit = ArticleCubit.c(context);
 
     return Screen(
       keyboardHandler: true,
@@ -44,42 +42,6 @@ class _Body extends StatelessWidget {
                     ),
                     Space.y.t12,
                     AppText.b1('Theme and display options coming soon...'),
-                  ],
-                ),
-              ),
-              Space.y.t20,
-              Container(
-                padding: Space.a.t16,
-                decoration: AppProps.cardDec,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Iconsax.document_copy, color: AppTheme.c.primary),
-                        Space.x.t04,
-                        AppText.h2('Content Control'),
-                      ],
-                    ),
-                    SwitchListTile(
-                      dense: true,
-                      value: app.fetchPublished,
-                      onChanged: (value) {
-                        app.setFetchPublished(value);
-                        if (value) {
-                          articleCubit.published(force: true);
-                        } else {
-                          articleCubit.resetPublished();
-                        }
-                      },
-                      visualDensity: VisualDensity.compact,
-                      title: AppText.b1('Published articles').w(600),
-                      subtitle: AppText.b2(
-                        'Show published articles in the drafts list',
-                      ),
-                      contentPadding: Space.z,
-                    ),
                   ],
                 ),
               ),

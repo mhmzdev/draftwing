@@ -1,4 +1,4 @@
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
 import 'package:draftwing/ui/widgets/design/modal/app_modal_base.dart';
 import 'package:draftwing/ui/widgets/design/chip/chip.dart';

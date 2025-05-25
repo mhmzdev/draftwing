@@ -1,6 +1,7 @@
-import 'package:draftwing/blocs/article/cubit.dart';
-import 'package:draftwing/models/agent/draft_response.dart';
+import 'package:draftwing/blocs/draft/cubit.dart';
+import 'package:draftwing/models/response/draft_response.dart';
 import 'package:draftwing/router/routes.dart';
+import 'package:draftwing/services/fault/faults.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
 import 'package:draftwing/ui/widgets/design/gradients/icon.dart';
@@ -14,12 +15,11 @@ import 'package:provider/provider.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:brain/brain.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
 part 'static/_form_data.dart';
 part 'static/_form_keys.dart';
@@ -42,7 +42,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
   @override
   void initState() {
     super.initState();
-    ArticleCubit.c(context).resetSaveDraft();
+    DraftCubit.c(context).resetSaveDraft();
   }
 
   @override

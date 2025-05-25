@@ -1,6 +1,7 @@
 import 'package:draftwing/blocs/agent/cubit.dart';
-import 'package:draftwing/models/article/article.dart';
+import 'package:draftwing/models/response/draft_response.dart';
 import 'package:draftwing/router/routes.dart';
+import 'package:draftwing/services/fault/faults.dart';
 import 'package:draftwing/ui/painters/painters.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
@@ -15,12 +16,11 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
 
-import 'package:draftwing/blocs/article/cubit.dart';
-import 'package:brain/brain.dart';
+import 'package:draftwing/blocs/draft/cubit.dart';
 import 'package:draftwing/utils/flash.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
 part 'widgets/_body.dart';

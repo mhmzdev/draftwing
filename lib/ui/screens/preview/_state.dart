@@ -26,6 +26,6 @@ class _ScreenState extends ChangeNotifier {
   }
 
   void onSave(BuildContext context) {
-    ArticleCubit.c(context).saveDraft(draft);
+    DraftCubit.c(context).saveDraft(draft);
   }
 }

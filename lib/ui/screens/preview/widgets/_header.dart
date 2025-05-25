@@ -6,7 +6,7 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenState = _ScreenState.s(context);
-    final articleCubit = ArticleCubit.c(context, true);
+    final articleCubit = DraftCubit.c(context, true);
     final state = articleCubit.state;
 
     return KeyboardVisibilityBuilder(
@@ -29,10 +29,8 @@ class _Header extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder:
-                                (context) => ListenableProvider.value(
-                                  value: screenState,
-                                  child: _BackAlert(draft: screenState.draft),
-                                ),
+                                (context) =>
+                                    _BackAlert(draft: screenState.draft),
                           );
                         },
                         icon: const GradientIcon(Iconsax.arrow_left_2_copy),

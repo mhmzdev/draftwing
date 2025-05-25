@@ -33,7 +33,7 @@ class _Form extends StatelessWidget {
           Space.y.t16,
           AppFormSelectInput(
             heading: 'Reading Length',
-            name: _FormKeys.readingTime,
+            name: _FormKeys.readingLength,
             data: ReadingLength.values,
             modalLabel: 'Reading Length',
             placeholder: 'Select reading length',

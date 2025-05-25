@@ -1,4 +1,4 @@
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/ui/widgets/design/gradients/icon.dart';
 import 'package:flutter/material.dart';

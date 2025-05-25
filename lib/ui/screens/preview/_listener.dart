@@ -5,7 +5,7 @@ class _SaveDraftListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ArticleCubit, ArticleState>(
+    return BlocConsumer<DraftCubit, DraftState>(
       listenWhen: (a, b) => a.saveDraft != b.saveDraft,
       listener: (_, state) {
         if (state.saveDraft.isFailed) {

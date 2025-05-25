@@ -6,8 +6,6 @@ class _BackAlert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenState = _ScreenState.s(context);
-
     return AlertDialog(
       title: AppText.h1('Discard Draft?'),
       content: AppText.b1(
@@ -31,15 +29,6 @@ class _BackAlert extends StatelessWidget {
         TextButton(
           onPressed: () => ''.pop(context),
           child: const Text('Cancel'),
-        ),
-        Space.x.t32,
-        Space.x.t24,
-        TextButton(
-          onPressed: () => screenState.onCopy(context, fromAlert: true),
-          style: ButtonStyle(
-            foregroundColor: WidgetStateProperty.all(AppTheme.c.success),
-          ),
-          child: const Text('Copy'),
         ),
       ],
     );

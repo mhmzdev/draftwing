@@ -3,7 +3,7 @@ to: lib/blocs/<%= h.changeCase.snake(name) %>/bloc.dart
 ---
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:brain/brain.dart';
+import 'package:draftwing/services/fault/faults.dart';
 <% args.forEach(function(arg){ %>
 import 'package:draftwing/models/<%= h.changeCase.snake(arg.model) %>/<%= h.changeCase.snake(arg.model) %>.dart';
 <% }); %>

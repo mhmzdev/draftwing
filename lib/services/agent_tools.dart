@@ -1,5 +1,5 @@
-import 'package:draftwing/blocs/article/cubit.dart';
-import 'package:draftwing/models/agent/draft_response.dart';
+import 'package:draftwing/blocs/draft/cubit.dart';
+import 'package:draftwing/models/response/draft_response.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class AgentTools {
     SchemaType.object,
     properties: {
       'title': Schema(SchemaType.string, description: 'The article title'),
-      'body_markdown': Schema(
+      'bodyMarkdown': Schema(
         SchemaType.string,
         description: 'The article content in markdown format',
       ),
@@ -25,11 +25,7 @@ class AgentTools {
         items: Schema(SchemaType.string),
         description: 'List of relevant tags for the article',
       ),
-      'published': Schema(
-        SchemaType.boolean,
-        description: 'Publication status (always false for drafts)',
-      ),
-      'reading_time_minutes': Schema(
+      'readingLength': Schema(
         SchemaType.integer,
         description: 'Estimated reading time in minutes',
         nullable: false,
@@ -46,18 +42,20 @@ class AgentTools {
     'Save a draft of the article to dev.to via api',
     parameters: {
       'title': Schema(SchemaType.string, description: 'The article title'),
-      'body_markdown': Schema(
+      'bodyMarkdown': Schema(
         SchemaType.string,
         description: 'The article content in markdown format',
-      ),
-      'published': Schema(
-        SchemaType.boolean,
-        description: 'Publication status (always false for drafts)',
       ),
       'tags': Schema(
         SchemaType.array,
         items: Schema(SchemaType.string),
         description: 'List of relevant tags for the article',
+      ),
+      'readingLength': Schema(
+        SchemaType.string,
+        description: 'Estimated reading length category',
+        enumValues: ReadingLength.values.map((e) => e.name).toList(),
+        nullable: false,
       ),
     },
   );
@@ -74,7 +72,7 @@ class AgentTools {
     switch (functionName) {
       case 'save_draft':
         final draft = DraftResponse.fromJson(arguments);
-        ArticleCubit.c(context).saveDraft(draft);
+        DraftCubit.c(context).saveDraft(draft);
       default:
         break;
     }
