@@ -34,7 +34,13 @@ class _MyAppState extends State<MyApp> {
       providers: [
         // bloc-initiate-start
         BlocProvider(create: (_) => AgentCubit()),
-        BlocProvider(create: (_) => DraftCubit()..setupDraftsCount()),
+        BlocProvider(
+          create:
+              (_) =>
+                  DraftCubit() //
+                    ..setupDraftsCount()
+                    ..drafts(force: true),
+        ),
         // bloc-initiate-end
 
         // provider-initiate-start
