@@ -5,7 +5,6 @@ import 'package:draftwing/gen/assets/assets.gen.dart';
 import 'package:draftwing/models/agent/agent_response.dart';
 import 'package:draftwing/models/agent/draft_response.dart';
 import 'package:draftwing/models/article/article.dart';
-import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/services/agent_tools.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 
@@ -38,28 +37,6 @@ class AgentCubit extends Cubit<AgentState> with _AgentEmitter {
     } on Fault catch (e) {
       _generateDraftFailed(e);
     }
-  }
-
-  // --- Function Calling Handlers --- //
-
-  Future<void> handleFunctionCall(
-    BuildContext context, {
-    required String functionName,
-    required Map<String, dynamic> arguments,
-  }) async {
-    switch (functionName) {
-      case 'preview_draft':
-        return handlePreviewDraft(context, arguments);
-      default:
-        break;
-    }
-  }
-
-  void handlePreviewDraft(
-    BuildContext context,
-    Map<String, dynamic> parameters,
-  ) {
-    AppRoutes.preview.push(context, arguments: {'draft': parameters});
   }
 
   void reset() => _reset();

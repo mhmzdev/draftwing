@@ -1,4 +1,5 @@
 import 'package:draftwing/global/bloc_sync/bloc_sync.dart';
+import 'package:draftwing/services/notifications/notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,8 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    AppNotification.init(navigator);
+    AppNotification.onReceiveLocalNotification();
     if (kDebugMode) {
       AppAlice.setNavigatorKey(navigator);
     }
