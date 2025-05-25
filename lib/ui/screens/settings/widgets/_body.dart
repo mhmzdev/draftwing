@@ -85,7 +85,10 @@ class _Body extends StatelessWidget {
                             text: 'Version: ',
                             style: AppText.b1('').w(600).style!,
                           ),
-                          TextSpan(text: '0.2.5', style: AppText.b1('').style),
+                          TextSpan(
+                            text: AppVersion.ins.version,
+                            style: AppText.b1('').style,
+                          ),
                         ],
                       ),
                     ),
@@ -97,7 +100,10 @@ class _Body extends StatelessWidget {
                             text: 'Build Number: ',
                             style: AppText.b1('').w(600).style!,
                           ),
-                          TextSpan(text: '234', style: AppText.b1('').style),
+                          TextSpan(
+                            text: AppVersion.ins.buildNumber,
+                            style: AppText.b1('').style,
+                          ),
                         ],
                       ),
                     ),
