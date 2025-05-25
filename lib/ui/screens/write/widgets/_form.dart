@@ -79,7 +79,8 @@ class _Form extends StatelessWidget {
                 icon: Iconsax.magic_star_copy,
                 label: 'Generate Article',
                 mainAxisSize: MainAxisSize.max,
-                loading: loading,
+                state:
+                    loading ? AppButtonState.disabled : AppButtonState.elevated,
               );
             },
           ),

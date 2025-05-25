@@ -1,6 +1,5 @@
 import 'package:brain/brain.dart';
 import 'package:draftwing/blocs/agent/cubit.dart';
-import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/paginated_loader.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -161,22 +160,21 @@ class _ScreenState extends State<Screen> {
                 child: const BottomBar(),
               ),
             if (widget.overlayBuilders != null) ...widget.overlayBuilders!,
-            if (context.currentPath != AppRoutes.write)
-              BlocBuilder<AgentCubit, AgentState>(
-                buildWhen:
-                    (previous, current) =>
-                        previous.generateDraft != current.generateDraft,
-                builder: (context, state) {
-                  final loading = state.generateDraft.isLoading;
-                  if (!loading) return const SizedBox.shrink();
+            BlocBuilder<AgentCubit, AgentState>(
+              buildWhen:
+                  (previous, current) =>
+                      previous.generateDraft != current.generateDraft,
+              builder: (context, state) {
+                final loading = state.generateDraft.isLoading;
+                if (!loading) return const SizedBox.shrink();
 
-                  return FloatingLoader(
-                    title: 'Generating article',
-                    message: 'You will be navigated to the article soon...',
-                    bottom: _getBottomBarHeight + SpaceToken.t12,
-                  );
-                },
-              ),
+                return FloatingLoader(
+                  title: 'Generating article',
+                  message: 'You will be navigated to the article soon...',
+                  bottom: _getBottomBarHeight + SpaceToken.t12,
+                );
+              },
+            ),
           ],
         ),
       ),

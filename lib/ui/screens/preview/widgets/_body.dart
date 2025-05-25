@@ -44,6 +44,14 @@ class _Body extends StatelessWidget {
                   Expanded(
                     child: AppButton(
                       onPressed: () {
+                        final form = screenState.formKey.currentState!;
+                        final isValid = form.saveAndValidate();
+                        if (!isValid) return;
+
+                        final data = form.value;
+                        final title = data[_FormKeys.title] as String;
+                        final body = data[_FormKeys.bodyMarkdown] as String;
+
                         showModalBottomSheet(
                           context: context,
                           isScrollControlled: true,
@@ -51,8 +59,8 @@ class _Body extends StatelessWidget {
                           useSafeArea: true,
                           builder:
                               (context) => MarkdownPreviewModal(
-                                title: screenState.draft.title,
-                                body: screenState.draft.bodyMarkdown,
+                                title: title,
+                                body: body,
                               ),
                         );
                       },

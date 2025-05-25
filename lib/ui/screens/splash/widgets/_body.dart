@@ -106,6 +106,28 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
                 size: FeatherPainter.s(200),
               ),
             ),
+            if (!isFailed)
+              Positioned(
+                bottom:
+                    context.bottomSafe() +
+                    MediaQuery.sizeOf(context).height * 0.15,
+                left: 0,
+                right: 0,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    AppText.h1(
+                      'DraftWing',
+                      textAlign: TextAlign.center,
+                    ).cl(Colors.white),
+                    Space.y.t04,
+                    AppText.b1(
+                      'Your wingman for drafting articles',
+                      textAlign: TextAlign.center,
+                    ).cl(Colors.white),
+                  ],
+                ),
+              ),
             Positioned(
               bottom: context.bottomSafe(),
               left: SpaceToken.t16,
