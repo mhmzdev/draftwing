@@ -51,6 +51,14 @@ The reset of the changes are already done because I did integrate Firebase for t
 | NOTE: Avoid uploading your .json files if you're open source it because you'll be charged for the usage of model as VertexAI service requires Blaze Plan on Firebase
 
 ## 👀 Look'n Feel
+Here's how DraftWing looks and feels:
+
+<img src="assets/showcase/splash.png" width="300">
+<img src="assets/showcase/write.png" width="300">
+<img src="assets/showcase/drafts.png" width="300">
+<img src="assets/showcase/guidelines.png" width="300">
+<img src="assets/showcase/profile.png" width="300">
+
 
 ## 🔑 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details
