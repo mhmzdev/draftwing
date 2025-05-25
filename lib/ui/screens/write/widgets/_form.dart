@@ -8,7 +8,7 @@ class _Form extends StatelessWidget {
     final screenState = _ScreenState.s(context);
 
     return Container(
-      decoration: AppProps.cardDec,
+      decoration: AppProps.cardDec(context),
       padding: Space.a.t16,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

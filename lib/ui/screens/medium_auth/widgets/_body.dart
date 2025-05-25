@@ -27,7 +27,7 @@ class _Body extends StatelessWidget {
             Container(
               margin: Space.a.t16,
               padding: Space.a.t16 + Space.v.t08,
-              decoration: AppProps.cardDec,
+              decoration: AppProps.cardDec(context),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

@@ -20,15 +20,19 @@ abstract class AppProps {
     stops: const [0.1, 1.0],
   );
 
-  static final cardDec = BoxDecoration(
-    color: AppTheme.c.cardBg,
-    borderRadius: 8.radius(),
-    boxShadow: [
-      BoxShadow(
-        color: AppTheme.c.shadow,
-        blurRadius: 4,
-        offset: const Offset(0, 3),
-      ),
-    ],
-  );
+  /// It could be a static GETTER but since we have dynamic theme,
+  /// we need to pass the context to get the correct color.
+  static BoxDecoration cardDec(BuildContext context) {
+    return BoxDecoration(
+      color: AppTheme.c.cardBg,
+      borderRadius: 8.radius(),
+      boxShadow: [
+        BoxShadow(
+          color: AppTheme.c.shadow,
+          blurRadius: 4,
+          offset: const Offset(0, 3),
+        ),
+      ],
+    );
+  }
 }

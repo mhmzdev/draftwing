@@ -17,7 +17,7 @@ class _StatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: AppProps.cardDec,
+      decoration: AppProps.cardDec(context),
       padding: padding,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -7,6 +7,7 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     App.init(context);
     final screenState = _ScreenState.s(context, true);
+    final app = AppProvider.s(context, true);
 
     return Screen(
       keyboardHandler: true,
@@ -26,7 +27,7 @@ class _Body extends StatelessWidget {
               Space.y.t20,
               Container(
                 padding: Space.a.t16,
-                decoration: AppProps.cardDec,
+                decoration: AppProps.cardDec(context),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -41,14 +42,28 @@ class _Body extends StatelessWidget {
                       ],
                     ),
                     Space.y.t12,
-                    AppText.b1('Theme and display options coming soon...'),
+                    SwitchListTile(
+                      value: app.themeMode == ThemeMode.dark,
+                      onChanged: (value) {
+                        if (value) {
+                          app.setTheme(ThemeMode.dark);
+                        } else {
+                          app.setTheme(ThemeMode.light);
+                        }
+                      },
+                      title: AppText.b1('Dark Mode'),
+                      activeColor: AppTheme.c.primary,
+                      contentPadding: Space.z,
+                      dense: true,
+                      visualDensity: VisualDensity.compact,
+                    ),
                   ],
                 ),
               ),
               Space.y.t20,
               Container(
                 padding: Space.a.t16,
-                decoration: AppProps.cardDec,
+                decoration: AppProps.cardDec(context),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

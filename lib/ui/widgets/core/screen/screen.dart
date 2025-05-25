@@ -1,4 +1,5 @@
 import 'package:draftwing/blocs/agent/cubit.dart';
+import 'package:draftwing/providers/app.dart';
 import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/paginated_loader.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +89,10 @@ class _ScreenState extends State<Screen> {
   Widget build(BuildContext context) {
     App.init(context);
 
+    final app = AppProvider.s(context, true);
+    final themeMode = app.themeMode;
+    final isDarkTheme = themeMode == ThemeMode.dark;
+
     var body = widget.child;
     final onWillPop = widget.onBackPressed;
     final canPopValue = widget.canPop ?? true;
@@ -120,8 +125,10 @@ class _ScreenState extends State<Screen> {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark.copyWith(
-        statusBarBrightness: Brightness.light, // for IOS
-        statusBarIconBrightness: Brightness.dark, // for Android
+        statusBarBrightness:
+            isDarkTheme ? Brightness.dark : Brightness.light, // for IOS
+        statusBarIconBrightness:
+            isDarkTheme ? Brightness.light : Brightness.dark, // for Android
       ),
       child: Scaffold(
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,

@@ -7,7 +7,7 @@ class _DraftCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: AppProps.cardDec,
+      decoration: AppProps.cardDec(context),
       padding: Space.a.t16,
       margin: Space.b.t12,
       child: Column(
@@ -41,7 +41,7 @@ class _DraftCard extends StatelessWidget {
           Row(
             children: [
               AppButton(
-                onPressed: () => LauncherHelper.url('https://dev.to/dashboard'),
+                onPressed: () {},
                 icon: Iconsax.trash_copy,
                 style: AppButtonStyle.danger,
                 state: AppButtonState.bordered,

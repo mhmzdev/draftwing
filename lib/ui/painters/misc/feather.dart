@@ -140,7 +140,7 @@ class FeatherPainter extends CustomPainter {
     path_0.close();
 
     final paint0Fill = Paint()..style = PaintingStyle.fill;
-    paint0Fill.color = color ?? AppTheme.c.appBg.withValues(alpha: 1.0);
+    paint0Fill.color = color ?? Colors.white.withValues(alpha: 1.0);
     canvas.drawPath(path_0, paint0Fill);
 
     final path_1 = Path();
@@ -201,7 +201,7 @@ class FeatherPainter extends CustomPainter {
     path_1.close();
 
     final paint1Fill = Paint()..style = PaintingStyle.fill;
-    paint1Fill.color = color ?? AppTheme.c.appBg.withValues(alpha: 1.0);
+    paint1Fill.color = color ?? Colors.white.withValues(alpha: 1.0);
     canvas.drawPath(path_1, paint1Fill);
   }
 

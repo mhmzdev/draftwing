@@ -1,4 +1,5 @@
 import 'package:draftwing/configs/configs.dart';
+import 'package:draftwing/providers/app.dart';
 import 'package:flutter/material.dart';
 
 part '_enums.dart';
@@ -52,6 +53,8 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     App.init(context);
+    final app = AppProvider.s(context, true);
+    final themeMode = app.themeMode;
 
     var state = this.state;
     if (loading) {
@@ -63,7 +66,14 @@ class AppButton extends StatelessWidget {
     final textStyle = _mapSizeToFontSize()[size]!;
 
     final colors = data.backgroundColor[state]!;
-    final textColor = frontColor ?? data.text[state]!;
+    var textColor = frontColor ?? data.text[state]!;
+
+    final enforceWhiteText =
+        themeMode == ThemeMode.dark &&
+        style == AppButtonStyle.primary &&
+        state != AppButtonState.bordered;
+
+    if (enforceWhiteText) textColor = Colors.white;
 
     final plain = state == AppButtonState.plain;
     final disabled = state == AppButtonState.disabled || loading;
