@@ -53,7 +53,7 @@ The reset of the changes are already done because I did integrate Firebase for t
 ## 👀 Look'n Feel
 Here's how DraftWing looks and feels:
 
-<img src="assets/showcase/splash.png" width="280"> <img src="assets/showcase/write.png" width="280"> <img src="assets/showcase/drafts.png" width="280"> <img src="assets/showcase/guidelines.png" width="280"> <img src="assets/showcase/profile.png" width="280">
+<img src="assets/showcase/splash.png" width="240"> <img src="assets/showcase/write.png" width="240"> <img src="assets/showcase/drafts.png" width="240"> <img src="assets/showcase/guidelines.png" width="240"> <img src="assets/showcase/profile.png" width="240">
 
 
 ## 🔑 License
