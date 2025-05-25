@@ -1,6 +1,30 @@
 part of 'cubit.dart';
 
 mixin _DraftEmitter on Cubit<DraftState> {
+  void _deleteLoading() {
+    emit(
+      state.copyWith(
+        delete: state.delete.copyWith(action: CubitAction.loading),
+      ),
+    );
+  }
+
+  void _deleteSuccess() {
+    emit(
+      state.copyWith(
+        delete: state.delete.copyWith(action: CubitAction.success),
+      ),
+    );
+  }
+
+  void _deleteFailed(Fault e) {
+    emit(
+      state.copyWith(
+        delete: state.delete.copyWith(action: CubitAction.failed, fault: e),
+      ),
+    );
+  }
+
   void _saveDraftLoading() {
     emit(
       state.copyWith(

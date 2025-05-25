@@ -41,7 +41,12 @@ class _DraftCard extends StatelessWidget {
           Row(
             children: [
               AppButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => _DeleteAlert(draftId: draft.id),
+                  );
+                },
                 icon: Iconsax.trash_copy,
                 style: AppButtonStyle.danger,
                 state: AppButtonState.bordered,

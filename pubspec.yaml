@@ -74,6 +74,7 @@ dependencies:
   flutter_keyboard_visibility: 6.0.0
   shimmer: 3.0.0
   markdown_widget: 2.3.2+8
+  uuid: 4.5.1
 
 dev_dependencies:
   flutter_test:

@@ -16,10 +16,16 @@ import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
 import 'package:shimmer/shimmer.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:draftwing/utils/flash.dart';
+import 'package:draftwing/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
+
 part 'widgets/_body.dart';
 part 'widgets/_card.dart';
 part 'widgets/_skeleton.dart';
+part 'widgets/_delete_alert.dart';
 
+part 'listeners/_delete_draft.dart';
 part '_state.dart';
 
 class DraftsScreen extends StatefulWidget {

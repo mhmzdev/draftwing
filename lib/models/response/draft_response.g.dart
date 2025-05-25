@@ -71,27 +71,30 @@ class HiveDraftResponseAdapter extends TypeAdapter<_$DraftResponseImpl> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$DraftResponseImpl(
-      title: fields[0] as String,
-      tags: (fields[1] as List).cast<String>(),
-      bodyMarkdown: fields[2] as String,
-      readingLength: fields[3] as ReadingLength,
-      generatedAt: fields[4] as DateTime,
+      id: fields[0] as String,
+      title: fields[1] as String,
+      tags: (fields[2] as List).cast<String>(),
+      bodyMarkdown: fields[3] as String,
+      readingLength: fields[4] as ReadingLength,
+      generatedAt: fields[5] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$DraftResponseImpl obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.title)
-      ..writeByte(2)
-      ..write(obj.bodyMarkdown)
-      ..writeByte(3)
-      ..write(obj.readingLength)
-      ..writeByte(4)
-      ..write(obj.generatedAt)
+      ..write(obj.id)
       ..writeByte(1)
+      ..write(obj.title)
+      ..writeByte(3)
+      ..write(obj.bodyMarkdown)
+      ..writeByte(4)
+      ..write(obj.readingLength)
+      ..writeByte(5)
+      ..write(obj.generatedAt)
+      ..writeByte(2)
       ..write(obj.tags);
   }
 
@@ -112,6 +115,7 @@ class HiveDraftResponseAdapter extends TypeAdapter<_$DraftResponseImpl> {
 
 _$DraftResponseImpl _$$DraftResponseImplFromJson(Map<String, dynamic> json) =>
     _$DraftResponseImpl(
+      id: json['id'] as String,
       title: json['title'] as String,
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
       bodyMarkdown: json['bodyMarkdown'] as String,
@@ -121,6 +125,7 @@ _$DraftResponseImpl _$$DraftResponseImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$DraftResponseImplToJson(_$DraftResponseImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'tags': instance.tags,
       'bodyMarkdown': instance.bodyMarkdown,

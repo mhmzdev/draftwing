@@ -16,6 +16,7 @@ class _AgentProvider {
         /// in the same request. Hence, we are letting the model decide
         /// whether to use the tools or not.
         var raw = <String, dynamic>{
+          'id': const Uuid().v4(),
           'generatedAt': DateTime.now().toIso8601String(),
         };
         if (response.text.available) {

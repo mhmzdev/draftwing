@@ -7,6 +7,7 @@ import 'package:draftwing/models/response/draft_response.dart';
 import 'package:draftwing/services/agent_tools.dart';
 import 'package:draftwing/services/fault/faults.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
+import 'package:uuid/uuid.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

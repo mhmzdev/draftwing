@@ -25,6 +25,17 @@ class DraftCubit extends Cubit<DraftState> with _DraftEmitter {
     setupDraftsCount();
   }
 
+  Future<void> delete(String id) async {
+    _deleteLoading();
+    try {
+      final index = state.draftsList.indexWhere((draft) => draft.id == id);
+      await _DraftProvider.delete(index);
+      _deleteSuccess();
+    } on Fault catch (e) {
+      _deleteFailed(e);
+    }
+  }
+
   Future<void> saveDraft(DraftResponse draft) async {
     _saveDraftLoading();
     try {

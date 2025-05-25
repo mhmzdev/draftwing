@@ -28,6 +28,7 @@ class _BodyState extends State<_Body> {
           bottomBarHeight = height;
         });
       },
+      overlayBuilders: const [_DeleteDraft()],
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

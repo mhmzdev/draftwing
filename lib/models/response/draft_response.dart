@@ -14,11 +14,12 @@ class DraftResponse with _$DraftResponse {
 
   @HiveType(typeId: AppHiveTypes.draft, adapterName: 'HiveDraftResponseAdapter')
   factory DraftResponse({
-    @HiveField(0) required String title,
-    @HiveField(1) required List<String> tags,
-    @HiveField(2) required String bodyMarkdown,
-    @HiveField(3) required ReadingLength readingLength,
-    @HiveField(4) required DateTime generatedAt,
+    @HiveField(0) required String id,
+    @HiveField(1) required String title,
+    @HiveField(2) required List<String> tags,
+    @HiveField(3) required String bodyMarkdown,
+    @HiveField(4) required ReadingLength readingLength,
+    @HiveField(5) required DateTime generatedAt,
   }) = _DraftResponse;
 
   factory DraftResponse.fromJson(Map<String, Object?> json) =>
