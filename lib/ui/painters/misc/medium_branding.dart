@@ -607,7 +607,7 @@ class MediumBrandingPainter extends CustomPainter {
     path_0.close();
 
     final paint0Fill = Paint()..style = PaintingStyle.fill;
-    paint0Fill.color = Colors.black.withValues(alpha: 1.0);
+    paint0Fill.color = AppTheme.c.textBody.withValues(alpha: 1.0);
     canvas.drawPath(path_0, paint0Fill);
   }
 
