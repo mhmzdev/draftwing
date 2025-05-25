@@ -76,11 +76,11 @@ class _Form extends StatelessWidget {
               final loading = state.generateDraft.isLoading;
               return AppButton(
                 onPressed: () => screenState.onSubmit(context),
+
                 icon: Iconsax.magic_star_copy,
                 label: 'Generate Article',
                 mainAxisSize: MainAxisSize.max,
-                state:
-                    loading ? AppButtonState.disabled : AppButtonState.elevated,
+                loading: loading,
               );
             },
           ),

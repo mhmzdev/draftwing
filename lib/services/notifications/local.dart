@@ -30,7 +30,6 @@ class LocalNotification {
       },
     );
 
-    // Create notification channels for Android
     if (Platform.isAndroid) {
       final androidPlugin =
           LocalNotification.ins
@@ -75,34 +74,15 @@ class LocalNotification {
       switch (type) {
         case 'draft_ready':
           final draftData = data['draft'] as Map<String, dynamic>?;
+
           if (draftData != null) {
-            AppRoutes.preview.push(context, arguments: {'draft': draftData});
+            AppRoutes.preview.push(context, arguments: draftData);
           }
-          break;
-        case 'draft_error':
-          _showErrorDialog(context, data['error'] as String?);
           break;
         default:
           AppLog.log('Unknown notification type: $type');
       }
     }
-  }
-
-  static void _showErrorDialog(BuildContext context, String? error) {
-    showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            title: const Text('Draft Generation Failed'),
-            content: Text(error ?? 'An unknown error occurred'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-    );
   }
 
   static Future<void> showDraftReadyNotification({
@@ -140,8 +120,6 @@ class LocalNotification {
     required String title,
     required String error,
   }) async {
-    final payload = jsonEncode({'type': 'draft_error', 'error': error});
-
     await ins.show(
       DateTime.now().millisecondsSinceEpoch ~/ 1000,
       'Draft Generation Failed ❌',
@@ -163,7 +141,6 @@ class LocalNotification {
           threadIdentifier: 'draft_error',
         ),
       ),
-      payload: payload,
     );
   }
 
