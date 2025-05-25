@@ -41,20 +41,7 @@ class _BodyState extends State<_Body> {
               ),
               title: 'Drafts & Published',
               subTitle: '${list.length} drafts/articles created',
-              trailing: IconButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (context) => const DraftGuidelineModal(),
-                  );
-                },
-                icon: const GradientIcon(Iconsax.info_circle_copy),
-                splashRadius: 20,
-                padding: EdgeInsets.zero,
-                visualDensity: VisualDensity.compact,
-              ),
+              trailing: const DraftGuidelinesButton(),
             ),
             if (isLoading && list.isNotEmpty) ...[
               const LinearProgressIndicator(),

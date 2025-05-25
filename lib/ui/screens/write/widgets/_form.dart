@@ -6,6 +6,7 @@ class _Form extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenState = _ScreenState.s(context);
+    final appState = AppProvider.s(context, true);
 
     return Container(
       decoration: AppProps.cardDec(context),
@@ -75,7 +76,18 @@ class _Form extends StatelessWidget {
             builder: (context, state) {
               final loading = state.generateDraft.isLoading;
               return AppButton(
-                onPressed: () => screenState.onSubmit(context),
+                onPressed: () async {
+                  if (appState.firstOpen) {
+                    appState.setFirstOpen();
+                    await showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => const DraftGuidelineModal(),
+                    );
+                  }
+                  if (context.mounted) screenState.onSubmit(context);
+                },
 
                 icon: Iconsax.magic_star_copy,
                 label: 'Generate Article',

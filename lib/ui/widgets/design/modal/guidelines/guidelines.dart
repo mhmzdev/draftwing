@@ -70,6 +70,28 @@ class MediumCopyGuideModal extends StatelessWidget {
   }
 }
 
+class DraftGuidelinesButton extends StatelessWidget {
+  const DraftGuidelinesButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          builder: (context) => const DraftGuidelineModal(),
+        );
+      },
+      icon: const GradientIcon(Iconsax.info_circle_copy),
+      splashRadius: 20,
+      padding: EdgeInsets.zero,
+      visualDensity: VisualDensity.compact,
+    );
+  }
+}
+
 class DraftGuidelineModal extends StatelessWidget {
   const DraftGuidelineModal({super.key});
 
