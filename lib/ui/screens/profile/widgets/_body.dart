@@ -81,6 +81,7 @@ class _BodyState extends State<_Body> {
                 padding: Space.v.t16,
               ),
             ),
+            Space.y.t12,
             SizedBox(height: bottomBarHeight),
           ],
         ),
