@@ -8,12 +8,14 @@ class CoreHeader extends StatelessWidget {
     this.title,
     this.subTitle,
     this.padding,
+    this.trailing,
   });
 
   final Widget? leading;
   final String? title;
   final String? subTitle;
   final EdgeInsets? padding;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class CoreHeader extends StatelessWidget {
               ],
             ),
           ),
+          if (trailing != null) ...[Space.x.t08, trailing!],
         ],
       ),
     );

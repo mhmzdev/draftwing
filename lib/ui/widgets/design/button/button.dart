@@ -116,6 +116,7 @@ class AppButton extends StatelessWidget {
 
     return InkWell(
       onTap: !disabled ? onPressed : disabledCallback,
+      borderRadius: borderRadius,
       child: Container(
         margin: margin,
         padding: padding,
