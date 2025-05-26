@@ -8,11 +8,11 @@ import 'package:draftwing/services/fault/faults.dart';
 import 'package:draftwing/models/<%= h.changeCase.snake(arg.model) %>/<%= h.changeCase.snake(arg.model) %>.dart';
 <% }); %>
 
-part 'state.dart';
-part 'event.dart';
-part 'data_provider.dart';
-part 'data_mocks.dart';
-part 'data_parser.dart';
+part '../new/state.dart';
+part '../new/event.dart';
+part '../new/data_provider.dart';
+part '../new/data_mocks.dart';
+part '../new/data_parser.dart';
 
 class <%= h.changeCase.pascal(name) %>Bloc extends Bloc<<%= h.changeCase.pascal(name) %>Event, <%= h.changeCase.pascal(name) %>State> {
   <%= h.changeCase.pascal(name) %>Bloc() : super(<%= h.changeCase.pascal(name) %>State.initial()) {
