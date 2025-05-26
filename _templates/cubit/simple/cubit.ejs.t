@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:draftwing/configs/configs.dart';
-import 'package:draftwing/services/fault/faults.dart';
+import 'package:fault/fault.dart';
 
 part 'data_provider.dart';
 part 'data_parser.dart';

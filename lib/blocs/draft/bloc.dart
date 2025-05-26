@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:draftwing/configs/configs.dart';
-import 'package:draftwing/models/response/draft_response.dart';
-import 'package:draftwing/services/fault/faults.dart';
-import 'package:draftwing/blocs/misc/cache_keys.dart';
-
+import 'package:repos/repos.dart';
+import 'package:fault/fault.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,9 +10,6 @@ import 'package:equatable/equatable.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'data_provider.dart';
-part 'data_parser.dart';
-part 'data_mocks.dart';
 part 'state.dart';
 part 'events.dart';
 part 'emitter.dart';
@@ -42,7 +37,7 @@ class DraftBloc extends Bloc<DraftEvent, DraftState> with _DraftEmitter {
       final index = state.draftsList.indexWhere(
         (draft) => draft.id == event.id,
       );
-      await _DraftProvider.delete(index);
+      await DraftRepo.ins.delete(index);
       _deleteSuccess(emit);
     } on Fault catch (e) {
       _deleteFailed(e, emit);
@@ -58,7 +53,7 @@ class DraftBloc extends Bloc<DraftEvent, DraftState> with _DraftEmitter {
       final parsed = event.draft.copyWith(
         tags: event.draft.tags.map((tag) => tag.replaceAll('-', '')).toList(),
       );
-      await _DraftProvider.saveDraft(parsed, isEdit: event.isEdit);
+      await DraftRepo.ins.saveDraft(parsed, isEdit: event.isEdit);
       _saveDraftSuccess(emit);
     } on Fault catch (e) {
       _saveDraftFailed(e, emit);
@@ -74,7 +69,7 @@ class DraftBloc extends Bloc<DraftEvent, DraftState> with _DraftEmitter {
     }
     _draftsLoading(emit);
     try {
-      final data = await _DraftProvider.drafts();
+      final data = await DraftRepo.ins.drafts();
       _draftsSuccess(data, emit);
     } on Fault catch (e) {
       _draftsFailed(e, emit);

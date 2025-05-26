@@ -1,4 +1,4 @@
-part of 'bloc.dart';
+part of 'draft_repo.dart';
 
 class _DraftProvider {
   static final draftsBox = Hive.box(AppHiveKeys.drafts);

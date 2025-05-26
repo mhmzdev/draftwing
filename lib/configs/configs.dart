@@ -2,7 +2,8 @@ import 'dart:core';
 import 'dart:math';
 
 import 'package:draftwing/gen/assets/fonts.gen.dart';
-import 'package:draftwing/services/fault/faults.dart';
+import 'package:repos/repos.dart';
+import 'package:fault/fault.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -27,6 +28,7 @@ part 'extension/_context.dart';
 part 'extension/_list.dart';
 part 'extension/_global_key.dart';
 part 'extension/_map.dart';
+part 'extension/_models.dart';
 part 'extension/_enum.dart';
 
 part 'space/_data.dart';

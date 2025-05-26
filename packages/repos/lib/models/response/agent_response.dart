@@ -1,6 +1,7 @@
-import 'package:draftwing/models/response/draft_response.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'draft_response.dart';
 
 part 'agent_response.freezed.dart';
 part 'agent_response.g.dart';

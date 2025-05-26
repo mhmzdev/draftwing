@@ -16,7 +16,7 @@ import '<%= importPath %>';
 <%  }
 }); %>
 
-import 'package:draftwing/services/fault/faults.dart';
+import 'package:fault/fault.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,6 +1,6 @@
 // ignore_for_file: unused_element
 
-part of 'bloc.dart';
+part of 'draft_repo.dart';
 
 class _DraftParser {
   static Map delete(Map data) => data;

@@ -1,8 +1,8 @@
 import 'package:draftwing/blocs/model/bloc.dart';
-import 'package:draftwing/models/response/draft_response.dart';
+import 'package:repos/repos.dart';
 import 'package:draftwing/providers/app.dart';
 import 'package:draftwing/router/routes.dart';
-import 'package:draftwing/services/fault/faults.dart';
+import 'package:fault/fault.dart';
 import 'package:draftwing/ui/painters/painters.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
