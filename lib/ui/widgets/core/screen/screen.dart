@@ -1,4 +1,4 @@
-import 'package:draftwing/blocs/agent/cubit.dart';
+import 'package:draftwing/blocs/model/bloc.dart';
 import 'package:draftwing/providers/app.dart';
 import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/paginated_loader.dart';
@@ -155,7 +155,7 @@ class _ScreenState extends State<Screen> {
               ),
             if (widget.overlayBuilders != null) ...widget.overlayBuilders!,
             if (context.currentPath != AppRoutes.write)
-              BlocBuilder<AgentCubit, AgentState>(
+              BlocBuilder<ModelBloc, ModelState>(
                 buildWhen:
                     (previous, current) =>
                         previous.generateDraft != current.generateDraft,

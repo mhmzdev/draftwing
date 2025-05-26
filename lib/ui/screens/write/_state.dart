@@ -15,6 +15,6 @@ class _ScreenState extends ChangeNotifier {
     context.dismissKeyboard();
 
     final data = form.value;
-    AgentCubit.c(context).generateDraft(data);
+    ModelBloc.b(context).add(ModelGenerateDraftEvent(payload: data));
   }
 }

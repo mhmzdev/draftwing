@@ -69,7 +69,7 @@ class _Form extends StatelessWidget {
             controlAffinity: ListTileControlAffinity.trailing,
           ),
           Space.y.t08,
-          BlocBuilder<AgentCubit, AgentState>(
+          BlocBuilder<ModelBloc, ModelState>(
             buildWhen:
                 (previous, current) =>
                     previous.generateDraft != current.generateDraft,

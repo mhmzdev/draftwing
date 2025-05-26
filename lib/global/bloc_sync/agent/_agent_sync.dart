@@ -1,15 +1,15 @@
 part of '../bloc_sync.dart';
 
-class _AgentSync extends BlocListener<AgentCubit, AgentState> {
+class _AgentSync extends BlocListener<ModelBloc, ModelState> {
   const _AgentSync() : super(listener: _listener, listenWhen: _listenWhen);
 
-  static bool _listenWhen(AgentState a, AgentState b) {
+  static bool _listenWhen(ModelState a, ModelState b) {
     final checks = [a.generateDraft != b.generateDraft];
     return checks.any((e) => e);
   }
 
-  static void _listener(BuildContext context, AgentState state) {
-    AppLog.log('📦 BlocSync: AgentCubit triggered');
+  static void _listener(BuildContext context, ModelState state) {
+    AppLog.log('📦 BlocSync: ModelBloc triggered');
     if (state.generateDraft.isSuccess) {
       DraftBloc.b(context).add(const DraftIncrementCountEvent());
 

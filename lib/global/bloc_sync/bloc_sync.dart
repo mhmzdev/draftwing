@@ -1,6 +1,6 @@
 import 'package:draftwing/blocs/draft/bloc.dart';
+import 'package:draftwing/blocs/model/bloc.dart';
 import 'package:draftwing/configs/configs.dart';
-import 'package:draftwing/blocs/agent/cubit.dart';
 import 'package:draftwing/router/router.dart';
 import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/services/agent_tools.dart';

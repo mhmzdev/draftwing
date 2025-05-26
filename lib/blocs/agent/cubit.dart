@@ -23,6 +23,7 @@ part 'data_mocks.dart';
 part 'emitter.dart';
 part 'state.dart';
 
+@Deprecated('Use ModelBloc instead')
 class AgentCubit extends Cubit<AgentState> with _AgentEmitter {
   static AgentCubit c(BuildContext context, [bool listen = false]) =>
       BlocProvider.of<AgentCubit>(context, listen: listen);
