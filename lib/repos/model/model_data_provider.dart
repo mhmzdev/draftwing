@@ -1,4 +1,4 @@
-part of 'bloc.dart';
+part of 'model_repo.dart';
 
 class _ModelProvider {
   static Future<AgentResponse?> generateDraft(String prompt) async {

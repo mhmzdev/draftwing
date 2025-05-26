@@ -1,7 +1,6 @@
 // ignore_for_file: unused_element
 
-part of 'bloc.dart';
-
+part of 'model_repo.dart';
 class _ModelParser {
   static String generateDraft(Map<String, dynamic> data) {
     try {

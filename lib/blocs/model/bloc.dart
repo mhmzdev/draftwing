@@ -1,26 +1,13 @@
 import 'dart:async';
-import 'dart:convert';
 
-import 'package:draftwing/gen/assets/assets.gen.dart';
 import 'package:draftwing/models/response/agent_response.dart';
-import 'package:draftwing/models/response/draft_response.dart';
-import 'package:draftwing/services/agent_tools.dart';
-
+import 'package:draftwing/repos/model/model_repo.dart';
 import 'package:draftwing/services/fault/faults.dart';
-import 'package:firebase_vertexai/firebase_vertexai.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-
 import 'package:draftwing/configs/configs.dart';
-import 'package:uuid/uuid.dart';
 
-part 'data_provider.dart';
-part 'data_parser.dart';
-part 'data_mocks.dart';
 part 'state.dart';
 part 'events.dart';
 part 'emitter.dart';
@@ -40,8 +27,7 @@ class ModelBloc extends Bloc<ModelEvent, ModelState> with _ModelEmitter {
   ) async {
     _generateDraftLoading(emit);
     try {
-      final parsed = _ModelParser.generateDraft(event.payload);
-      final data = await _ModelProvider.generateDraft(parsed);
+      final data = await ModelRepo.ins.generateDraft(event.payload);
       _generateDraftSuccess(data, emit);
     } on Fault catch (e) {
       _generateDraftFailed(e, emit);
