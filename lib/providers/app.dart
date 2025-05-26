@@ -11,6 +11,12 @@ final themeMap = {
 
 enum Cache { theme, locale, firstOpen, joinedAt }
 
+extension ThemeModeX on ThemeMode {
+  bool get isDark => this == ThemeMode.dark;
+  bool get isLight => this == ThemeMode.light;
+  bool get isSystem => this == ThemeMode.system;
+}
+
 class AppProvider extends ChangeNotifier {
   static AppProvider s(BuildContext context, [bool listen = false]) =>
       Provider.of<AppProvider>(context, listen: listen);
