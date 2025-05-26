@@ -70,8 +70,4 @@ mixin _DraftEmitter on Bloc<DraftEvent, DraftState> {
       ),
     );
   }
-
-  /// Implement this method in the cubit to reset the state
-  /// and if there is any releated data to it.
-  void _reset() => UnimplementedError('Method not implemented');
 }

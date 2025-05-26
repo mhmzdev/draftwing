@@ -1,38 +1,70 @@
 ---
 to: lib/blocs/<%= h.changeCase.snake(name) %>/bloc.dart
 ---
+<% pascal = h.changeCase.pascal(name) %>
+<% bloc = pascal+"Bloc" %>
+import 'dart:async';
+
+<% 
+const addedImports = new Set();
+args.forEach(function(arg){ 
+  const importPath = `package:draftwing/models/${h.changeCase.snake(arg.model)}/${h.changeCase.snake(arg.model)}.dart`;
+  if (!addedImports.has(importPath)) {
+    addedImports.add(importPath);
+%>
+import '<%= importPath %>';
+<%  }
+}); %>
+
+import 'package:draftwing/services/fault/faults.dart';
+import 'package:draftwing/blocs/misc/cache_keys.dart';
+
+import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:draftwing/services/fault/faults.dart';
-<% args.forEach(function(arg){ %>
-import 'package:draftwing/models/<%= h.changeCase.snake(arg.model) %>/<%= h.changeCase.snake(arg.model) %>.dart';
-<% }); %>
 
-part '../new/state.dart';
-part '../new/event.dart';
-part '../new/data_provider.dart';
-part '../new/data_mocks.dart';
-part '../new/data_parser.dart';
+import 'package:draftwing/configs/configs.dart';
 
-class <%= h.changeCase.pascal(name) %>Bloc extends Bloc<<%= h.changeCase.pascal(name) %>Event, <%= h.changeCase.pascal(name) %>State> {
-  <%= h.changeCase.pascal(name) %>Bloc() : super(<%= h.changeCase.pascal(name) %>State.initial()) {
+part 'data_provider.dart';
+part 'data_parser.dart';
+part 'data_mocks.dart';
+part 'state.dart';
+part 'events.dart';
+part 'emitter.dart';
+
+class <%= bloc %> extends Bloc<<%= pascal %>Event, <%= pascal %>State> with _<%= pascal %>Emitter {
+  static <%= bloc %> b(BuildContext context, [bool listen = false]) =>
+      BlocProvider.of<<%= bloc %>>(context, listen: listen);
+
+  <%= bloc %>() : super(<%= pascal %>State.def()) {
 <% args.forEach(function(arg){ %>
-    on<_<%= h.changeCase.pascal(name) %><%= h.changeCase.pascal(arg.module) %>>(_on<%= h.changeCase.pascal(arg.module) %>);
+<% cModule = h.changeCase.camel(arg.module) %>
+<% pascal_module = h.changeCase.pascal(arg.module) %>
+    on<<%= pascal %><%= pascal_module %>Event>(_on<%= pascal_module %>);
 <% }); %>
+    on<<%= pascal %>ResetEvent>(_onReset);
   }
 
 <% args.forEach(function(arg){ %>
-  Future<void> _on<%= h.changeCase.pascal(arg.module) %>(
-    _<%= h.changeCase.pascal(name) %><%= h.changeCase.pascal(arg.module) %> event,
-    Emitter<<%= h.changeCase.pascal(name) %>State> emit,
+
+<% pModule = h.changeCase.pascal(arg.module) %>
+<% cModule = h.changeCase.camel(arg.module) %>
+<% model = h.changeCase.pascal(arg.model) %>
+
+  Future<void> _on<%= pModule %>(
+    <%= pascal %><%= pModule %>Event event,
+    Emitter<<%= pascal %>State> emit,
   ) async {
+    _<%= cModule %>Loading(emit);
     try {
-      emit(<%= h.changeCase.pascal(name) %>State.loading());
-      final result = await _<%= h.changeCase.pascal(name) %>Provider.<%= h.changeCase.camel(arg.module) %>();
-      emit(<%= h.changeCase.pascal(name) %>State.success(<%= h.changeCase.camel(arg.module) %>: result));
-    } catch (e) {
-      emit(<%= h.changeCase.pascal(name) %>State.failure(<%= h.changeCase.camel(arg.module) %>Fault: e as Fault));
+      final data = await _<%= pascal %>Provider.<%= cModule %>();
+      _<%= cModule %>Success(data, emit);
+    } on Fault catch (e) {
+      _<%= cModule %>Failed(e, emit);
     }
   }
 <% }); %>
-} 
+
+  void _onReset(<%= pascal %>ResetEvent event, Emitter<<%= pascal %>State> emit) => emit(<%= pascal %>State.def());
+}

@@ -20,7 +20,8 @@ class DraftState extends Equatable {
   });
 
   DraftState.def()
-    : delete = BlocState<void>(),
+    : // root-def-constructor
+      delete = BlocState<void>(),
       saveDraft = BlocState<void>(),
       drafts = BlocState<List<DraftResponse>>(),
       draftsList = const [],
@@ -44,6 +45,7 @@ class DraftState extends Equatable {
 
   @override
   List<Object?> get props => [
+    // root-state-props
     draftsList,
     draftsCount,
     delete,

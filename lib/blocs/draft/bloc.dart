@@ -100,5 +100,6 @@ class DraftBloc extends Bloc<DraftEvent, DraftState> with _DraftEmitter {
   void _onResetSaveDraft(DraftResetSaveEvent event, Emitter<DraftState> emit) =>
       emit(state.copyWith(saveDraft: BlocState()));
 
-  void _onReset(DraftResetEvent event, Emitter<DraftState> emit) => _reset();
+  void _onReset(DraftResetEvent event, Emitter<DraftState> emit) =>
+      emit(DraftState.def());
 }

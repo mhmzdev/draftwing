@@ -1,73 +1,61 @@
 ---
 to: lib/blocs/<%= h.changeCase.snake(name) %>/state.dart
 ---
+<% pascal = h.changeCase.pascal(name) %>
+<% rootClass = h.changeCase.pascal(name)+"State" %>
 part of 'bloc.dart';
+<%= props = "" %>
+<%= constructor = "" %>
+<%= defConstructor = "" %>
+<%= equatable = "" %>
+<%= copyWithArgs = "" %>
+<%= copyWithBody = "" %>
 
-enum <%= h.changeCase.pascal(name) %>Status { initial, loading, success, failure }
+<% args.forEach(function(arg, index){ %>
 
-class <%= h.changeCase.pascal(name) %>State extends Equatable {
-  final <%= h.changeCase.pascal(name) %>Status status;
-<% args.forEach(function(arg){ %>
-  final <%= h.changeCase.pascal(arg.model) %>? <%= h.changeCase.camel(arg.module) %>;
-  final Fault? <%= h.changeCase.camel(arg.module) %>Fault;
+<% module = h.changeCase.pascal(arg.module) %>
+<% cModule = h.changeCase.camel(arg.module) %>
+<% model = h.changeCase.pascal(arg.model) %>
+<% props += "\tfinal BlocState<"+model+"> "+cModule+";\n" %>
+<% constructor += "\t\trequired this."+cModule+",\n" %>
+<% defConstructor += "\t\t\t"+cModule+" = BlocState(),\n" %>
+<% equatable += "\t\t"+cModule+",\n" %>
+<% copyWithArgs += "\t\tBlocState<"+model+">? "+cModule+",\n" %>
+<% copyWithBody += "\t\t\t"+cModule+": "+cModule+" ?? this."+cModule+",\n" %>
+
 <% }); %>
 
-  const <%= h.changeCase.pascal(name) %>State({
-    this.status = <%= h.changeCase.pascal(name) %>Status.initial,
-<% args.forEach(function(arg){ %>
-    this.<%= h.changeCase.camel(arg.module) %>,
-    this.<%= h.changeCase.camel(arg.module) %>Fault,
-<% }); %>
-  });
+@immutable
+class <%= rootClass %> extends Equatable {
+	// --- nested states --- //
+<%- props %>
+	// --- state data --- //
+	final List<Object> dataList;
+	final int dataCount;
 
-  <%= h.changeCase.pascal(name) %>State.initial() : this();
+	const <%= rootClass %>({
+<%- constructor %>		this.dataList = const [],
+		this.dataCount = 0,
+	});
 
-  <%= h.changeCase.pascal(name) %>State.loading() : this(status: <%= h.changeCase.pascal(name) %>Status.loading);
+	<%= rootClass %>.def()
+		: // root-def-constructor
+<%- defConstructor %>			dataList = const [],
+			dataCount = 0;
 
-  <%= h.changeCase.pascal(name) %>State.success({
-<% args.forEach(function(arg){ %>
-    <%= h.changeCase.pascal(arg.model) %>? <%= h.changeCase.camel(arg.module) %>,
-<% }); %>
-  }) : this(
-          status: <%= h.changeCase.pascal(name) %>Status.success,
-<% args.forEach(function(arg){ %>
-          <%= h.changeCase.camel(arg.module) %>: <%= h.changeCase.camel(arg.module) %>,
-<% }); %>
-        );
+	<%= rootClass %> copyWith({
+<%- copyWithArgs %>		List<Object>? dataList,
+		int? dataCount,
+	}) {
+		return <%= rootClass %>(
+<%- copyWithBody %>			dataList: dataList ?? this.dataList,
+			dataCount: dataCount ?? this.dataCount,
+		);
+	}
 
-  <%= h.changeCase.pascal(name) %>State.failure({
-<% args.forEach(function(arg){ %>
-    Fault? <%= h.changeCase.camel(arg.module) %>Fault,
-<% }); %>
-  }) : this(
-          status: <%= h.changeCase.pascal(name) %>Status.failure,
-<% args.forEach(function(arg){ %>
-          <%= h.changeCase.camel(arg.module) %>Fault: <%= h.changeCase.camel(arg.module) %>Fault,
-<% }); %>
-        );
-
-  <%= h.changeCase.pascal(name) %>State copyWith({
-    <%= h.changeCase.pascal(name) %>Status? status,
-<% args.forEach(function(arg){ %>
-    <%= h.changeCase.pascal(arg.model) %>? <%= h.changeCase.camel(arg.module) %>,
-    Fault? <%= h.changeCase.camel(arg.module) %>Fault,
-<% }); %>
-  }) {
-    return <%= h.changeCase.pascal(name) %>State(
-      status: status ?? this.status,
-<% args.forEach(function(arg){ %>
-      <%= h.changeCase.camel(arg.module) %>: <%= h.changeCase.camel(arg.module) %> ?? this.<%= h.changeCase.camel(arg.module) %>,
-      <%= h.changeCase.camel(arg.module) %>Fault: <%= h.changeCase.camel(arg.module) %>Fault ?? this.<%= h.changeCase.camel(arg.module) %>Fault,
-<% }); %>
-    );
-  }
-
-  @override
-  List<Object?> get props => [
-    status,
-<% args.forEach(function(arg){ %>
-    <%= h.changeCase.camel(arg.module) %>,
-    <%= h.changeCase.camel(arg.module) %>Fault,
-<% }); %>
-  ];
-} 
+	@override
+	List<Object?> get props => [
+		// root-state-props
+<%- equatable %>
+	];
+}
