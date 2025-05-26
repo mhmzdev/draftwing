@@ -11,7 +11,7 @@ class _AgentSync extends BlocListener<AgentCubit, AgentState> {
   static void _listener(BuildContext context, AgentState state) {
     AppLog.log('📦 BlocSync: AgentCubit triggered');
     if (state.generateDraft.isSuccess) {
-      DraftCubit.c(context).incrementDraftsCount();
+      DraftBloc.b(context).add(const DraftIncrementCountEvent());
 
       final navigatorContext = navigator.currentContext!;
       final data = state.generateDraft.data;

@@ -12,8 +12,8 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    final articleCubit = DraftCubit.c(context, true);
-    final articleState = articleCubit.state;
+    final articleBloc = DraftBloc.b(context, true);
+    final articleState = articleBloc.state;
     final draftsList = articleState.draftsList;
     final list = draftsList;
 

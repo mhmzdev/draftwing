@@ -1,4 +1,4 @@
-import 'package:draftwing/blocs/draft/cubit.dart';
+import 'package:draftwing/blocs/draft/bloc.dart';
 import 'package:draftwing/models/response/draft_response.dart';
 import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/services/fault/faults.dart';
@@ -41,9 +41,9 @@ class _DraftsScreenState extends State<DraftsScreen> {
   @override
   void initState() {
     super.initState();
-    final cubit = DraftCubit.c(context);
-    final state = cubit.state;
-    cubit.drafts(force: state.drafts.isDefault);
+    final bloc = DraftBloc.b(context);
+    final state = bloc.state;
+    bloc.add(DraftFetchEvent(force: state.drafts.isDefault));
   }
 
   @override

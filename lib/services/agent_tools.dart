@@ -1,4 +1,4 @@
-import 'package:draftwing/blocs/draft/cubit.dart';
+import 'package:draftwing/blocs/draft/bloc.dart';
 import 'package:draftwing/models/response/draft_response.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +73,7 @@ class AgentTools {
     switch (functionName) {
       case 'save_draft':
         final draft = DraftResponse.fromJson({...arguments, ...?extra});
-        DraftCubit.c(context).saveDraft(draft);
+        DraftBloc.b(context).add(DraftSaveEvent(draft));
       default:
         break;
     }

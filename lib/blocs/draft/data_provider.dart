@@ -1,4 +1,4 @@
-part of 'cubit.dart';
+part of 'bloc.dart';
 
 class _DraftProvider {
   static final draftsBox = Hive.box(AppHiveKeys.drafts);
@@ -33,6 +33,7 @@ class _DraftProvider {
   static Future<List<DraftResponse>> drafts() async {
     try {
       final drafts = draftsBox.values.toList().cast<DraftResponse>();
+      drafts.sort((a, b) => b.generatedAt.compareTo(a.generatedAt));
       return drafts;
     } on HiveError catch (e) {
       throw HiveFault(e, StackTrace.current);

@@ -1,78 +1,72 @@
-part of 'cubit.dart';
+part of 'bloc.dart';
 
-mixin _DraftEmitter on Cubit<DraftState> {
-  void _deleteLoading() {
+mixin _DraftEmitter on Bloc<DraftEvent, DraftState> {
+  void _deleteLoading(Emitter<DraftState> emit) {
+    emit(
+      state.copyWith(delete: state.delete.copyWith(action: BlocAction.loading)),
+    );
+  }
+
+  void _deleteSuccess(Emitter<DraftState> emit) {
+    emit(
+      state.copyWith(delete: state.delete.copyWith(action: BlocAction.success)),
+    );
+  }
+
+  void _deleteFailed(Fault e, Emitter<DraftState> emit) {
     emit(
       state.copyWith(
-        delete: state.delete.copyWith(action: CubitAction.loading),
+        delete: state.delete.copyWith(action: BlocAction.failed, fault: e),
       ),
     );
   }
 
-  void _deleteSuccess() {
+  void _saveDraftLoading(Emitter<DraftState> emit) {
     emit(
       state.copyWith(
-        delete: state.delete.copyWith(action: CubitAction.success),
+        saveDraft: state.saveDraft.copyWith(action: BlocAction.loading),
       ),
     );
   }
 
-  void _deleteFailed(Fault e) {
+  void _saveDraftSuccess(Emitter<DraftState> emit) {
     emit(
       state.copyWith(
-        delete: state.delete.copyWith(action: CubitAction.failed, fault: e),
+        saveDraft: state.saveDraft.copyWith(action: BlocAction.success),
       ),
     );
   }
 
-  void _saveDraftLoading() {
-    emit(
-      state.copyWith(
-        saveDraft: state.saveDraft.copyWith(action: CubitAction.loading),
-      ),
-    );
-  }
-
-  void _saveDraftSuccess() {
-    emit(
-      state.copyWith(
-        saveDraft: state.saveDraft.copyWith(action: CubitAction.success),
-      ),
-    );
-  }
-
-  void _saveDraftFailed(Fault e) {
+  void _saveDraftFailed(Fault e, Emitter<DraftState> emit) {
     emit(
       state.copyWith(
         saveDraft: state.saveDraft.copyWith(
-          action: CubitAction.failed,
+          action: BlocAction.failed,
           fault: e,
         ),
       ),
     );
   }
 
-  void _draftsLoading() {
+  void _draftsLoading(Emitter<DraftState> emit) {
     emit(
-      state.copyWith(
-        drafts: state.drafts.copyWith(action: CubitAction.loading),
-      ),
+      state.copyWith(drafts: state.drafts.copyWith(action: BlocAction.loading)),
     );
   }
 
-  void _draftsSuccess(List<DraftResponse> data) {
+  void _draftsSuccess(List<DraftResponse> data, Emitter<DraftState> emit) {
     emit(
       state.copyWith(
-        drafts: state.drafts.copyWith(action: CubitAction.success, data: data),
+        drafts: state.drafts.copyWith(action: BlocAction.success, data: data),
         draftsList: data,
       ),
     );
   }
 
-  void _draftsFailed(Fault e) {
+  void _draftsFailed(Fault e, Emitter<DraftState> emit) {
     emit(
       state.copyWith(
-        drafts: state.drafts.copyWith(action: CubitAction.failed, fault: e),
+        drafts: state.drafts.copyWith(action: BlocAction.failed, fault: e),
       ),
     );
   }

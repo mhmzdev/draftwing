@@ -10,7 +10,7 @@ import 'router/routes.dart';
 
 // bloc-imports-start
 import 'blocs/agent/cubit.dart';
-import 'blocs/draft/cubit.dart';
+import 'blocs/draft/bloc.dart';
 
 // bloc-imports-end
 
@@ -37,9 +37,9 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
           create:
               (_) =>
-                  DraftCubit() //
-                    ..setupDraftsCount()
-                    ..drafts(force: true),
+                  DraftBloc() //
+                    ..add(const DraftSetupCountEvent())
+                    ..add(const DraftFetchEvent(force: true)),
         ),
         // bloc-initiate-end
 

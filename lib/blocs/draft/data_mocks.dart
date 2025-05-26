@@ -1,6 +1,6 @@
 // ignore_for_file: unused_element
 
-part of 'cubit.dart';
+part of 'bloc.dart';
 
 class _DraftMocks {
   static Future<Map> delete() {

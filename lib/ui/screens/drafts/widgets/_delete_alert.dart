@@ -19,7 +19,7 @@ class _DeleteAlert extends StatelessWidget {
         TextButton(
           onPressed: () {
             ''.pop(context);
-            DraftCubit.c(context).delete(draftId);
+            DraftBloc.b(context).add(DraftDeleteEvent(draftId));
           },
           style: ButtonStyle(
             foregroundColor: WidgetStateProperty.all(AppTheme.c.error),

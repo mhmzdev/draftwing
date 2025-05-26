@@ -8,7 +8,7 @@ class _SaveDraftListener extends StatelessWidget {
     final currentRoute = context.currentPath;
     if (currentRoute != AppRoutes.write) return const SizedBox.shrink();
 
-    return BlocConsumer<DraftCubit, DraftState>(
+    return BlocConsumer<DraftBloc, DraftState>(
       listenWhen: (a, b) => a.saveDraft != b.saveDraft,
       listener: (_, state) {
         if (state.saveDraft.isFailed) {

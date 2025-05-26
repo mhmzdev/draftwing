@@ -22,7 +22,7 @@ import 'package:draftwing/configs/configs.dart';
 
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
 
-import 'package:draftwing/blocs/draft/cubit.dart';
+import 'package:draftwing/blocs/draft/bloc.dart';
 import 'package:draftwing/utils/flash.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
 part 'widgets/_body.dart';

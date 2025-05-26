@@ -7,7 +7,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'package:draftwing/blocs/draft/cubit.dart';
+import 'package:draftwing/blocs/draft/bloc.dart';
 import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/models/response/draft_response.dart';
 import 'package:draftwing/router/routes.dart';
@@ -41,7 +41,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
   @override
   void initState() {
     super.initState();
-    DraftCubit.c(context).resetSaveDraft();
+    DraftBloc.b(context).add(const DraftResetSaveEvent());
   }
 
   @override

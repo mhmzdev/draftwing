@@ -1,4 +1,4 @@
-import 'package:draftwing/blocs/draft/cubit.dart';
+import 'package:draftwing/blocs/draft/bloc.dart';
 import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/blocs/agent/cubit.dart';
 import 'package:draftwing/router/router.dart';

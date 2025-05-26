@@ -12,8 +12,8 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    final draftCubit = DraftCubit.c(context, true);
-    final draftState = draftCubit.state;
+    final draftBloc = DraftBloc.b(context, true);
+    final draftState = draftBloc.state;
     final draftsList = draftState.draftsList;
     final list = draftsList;
     final isLoading = draftState.drafts.isLoading;
@@ -72,7 +72,10 @@ class _BodyState extends State<_Body> {
                             style: AppButtonStyle.danger,
                             padding: Space.h.t32,
                             label: 'Try Again',
-                            onPressed: () => draftCubit.drafts(force: true),
+                            onPressed:
+                                () => draftBloc.add(
+                                  const DraftFetchEvent(force: true),
+                                ),
                           ),
                         ],
                       ),

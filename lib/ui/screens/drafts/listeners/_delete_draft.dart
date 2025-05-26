@@ -5,8 +5,8 @@ class _DeleteDraft extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DraftCubit, DraftState>(
-      listenWhen: (a, b) => a.delete != b.delete,
+    return BlocConsumer<DraftBloc, DraftState>(
+      listenWhen: (a, b) => a.delete.isFailed && b.delete.isDefault,
       listener: (_, state) {
         if (state.delete.isFailed) {
           UIFlash.error(

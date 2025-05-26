@@ -1,6 +1,6 @@
 part of '../bloc_sync.dart';
 
-class _DraftSync extends BlocListener<DraftCubit, DraftState> {
+class _DraftSync extends BlocListener<DraftBloc, DraftState> {
   const _DraftSync() : super(listener: _listener, listenWhen: _listenWhen);
 
   static bool _listenWhen(DraftState a, DraftState b) {
@@ -11,7 +11,8 @@ class _DraftSync extends BlocListener<DraftCubit, DraftState> {
   static void _listener(BuildContext context, DraftState state) {
     final anyChecks = [state.saveDraft.isSuccess, state.delete.isSuccess];
     if (anyChecks.any((e) => e)) {
-      DraftCubit.c(context).drafts();
+      AppLog.log('📦 BlocSync: DraftBloc triggered');
+      DraftBloc.b(context).add(const DraftFetchEvent());
     }
   }
 }

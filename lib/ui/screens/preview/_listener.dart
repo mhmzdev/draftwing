@@ -8,7 +8,7 @@ class _SaveDraftListener extends StatelessWidget {
     final screenState = _ScreenState.s(context, true);
     final isEdit = screenState.isEdit;
 
-    return BlocConsumer<DraftCubit, DraftState>(
+    return BlocConsumer<DraftBloc, DraftState>(
       listenWhen: (a, b) => a.saveDraft != b.saveDraft,
       listener: (_, state) {
         if (state.saveDraft.isFailed) {

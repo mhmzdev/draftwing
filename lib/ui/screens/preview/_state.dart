@@ -38,9 +38,9 @@ class _ScreenState extends ChangeNotifier {
       final title = values['title'] as String;
       final bodyMarkdown = values['bodyMarkdown'] as String;
       final updated = draft.copyWith(title: title, bodyMarkdown: bodyMarkdown);
-      DraftCubit.c(context).saveDraft(updated, isEdit: isEdit);
+      DraftBloc.b(context).add(DraftSaveEvent(updated, isEdit: isEdit));
       return;
     }
-    DraftCubit.c(context).saveDraft(draft);
+    DraftBloc.b(context).add(DraftSaveEvent(draft));
   }
 }

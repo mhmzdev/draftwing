@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:draftwing/gen/assets/fonts.gen.dart';
 import 'package:draftwing/services/fault/faults.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:navigation_history_observer/navigation_history_observer.dart';
@@ -49,6 +50,8 @@ part 'ui/_unit.dart';
 
 part 'cubit/_action.dart';
 part 'cubit/_state.dart';
+part 'bloc/_action.dart';
+part 'bloc/_state.dart';
 
 class App {
   static void init(BuildContext context, [VoidCallback? callback]) {

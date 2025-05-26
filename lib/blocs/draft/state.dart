@@ -1,34 +1,35 @@
-part of 'cubit.dart';
+part of 'bloc.dart';
 
-// root-state
 @immutable
 class DraftState extends Equatable {
-  final CubitState<void> delete;
-  final CubitState<void> saveDraft;
-  final CubitState<List<DraftResponse>> drafts;
+  // --- nested states --- //
+  final BlocState<void> delete;
+  final BlocState<void> saveDraft;
+  final BlocState<List<DraftResponse>> drafts;
+
+  // --- state data --- //
   final List<DraftResponse> draftsList;
   final int draftsCount;
 
   const DraftState({
     required this.delete,
-    required this.saveDraft,
     required this.drafts,
+    required this.saveDraft,
     this.draftsList = const [],
     this.draftsCount = 0,
   });
 
   DraftState.def()
-    : // root-def-constructor
-      delete = CubitState(),
-      saveDraft = CubitState(),
-      drafts = CubitState(),
+    : delete = BlocState<void>(),
+      saveDraft = BlocState<void>(),
+      drafts = BlocState<List<DraftResponse>>(),
       draftsList = const [],
       draftsCount = 0;
 
   DraftState copyWith({
-    CubitState<void>? delete,
-    CubitState<void>? saveDraft,
-    CubitState<List<DraftResponse>>? drafts,
+    BlocState<void>? delete,
+    BlocState<void>? saveDraft,
+    BlocState<List<DraftResponse>>? drafts,
     List<DraftResponse>? draftsList,
     int? draftsCount,
   }) {
@@ -42,12 +43,11 @@ class DraftState extends Equatable {
   }
 
   @override
-  List<Object> get props => [
-    // root-state-props
+  List<Object?> get props => [
+    draftsList,
+    draftsCount,
     delete,
     saveDraft,
     drafts,
-    draftsList,
-    draftsCount,
   ];
 }
