@@ -61,8 +61,8 @@ class DraftCubit extends Cubit<DraftState> with _DraftEmitter {
   }
 
   void setupDraftsCount() async {
-    await Hive.openBox('app');
-    final box = Hive.box('app');
+    await Hive.openBox(AppHiveKeys.app);
+    final box = Hive.box(AppHiveKeys.app);
     final count = box.get(AppHiveKeys.draftsGeneratedCount) ?? 0;
     box.put(AppHiveKeys.draftsGeneratedCount, count + 1);
     emit(state.copyWith(draftsCount: count));

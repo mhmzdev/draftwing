@@ -1,3 +1,4 @@
+import 'package:draftwing/blocs/misc/cache_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -25,8 +26,8 @@ class AppProvider extends ChangeNotifier {
   }
 
   void _init() async {
-    await Hive.openBox('app');
-    _cache = Hive.box('app');
+    await Hive.openBox(AppHiveKeys.app);
+    _cache = Hive.box(AppHiveKeys.app);
 
     final cachedTheme = _cache.get(Cache.theme.toString());
     themeMode = cachedTheme == null ? themeMode : themeMap[cachedTheme]!;
