@@ -13,7 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:draftwing/configs/configs.dart';
-import 'package:fault/fault.dart';
+import 'package:draftwing/services/fault/faults.dart';
 
 part 'data_provider.dart';
 part 'data_parser.dart';

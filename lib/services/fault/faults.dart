@@ -1,3 +1,4 @@
+import 'package:draftwing/configs/configs.dart';
 import 'package:hive/hive.dart';
 
 /// [Fault] is a sealed class that represents a fault in the system.
@@ -58,8 +59,4 @@ extension FaultExtension on Fault {
     final CustomFault fault => fault.faultInfo.toString(),
     final HiveFault hive => hive.error.message.splitError,
   };
-}
-
-extension StringX on String {
-  String get splitError => split(': ').lastOrNull ?? 'Unknown error';
 }

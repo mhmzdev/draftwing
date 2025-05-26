@@ -1,5 +1,5 @@
 import 'package:draftwing/blocs/draft/bloc.dart';
-import 'package:repos/repos.dart';
+import 'package:draftwing/models/response/draft_response.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 import 'package:flutter/material.dart';
 

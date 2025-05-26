@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:draftwing/gen/assets/assets.gen.dart';
-import 'package:repos/repos.dart';
+import 'package:draftwing/models/response/agent_response.dart';
+import 'package:draftwing/models/response/draft_response.dart';
 import 'package:draftwing/services/agent_tools.dart';
 
-import 'package:fault/fault.dart';
+import 'package:draftwing/services/fault/faults.dart';
 import 'package:firebase_vertexai/firebase_vertexai.dart';
 
 import 'package:flutter/material.dart';

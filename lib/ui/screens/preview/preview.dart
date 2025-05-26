@@ -1,3 +1,5 @@
+import 'package:draftwing/models/response/draft_response.dart';
+import 'package:draftwing/services/fault/faults.dart';
 import 'package:draftwing/ui/widgets/design/modal/guidelines/guidelines.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,9 +11,7 @@ import 'package:provider/provider.dart';
 
 import 'package:draftwing/blocs/draft/bloc.dart';
 import 'package:draftwing/configs/configs.dart';
-import 'package:repos/repos.dart';
 import 'package:draftwing/router/routes.dart';
-import 'package:fault/fault.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
 import 'package:draftwing/ui/widgets/design/button/button.dart';
