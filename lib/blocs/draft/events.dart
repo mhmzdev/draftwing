@@ -4,6 +4,8 @@ sealed class DraftEvent {
   const DraftEvent();
 }
 
+// -- events -- //
+
 class DraftDeleteEvent extends DraftEvent {
   final String id;
   const DraftDeleteEvent(this.id);

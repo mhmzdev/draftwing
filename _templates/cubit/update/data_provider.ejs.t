@@ -1,7 +1,7 @@
 ---
 inject: true
 after: _<%= h.changeCase.pascal(name) %>Provider
-to: lib/blocs/<%= h.changeCase.snake(name) %>/data_provider.dart
+to: lib/repos/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>_data_provider.dart
 ---
 <% args.forEach(function(arg){ %>
   static Future< <%= h.changeCase.pascal(arg.model) %>> <%= h.changeCase.camel(arg.module) %>() async {

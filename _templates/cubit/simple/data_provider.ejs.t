@@ -1,15 +1,16 @@
 ---
-to: lib/blocs/<%= h.changeCase.snake(name) %>/data_provider.dart
+to: lib/repos/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>_data_provider.dart
 ---
 <% pmodel = h.changeCase.pascal(model) %>
-part of 'cubit.dart';
+part of '<%= h.changeCase.snake(name) %>_repo.dart';
 
 class _<%= h.changeCase.pascal(name) %>Provider {
-  static Future< <%= pmodel %>> fetch() async {
+  static Future<<%= pmodel %>> fetch() async {
     try {
-      return <%= pmodel %>.fromJson({});
-    } catch (e) {
-      throw UnknownFault('Something went wrong!', StackTrace.current);
+      final raw = <String, dynamic>{};
+      return <%= pmodel %>.fromJson(raw);
+    } catch (e, st) {
+      throw UnknownFault('Something went wrong!', st);
     }
   }
 }

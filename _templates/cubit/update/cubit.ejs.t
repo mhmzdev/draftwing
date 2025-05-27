@@ -5,7 +5,6 @@ to: lib/blocs/<%= h.changeCase.snake(name) %>/cubit.dart
 ---
 <% pascal = h.changeCase.pascal(name) %>
 <% args.forEach(function(arg){ %>
-<% pModule = h.changeCase.pascal(arg.module) %>
 <% cModule = h.changeCase.camel(arg.module) %>
 <% model = h.changeCase.pascal(arg.model) %>
 
