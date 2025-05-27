@@ -9,7 +9,7 @@ import 'router/router.dart';
 import 'router/routes.dart';
 
 // bloc-imports-start
-import 'blocs/model/bloc.dart'; 
+import 'blocs/model/bloc.dart';
 import 'blocs/draft/bloc.dart';
 
 // bloc-imports-end
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         // bloc-initiate-start
-        BlocProvider(create: (_) => ModelBloc()), 
+        BlocProvider(create: (_) => ModelBloc()),
         BlocProvider(
           create:
               (_) =>

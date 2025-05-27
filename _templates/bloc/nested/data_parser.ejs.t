@@ -1,12 +1,14 @@
 ---
-to: lib/blocs/<%= h.changeCase.snake(name) %>/data_parser.dart
+to: lib/repos/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>_parser.dart
 ---
 // ignore_for_file: unused_element
+<% pascal = h.changeCase.pascal(name) %>
+part of '<%= h.changeCase.snake(name) %>_repo.dart';
 
-part of 'bloc.dart';
-
-class _<%= h.changeCase.pascal(name) %>Parser {
+class _<%= pascal %>Parser {
 <% args.forEach(function(arg){ %>
-  static Map <%= h.changeCase.camel(arg.module) %>(Map data) => data;
+<% cModule = h.changeCase.camel(arg.module) %>
+  static Map <%= cModule %>(Map data) => data;
+
 <% }); %>
-} 
+}

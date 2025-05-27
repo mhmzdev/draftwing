@@ -15,8 +15,7 @@ args.forEach(function(arg){
 import '<%= importPath %>';
 <%  }
 }); %>
-
-import 'package:draftwing/services/fault/faults.dart';
+import 'package:draftwing/repos/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>_repo.dart';
 import 'package:draftwing/blocs/misc/cache_keys.dart';
 
 import 'package:flutter/material.dart';
@@ -26,9 +25,6 @@ import 'package:equatable/equatable.dart';
 
 import 'package:draftwing/configs/configs.dart';
 
-part 'data_provider.dart';
-part 'data_parser.dart';
-part 'data_mocks.dart';
 part 'state.dart';
 part 'events.dart';
 part 'emitter.dart';
@@ -58,7 +54,7 @@ class <%= bloc %> extends Bloc<<%= pascal %>Event, <%= pascal %>State> with _<%=
   ) async {
     _<%= cModule %>Loading(emit);
     try {
-      final data = await _<%= pascal %>Provider.<%= cModule %>();
+      final data = await <%= pascal %>Repo.ins.<%= cModule %>();
       _<%= cModule %>Success(data, emit);
     } on Fault catch (e) {
       _<%= cModule %>Failed(e, emit);
