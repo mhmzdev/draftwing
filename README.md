@@ -18,8 +18,26 @@ DraftWing lets you:
 - 🤖 Does all the work without interrupting users
 - 🌚 Last, but not the least dynamic theme ;p (i know, i know)
 
+## 📝 System Prompt
+You can explore the system prompt in details in [prompt.md](assets/prompt.md) file. For now its targetting Flutter's topci feel free to change this as per your requirements.
+
+```
+// --- this part in file --- //
+
+## Your Capabilities
+
+You are knowledgeable in:
+
+- Flutter and Dart
+- Firebase and its ecosystem
+- State management (e.g., BLoC, Riverpod, provider etc.)
+- Clean architecture patterns
+```
+
+More details can be found at: https://codelabs.developers.google.com/codelabs/flutter-gemini-colorist#3
+
 ## 🧑🏼‍💻 Development Setup
-Clone the repo, you know how to do it otherwise open CMD/Terminal and simply:
+Clone the repo, you know how to do it otherwise open CMD/Terminal and simply: 
 ```
 git clone https://github.com/mhmzdev/draftwing
 cd draftwing
