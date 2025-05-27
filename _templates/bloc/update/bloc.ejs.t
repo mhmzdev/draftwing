@@ -14,7 +14,7 @@ to: lib/blocs/<%= h.changeCase.snake(name) %>/bloc.dart
   ) async {
     _<%= cModule %>Loading(emit);
     try {
-      final data = await _<%= pascal %>Provider.<%= cModule %>();
+      final data = await <%= pascal %>Repo.ins.<%= cModule %>();
       _<%= cModule %>Success(data, emit);
     } on Fault catch (e) {
       _<%= cModule %>Failed(e, emit);
