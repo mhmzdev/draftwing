@@ -15,43 +15,39 @@ args.forEach(function(arg){
 import '<%= importPath %>';
 <%  }
 }); %>
-
+import 'package:draftwing/repos/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>_repo.dart';
 
 import 'package:flutter/material.dart';
-import 'package:brain/brain.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:draftwing/services/fault/faults.dart';
 
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
-part 'data_provider.dart';
-part 'data_parser.dart';
-part 'data_mocks.dart';
-part 'emitter.dart';
 part 'state.dart';
+part 'emitter.dart';
 
-class <%= cubit %> extends Cubit< <%= pascal %>State> with _<%= pascal %>Emitter {
+class <%= cubit %> extends Cubit<<%= pascal %>State> with _<%= pascal %>Emitter {
   static <%= cubit %> c(BuildContext context, [bool listen = false]) =>
-      BlocProvider.of< <%= cubit %>>(context, listen: listen);
+      BlocProvider.of<<%= cubit %>>(context, listen: listen);
+
   <%= cubit %>() : super(<%= pascal %>State.def());
 
 <% args.forEach(function(arg){ %>
-
 <% pModule = h.changeCase.pascal(arg.module) %>
 <% cModule = h.changeCase.camel(arg.module) %>
 <% model = h.changeCase.pascal(arg.model) %>
-
   Future<void> <%= cModule %>() async {
     _<%= cModule %>Loading();
     try {
-      final data = await _<%= pascal %>Provider.<%= cModule %>();
+      final data = await <%= pascal %>Repo.ins.<%= cModule %>();
       _<%= cModule %>Success(data);
     } on Fault catch (e) {
       _<%= cModule %>Failed(e);
     }
   }
-<% }); %>
 
-  void reset() => _reset();
+<% }); %>
+  void reset() => emit(<%= pascal %>State.def());
 }

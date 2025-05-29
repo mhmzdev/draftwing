@@ -1,10 +1,7 @@
 import 'package:draftwing/global/bloc_sync/bloc_sync.dart';
-import 'package:draftwing/services/notifications/notifications.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:configs/configs.dart';
-import 'package:brain/brain.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -12,14 +9,14 @@ import 'router/router.dart';
 import 'router/routes.dart';
 
 // bloc-imports-start
-import 'blocs/agent/cubit.dart';
-import 'blocs/article/cubit.dart';
-import 'blocs/user/cubit.dart';
+import 'blocs/model/bloc.dart';
+import 'blocs/draft/bloc.dart';
 
 // bloc-imports-end
 
 // provider-imports-start
 import 'providers/app.dart';
+import 'services/route_logger/route_logger.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -30,25 +27,20 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  void initState() {
-    super.initState();
-    AppNotification.init(navigator);
-    AppNotification.onReceiveLocalNotification();
-    if (kDebugMode) {
-      AppAlice.setNavigatorKey(navigator);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
     App.init(context);
 
     return MultiProvider(
       providers: [
         // bloc-initiate-start
-        BlocProvider(create: (_) => AgentCubit()),
-        BlocProvider(create: (_) => ArticleCubit()),
-        BlocProvider(create: (_) => UserCubit()),
+        BlocProvider(create: (_) => ModelBloc()),
+        BlocProvider(
+          create:
+              (_) =>
+                  DraftBloc() //
+                    ..add(const DraftSetupCountEvent())
+                    ..add(const DraftFetchEvent(force: true)),
+        ),
         // bloc-initiate-end
 
         // provider-initiate-start

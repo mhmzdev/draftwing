@@ -9,7 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 <% } %>
 
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 
 import 'package:draftwing/ui/widgets/core/screen/screen.dart';
 

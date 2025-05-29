@@ -1,4 +1,4 @@
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/full_screen_loader.dart';
 import 'package:flutter/material.dart';
 
@@ -33,10 +33,9 @@ class FloatingLoader extends StatelessWidget {
       bottom: bottom ?? SpaceToken.t12 + context.bottomSafe(),
       child: Container(
         padding: Space.a.t16,
-        decoration: AppProps.cardDec.copyWith(
-          color: AppTheme.c.cardBg,
-          gradient: AppProps.gradient,
-        ),
+        decoration: AppProps.cardDec(
+          context,
+        ).copyWith(color: AppTheme.c.cardBg, gradient: AppProps.gradient),
         child: Row(
           children: [
             const AppIconLoader(radius: 36, overlayColor: Colors.white),

@@ -1,6 +1,6 @@
-import 'package:brain/brain.dart';
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/router/routes.dart';
+import 'package:draftwing/services/route_logger/route_logger.dart';
 import 'package:draftwing/ui/widgets/core/header/core_header.dart';
 import 'package:draftwing/ui/widgets/design/gradients/icon.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +8,7 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:markdown_widget/widget/markdown.dart';
 
 import 'app_modal_base.dart';
+import 'guidelines/guidelines.dart';
 
 class MarkdownPreviewModal extends StatelessWidget {
   final String title;
@@ -32,6 +33,7 @@ class MarkdownPreviewModal extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           CoreHeader(
+            trailing: const CopyGuidelinesButton(),
             leading: IconButton(
               onPressed: () {
                 ''.pop(context);

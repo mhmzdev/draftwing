@@ -1,4 +1,4 @@
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:flash/flash.dart';
 import 'package:flash/flash_helper.dart';
 import 'package:flutter/material.dart';

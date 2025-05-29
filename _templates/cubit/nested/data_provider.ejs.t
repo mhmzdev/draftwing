@@ -1,17 +1,21 @@
 ---
-to: lib/blocs/<%= h.changeCase.snake(name) %>/data_provider.dart
+to: lib/repos/<%= h.changeCase.snake(name) %>/<%= h.changeCase.snake(name) %>_data_provider.dart
 ---
-part of 'cubit.dart';
+<% pascal = h.changeCase.pascal(name) %>
+part of '<%= h.changeCase.snake(name) %>_repo.dart';
 
-class _<%= h.changeCase.pascal(name) %>Provider {
+class _<%= pascal %>Provider {
 <% args.forEach(function(arg){ %>
-  static Future< <%= h.changeCase.pascal(arg.model) %>> <%= h.changeCase.camel(arg.module) %>() async {
+<% cModule = h.changeCase.camel(arg.module) %>
+<% model = h.changeCase.pascal(arg.model) %>
+  static Future<<%= model %>> <%= cModule %>() async {
     try {
       final raw = <String, dynamic>{};
-      return <%= h.changeCase.pascal(arg.model) %>.fromJson(raw);
+      return <%= model %>.fromJson(raw);
     } catch (e, st) {
       throw UnknownFault('Something went wrong!', st);
     }
   }
+
 <% }); %>
 }

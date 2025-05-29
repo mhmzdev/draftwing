@@ -1,4 +1,4 @@
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/ui/painters/painters.dart';
 import 'package:flutter/material.dart';
 

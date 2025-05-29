@@ -19,10 +19,26 @@ class $AssetsAppGen {
   List<AssetGenImage> get values => [appIcon];
 }
 
+class $AssetsMiscGen {
+  const $AssetsMiscGen();
+
+  /// File path: assets/misc/article_journey.png
+  AssetGenImage get articleJourney =>
+      const AssetGenImage('assets/misc/article_journey.png');
+
+  /// File path: assets/misc/gradient_splash.png
+  AssetGenImage get gradientSplash =>
+      const AssetGenImage('assets/misc/gradient_splash.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [articleJourney, gradientSplash];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsAppGen app = $AssetsAppGen();
+  static const $AssetsMiscGen misc = $AssetsMiscGen();
   static const String prompt = 'assets/prompt.md';
 
   /// List of all assets

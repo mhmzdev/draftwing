@@ -6,9 +6,10 @@ class _Form extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenState = _ScreenState.s(context);
+    final appState = AppProvider.s(context, true);
 
     return Container(
-      decoration: AppProps.cardDec,
+      decoration: AppProps.cardDec(context),
       padding: Space.a.t16,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +34,7 @@ class _Form extends StatelessWidget {
           Space.y.t16,
           AppFormSelectInput(
             heading: 'Reading Length',
-            name: _FormKeys.readingTime,
+            name: _FormKeys.readingLength,
             data: ReadingLength.values,
             modalLabel: 'Reading Length',
             placeholder: 'Select reading length',
@@ -68,14 +69,25 @@ class _Form extends StatelessWidget {
             controlAffinity: ListTileControlAffinity.trailing,
           ),
           Space.y.t08,
-          BlocBuilder<AgentCubit, AgentState>(
+          BlocBuilder<ModelBloc, ModelState>(
             buildWhen:
                 (previous, current) =>
                     previous.generateDraft != current.generateDraft,
             builder: (context, state) {
               final loading = state.generateDraft.isLoading;
               return AppButton(
-                onPressed: () => screenState.onSubmit(context),
+                onPressed: () async {
+                  if (appState.firstOpen) {
+                    appState.setFirstOpen();
+                    await showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => const DraftGuidelineModal(),
+                    );
+                  }
+                  if (context.mounted) screenState.onSubmit(context);
+                },
 
                 icon: Iconsax.magic_star_copy,
                 label: 'Generate Article',

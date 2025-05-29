@@ -30,7 +30,7 @@ class _CardSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: AppProps.cardDec,
+      decoration: AppProps.cardDec(context),
       padding: Space.a.t16,
       margin: Space.b.t12,
       child: Column(

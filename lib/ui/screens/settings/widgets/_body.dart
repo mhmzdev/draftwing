@@ -8,7 +8,6 @@ class _Body extends StatelessWidget {
     App.init(context);
     final screenState = _ScreenState.s(context, true);
     final app = AppProvider.s(context, true);
-    final articleCubit = ArticleCubit.c(context);
 
     return Screen(
       keyboardHandler: true,
@@ -28,7 +27,7 @@ class _Body extends StatelessWidget {
               Space.y.t20,
               Container(
                 padding: Space.a.t16,
-                decoration: AppProps.cardDec,
+                decoration: AppProps.cardDec(context),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -43,42 +42,20 @@ class _Body extends StatelessWidget {
                       ],
                     ),
                     Space.y.t12,
-                    AppText.b1('Theme and display options coming soon...'),
-                  ],
-                ),
-              ),
-              Space.y.t20,
-              Container(
-                padding: Space.a.t16,
-                decoration: AppProps.cardDec,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(Iconsax.document_copy, color: AppTheme.c.primary),
-                        Space.x.t04,
-                        AppText.h2('Content Control'),
-                      ],
-                    ),
                     SwitchListTile(
-                      dense: true,
-                      value: app.fetchPublished,
+                      value: app.themeMode == ThemeMode.dark,
                       onChanged: (value) {
-                        app.setFetchPublished(value);
                         if (value) {
-                          articleCubit.published(force: true);
+                          app.setTheme(ThemeMode.dark);
                         } else {
-                          articleCubit.resetPublished();
+                          app.setTheme(ThemeMode.light);
                         }
                       },
-                      visualDensity: VisualDensity.compact,
-                      title: AppText.b1('Published articles').w(600),
-                      subtitle: AppText.b2(
-                        'Show published articles in the drafts list',
-                      ),
+                      title: AppText.b1('Dark Mode'),
+                      activeColor: AppTheme.c.primary,
                       contentPadding: Space.z,
+                      dense: true,
+                      visualDensity: VisualDensity.compact,
                     ),
                   ],
                 ),
@@ -86,7 +63,7 @@ class _Body extends StatelessWidget {
               Space.y.t20,
               Container(
                 padding: Space.a.t16,
-                decoration: AppProps.cardDec,
+                decoration: AppProps.cardDec(context),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -108,7 +85,10 @@ class _Body extends StatelessWidget {
                             text: 'Version: ',
                             style: AppText.b1('').w(600).style!,
                           ),
-                          TextSpan(text: '0.2.5', style: AppText.b1('').style),
+                          TextSpan(
+                            text: AppVersion.ins.version,
+                            style: AppText.b1('').style,
+                          ),
                         ],
                       ),
                     ),
@@ -120,7 +100,10 @@ class _Body extends StatelessWidget {
                             text: 'Build Number: ',
                             style: AppText.b1('').w(600).style!,
                           ),
-                          TextSpan(text: '234', style: AppText.b1('').style),
+                          TextSpan(
+                            text: AppVersion.ins.buildNumber,
+                            style: AppText.b1('').style,
+                          ),
                         ],
                       ),
                     ),

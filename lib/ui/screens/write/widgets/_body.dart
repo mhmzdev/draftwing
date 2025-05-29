@@ -37,6 +37,7 @@ class _BodyState extends State<_Body> {
               ),
               title: 'Draft Wing',
               subTitle: 'Create amazing drafts with AI',
+              trailing: const DraftGuidelinesButton(),
             ),
             Space.y.t20,
             const _Form(),

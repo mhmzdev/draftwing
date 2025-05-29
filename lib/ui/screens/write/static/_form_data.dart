@@ -8,7 +8,7 @@ class _FormData {
 
     return {
       _FormKeys.title: 'Agentic Flutter Apps',
-      _FormKeys.readingTime: ReadingLength.oneToThree,
+      _FormKeys.readingLength: ReadingLength.oneToThree,
       _FormKeys.additionalContext: '''
 - Keep it simple
 - Introduce Vertex AI

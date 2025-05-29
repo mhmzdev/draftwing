@@ -1,4 +1,4 @@
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/ui/widgets/design/gradients/icon.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +41,11 @@ class BottomBar extends StatelessWidget {
 
                     return Expanded(
                       child: InkWell(
+                        borderRadius: 8.radius(),
+                        splashColor: AppTheme.c.primary.withValues(alpha: .15),
+                        highlightColor: AppTheme.c.secondary.withValues(
+                          alpha: .15,
+                        ),
                         onTap: () {
                           /// If the tab is already active, do nothing.
                           if (isActive) return;

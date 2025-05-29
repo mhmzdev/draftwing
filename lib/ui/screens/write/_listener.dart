@@ -8,7 +8,7 @@ class _SaveDraftListener extends StatelessWidget {
     final currentRoute = context.currentPath;
     if (currentRoute != AppRoutes.write) return const SizedBox.shrink();
 
-    return BlocConsumer<ArticleCubit, ArticleState>(
+    return BlocConsumer<DraftBloc, DraftState>(
       listenWhen: (a, b) => a.saveDraft != b.saveDraft,
       listener: (_, state) {
         if (state.saveDraft.isFailed) {
@@ -18,10 +18,6 @@ class _SaveDraftListener extends StatelessWidget {
           );
         }
         if (state.saveDraft.isSuccess) {
-          UIFlash.success(
-            context,
-            'Draft saved in your dev.to profile successfully',
-          );
           AppRoutes.drafts.pushReplace(context);
         }
       },

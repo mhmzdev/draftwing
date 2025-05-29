@@ -1,5 +1,0 @@
-part of '../configs_base.dart';
-
-extension SuperNum on num {
-  String get currency => '\$${toStringAsFixed(2)}';
-}

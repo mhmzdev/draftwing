@@ -26,7 +26,7 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
 
     _controller.addListener(() {
       if (_controller.isCompleted) {
-        UserCubit.c(context).me();
+        AppRoutes.write.pushReplace(context);
       }
     });
   }
@@ -74,12 +74,7 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final userCubit = UserCubit.c(context, true);
-    final userState = userCubit.state;
-    final isFailed = userState.me.isFailed;
-
     return Screen(
-      belowBuilders: const [_Listener()],
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -106,52 +101,25 @@ class _BodyState extends State<_Body> with TickerProviderStateMixin {
                 size: FeatherPainter.s(200),
               ),
             ),
-            if (!isFailed)
-              Positioned(
-                bottom:
-                    context.bottomSafe() +
-                    MediaQuery.sizeOf(context).height * 0.15,
-                left: 0,
-                right: 0,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AppText.h1(
-                      'DraftWing',
-                      textAlign: TextAlign.center,
-                    ).cl(Colors.white),
-                    Space.y.t04,
-                    AppText.b1(
-                      'Your wingman for drafting articles',
-                      textAlign: TextAlign.center,
-                    ).cl(Colors.white),
-                  ],
-                ),
-              ),
             Positioned(
-              bottom: context.bottomSafe(),
-              left: SpaceToken.t16,
-              right: SpaceToken.t16,
-              child: SafeArea(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (isFailed) ...[
-                      Space.y.t12,
-                      AppText.b1(
-                        'Something went wrong!',
-                        textAlign: TextAlign.center,
-                      ).cl(Colors.white),
-                      Space.y.t12,
-                      AppButton(
-                        mainAxisSize: MainAxisSize.max,
-                        onPressed: () => userCubit.me(),
-                        label: 'Try again',
-                        style: AppButtonStyle.danger,
-                      ),
-                    ],
-                  ],
-                ),
+              bottom:
+                  context.bottomSafe() +
+                  MediaQuery.sizeOf(context).height * 0.15,
+              left: 0,
+              right: 0,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  AppText.h1(
+                    'DraftWing',
+                    textAlign: TextAlign.center,
+                  ).cl(Colors.white),
+                  Space.y.t04,
+                  AppText.b1(
+                    'Your wingman for drafting articles',
+                    textAlign: TextAlign.center,
+                  ).cl(Colors.white),
+                ],
               ),
             ),
           ],

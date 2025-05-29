@@ -1,11 +1,12 @@
-import 'package:draftwing/blocs/agent/cubit.dart';
+import 'package:draftwing/blocs/model/bloc.dart';
+import 'package:draftwing/providers/app.dart';
 import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/ui/widgets/design/full_screen_loader/paginated_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:configs/configs.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/ui/widgets/core/bottom_bar/bottom_bar.dart';
 import 'package:draftwing/ui/widgets/headless/focus_handler.dart';
 
@@ -88,6 +89,10 @@ class _ScreenState extends State<Screen> {
   Widget build(BuildContext context) {
     App.init(context);
 
+    final app = AppProvider.s(context, true);
+    final themeMode = app.themeMode;
+    final isDarkTheme = themeMode == ThemeMode.dark;
+
     var body = widget.child;
     final onWillPop = widget.onBackPressed;
     final canPopValue = widget.canPop ?? true;
@@ -120,8 +125,10 @@ class _ScreenState extends State<Screen> {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark.copyWith(
-        statusBarBrightness: Brightness.light, // for IOS
-        statusBarIconBrightness: Brightness.dark, // for Android
+        statusBarBrightness:
+            isDarkTheme ? Brightness.dark : Brightness.light, // for IOS
+        statusBarIconBrightness:
+            isDarkTheme ? Brightness.light : Brightness.dark, // for Android
       ),
       child: Scaffold(
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
@@ -148,7 +155,7 @@ class _ScreenState extends State<Screen> {
               ),
             if (widget.overlayBuilders != null) ...widget.overlayBuilders!,
             if (context.currentPath != AppRoutes.write)
-              BlocBuilder<AgentCubit, AgentState>(
+              BlocBuilder<ModelBloc, ModelState>(
                 buildWhen:
                     (previous, current) =>
                         previous.generateDraft != current.generateDraft,
@@ -157,8 +164,8 @@ class _ScreenState extends State<Screen> {
                   if (!loading) return const SizedBox.shrink();
 
                   return FloatingLoader(
-                    title: 'Generating article',
-                    message: 'You will be navigated to the article soon...',
+                    title: 'Generating draft',
+                    message: 'You will be navigated to the draft soon...',
                     bottom: _getBottomBarHeight + SpaceToken.t12,
                   );
                 },

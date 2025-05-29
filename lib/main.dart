@@ -1,9 +1,10 @@
-import 'package:brain/brain.dart';
+import 'package:draftwing/blocs/misc/cache.dart';
+import 'package:draftwing/models/response/draft_response.dart';
+import 'package:draftwing/services/version.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'app.dart';
@@ -14,16 +15,16 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  await dotenv.load(fileName: 'packages/brain/.env');
+  final appDir = await getApplicationDocumentsDirectory();
+  Hive.init(appDir.path);
 
-  if (kIsWeb) {
-    Hive.initFlutter();
-  } else {
-    final appDir = await getApplicationDocumentsDirectory();
-    Hive.init(appDir.path);
-  }
+  // --- ADAPTERS --- //
+  Hive.registerAdapter<DraftResponse>(HiveDraftResponseAdapter());
+  Hive.registerAdapter<ReadingLength>(HiveReadingLengthAdapter());
+  await HiveCache.init();
 
-  AppAlice.init();
+  final package = await PackageInfo.fromPlatform();
+  AppVersion.ins = AppVersion.fromPackageInfo(package);
 
   runApp(const MyApp());
 }

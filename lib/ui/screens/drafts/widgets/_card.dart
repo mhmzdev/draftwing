@@ -1,101 +1,92 @@
 part of '../drafts.dart';
 
 class _DraftCard extends StatelessWidget {
-  final Article article;
-  const _DraftCard({required this.article});
+  final DraftResponse draft;
+  const _DraftCard({required this.draft});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: AppProps.cardDec,
-      padding: Space.a.t16,
-      margin: Space.b.t12,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Expanded(child: AppText.h3(article.title, maxLines: 3)),
-              Space.x.t12,
-              AppChip(
-                label: article.isPublished ? 'Published' : 'Draft',
-                color:
-                    article.isPublished
-                        ? AppTheme.c.success
-                        : AppTheme.c.textBody,
-              ),
-            ],
-          ),
-          Space.y.t12,
-          Wrap(
-            spacing: SpaceToken.t08,
-            runSpacing: SpaceToken.t08,
-            children:
-                article.tagList.map((tag) {
-                  return AppChip(label: tag, prefixIcon: Iconsax.tag_copy);
-                }).toList(),
-          ),
-          Space.y.t12,
-          Row(
-            children: [
-              if (article.publishedAt != null) ...[
+    return WidgetAnimator(
+      child: Container(
+        decoration: AppProps.cardDec(context),
+        padding: Space.a.t16,
+        margin: Space.b.t12,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppText.h3(draft.title, maxLines: 3),
+            Space.y.t12,
+            Wrap(
+              spacing: SpaceToken.t08,
+              runSpacing: SpaceToken.t08,
+              children:
+                  draft.tags.map((tag) {
+                    return AppChip(label: tag, prefixIcon: Iconsax.tag_copy);
+                  }).toList(),
+            ),
+            Space.y.t12,
+            Row(
+              children: [
                 Icon(Iconsax.calendar, size: 20, color: AppTheme.c.textDim),
                 Space.x.t04,
-                AppText.b2(article.publishedAt!.date),
+                AppText.b2(draft.generatedAt.date),
                 Space.x.t12,
+                AppChip(
+                  label: draft.readingLength.descriptive.titleCase,
+                  color: draft.readingLength.color,
+                ),
               ],
-              AppChip(
-                label: article.readingLength.descriptive.titleCase,
-                color: article.readingLength.color,
-              ),
-            ],
-          ),
-          Space.y.t12,
-          Row(
-            children: [
-              AppButton(
-                onPressed: () => LauncherHelper.url('https://dev.to/dashboard'),
-                icon: Iconsax.trash_copy,
-                style: AppButtonStyle.danger,
-                state: AppButtonState.bordered,
-              ),
-              Space.x.t08,
-              Expanded(
-                child: AppButton(
+            ),
+            Space.y.t12,
+            Row(
+              children: [
+                AppButton(
                   onPressed: () {
-                    if (article.isPublished) {
-                      LauncherHelper.url(article.url);
-                    } else {
-                      LauncherHelper.url('https://dev.to/dashboard');
-                    }
+                    showDialog(
+                      context: context,
+                      builder: (context) => _DeleteAlert(draftId: draft.id),
+                    );
                   },
-                  icon: Icons.open_in_new_rounded,
-                  label: 'Edit',
+                  icon: Iconsax.trash_copy,
+                  style: AppButtonStyle.danger,
                   state: AppButtonState.bordered,
                 ),
-              ),
-              Space.x.t08,
-              AppButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    useSafeArea: true,
-                    builder:
-                        (context) => MarkdownPreviewModal(
-                          title: article.title,
-                          body: article.bodyMarkdown,
+                Space.x.t08,
+                Expanded(
+                  child: AppButton(
+                    onPressed:
+                        () => AppRoutes.preview.push(
+                          context,
+                          arguments: {...draft.toJson(), 'isEdit': true},
                         ),
-                  );
-                },
-                icon: Iconsax.eye_copy,
-                style: AppButtonStyle.primary,
-              ),
-            ],
-          ),
-        ],
+                    icon: Icons.open_in_new_rounded,
+                    label: 'Edit',
+                    state: AppButtonState.bordered,
+                  ),
+                ),
+                Space.x.t08,
+                AppButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      useSafeArea: true,
+                      builder:
+                          (context) => MarkdownPreviewModal(
+                            title: draft.title,
+                            body: draft.bodyMarkdown,
+                          ),
+                    );
+                  },
+                  icon: Iconsax.eye_copy,
+                  style: AppButtonStyle.primary,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

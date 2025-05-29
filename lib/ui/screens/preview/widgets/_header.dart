@@ -6,8 +6,6 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenState = _ScreenState.s(context);
-    final articleCubit = ArticleCubit.c(context, true);
-    final state = articleCubit.state;
 
     return KeyboardVisibilityBuilder(
       builder: (context, isVisible) {
@@ -21,7 +19,7 @@ class _Header extends StatelessWidget {
                     child: CoreHeader(
                       leading: IconButton(
                         onPressed: () {
-                          if (state.saveDraft.isSuccess) {
+                          if (screenState.isEdit) {
                             ''.pop(context);
                             return;
                           }
@@ -29,10 +27,8 @@ class _Header extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder:
-                                (context) => ListenableProvider.value(
-                                  value: screenState,
-                                  child: _BackAlert(draft: screenState.draft),
-                                ),
+                                (context) =>
+                                    _BackAlert(draft: screenState.draft),
                           );
                         },
                         icon: const GradientIcon(Iconsax.arrow_left_2_copy),
@@ -40,7 +36,8 @@ class _Header extends StatelessWidget {
                         padding: EdgeInsets.zero,
                         visualDensity: VisualDensity.compact,
                       ),
-                      title: 'Draft Generated',
+                      title:
+                          screenState.isEdit ? 'Edit Draft' : 'Draft Generated',
                       subTitle:
                           'You can copy/paste body markdown on platforms like Medium, Dev.to, etc.',
                     ),

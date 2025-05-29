@@ -1,3 +1,4 @@
+import 'package:draftwing/blocs/misc/cache_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,13 @@ final themeMap = {
   'light': ThemeMode.light,
 };
 
-enum Cache { theme, locale, firstOpen, fetchPublished }
+enum Cache { theme, locale, firstOpen, joinedAt }
+
+extension ThemeModeX on ThemeMode {
+  bool get isDark => this == ThemeMode.dark;
+  bool get isLight => this == ThemeMode.light;
+  bool get isSystem => this == ThemeMode.system;
+}
 
 class AppProvider extends ChangeNotifier {
   static AppProvider s(BuildContext context, [bool listen = false]) =>
@@ -17,7 +24,7 @@ class AppProvider extends ChangeNotifier {
   var themeMode = ThemeMode.light;
   var key = const Key('app');
   var firstOpen = false;
-  var fetchPublished = true;
+  var joinedAt = DateTime.now();
   late Box<dynamic> _cache;
 
   AppProvider() {
@@ -25,8 +32,8 @@ class AppProvider extends ChangeNotifier {
   }
 
   void _init() async {
-    await Hive.openBox('app');
-    _cache = Hive.box('app');
+    await Hive.openBox(AppHiveKeys.app);
+    _cache = Hive.box(AppHiveKeys.app);
 
     final cachedTheme = _cache.get(Cache.theme.toString());
     themeMode = cachedTheme == null ? themeMode : themeMap[cachedTheme]!;
@@ -34,9 +41,9 @@ class AppProvider extends ChangeNotifier {
     final hasOpened = _cache.get(Cache.firstOpen.toString());
     firstOpen = hasOpened == null;
 
-    final cachedFetchPublished = _cache.get(Cache.fetchPublished.toString());
-    fetchPublished =
-        cachedFetchPublished == null ? false : cachedFetchPublished == 'true';
+    final cachedJoinedAt = _cache.get(Cache.joinedAt.toString());
+    joinedAt =
+        cachedJoinedAt == null ? joinedAt : DateTime.parse(cachedJoinedAt);
 
     notifyListeners();
   }
@@ -54,17 +61,9 @@ class AppProvider extends ChangeNotifier {
     _cache.put(Cache.firstOpen.toString(), 'true');
   }
 
-  void setFetchPublished(bool value) {
-    if (fetchPublished == value) return;
-    fetchPublished = value;
-    notifyListeners();
-    _cache.put(Cache.fetchPublished.toString(), value.toString());
-  }
-
   void reset() async {
     firstOpen = true;
     themeMode = ThemeMode.system;
-    fetchPublished = false;
     await _cache.clear();
     key = Key(DateTime.now().toString());
     notifyListeners();

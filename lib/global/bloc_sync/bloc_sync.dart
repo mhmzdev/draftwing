@@ -1,15 +1,18 @@
-import 'package:brain/brain.dart';
-import 'package:configs/configs.dart';
-import 'package:draftwing/blocs/agent/cubit.dart';
+import 'package:draftwing/blocs/draft/bloc.dart';
+import 'package:draftwing/blocs/model/bloc.dart';
+import 'package:draftwing/configs/configs.dart';
 import 'package:draftwing/router/router.dart';
 import 'package:draftwing/router/routes.dart';
 import 'package:draftwing/services/agent_tools.dart';
+import 'package:draftwing/services/fault/faults.dart';
+import 'package:draftwing/services/log.dart';
 import 'package:draftwing/ui/widgets/effects/failures/draft_failure_modal.dart';
 import 'package:draftwing/utils/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'article/_agent_sync.dart';
+part 'agent/_agent_sync.dart';
+part 'draft/_draft_sync.dart';
 
 /*
 
@@ -28,6 +31,7 @@ class BlocSync extends StatelessWidget {
     return MultiBlocListener(
       listeners: const [
         _AgentSync(), //
+        _DraftSync(), //
       ],
       child: child,
     );
