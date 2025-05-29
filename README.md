@@ -73,6 +73,8 @@ Here's how DraftWing looks and feels:
 
 <img src="assets/showcase/splash.png" width="240"> <img src="assets/showcase/write.png" width="240"> <img src="assets/showcase/drafts.png" width="240"> <img src="assets/showcase/medium_guide.png" width="240"> <img src="assets/showcase/cache_guide.png" width="240">  <img src="assets/showcase/profile.png" width="240"> 
 
+## ✍🏼 Medium Article
+Wrote an article to explain the underlyings of it: https://mhmzdev.medium.com/draftwing-an-agentic-app-under-48-hours-869e0ecc1f50
 
 ## 🔑 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details
