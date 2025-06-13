@@ -48,28 +48,28 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'mock-web-api-key',
-    appId: '1:123456789:web:abcdef1234567890',
-    messagingSenderId: '123456789',
+    appId: 'mock-web-app-id',
+    messagingSenderId: 'mock-sender-id',
     projectId: 'mock-project',
     authDomain: 'mock-project.firebaseapp.com',
     storageBucket: 'mock-project.firebasestorage.app',
-    measurementId: 'G-MOCK123456',
+    measurementId: 'mock-measurement-id',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'mock-android-api-key',
-    appId: '1:123456789:android:abcdef1234567890',
-    messagingSenderId: '123456789',
+    appId: 'mock-android-app-id',
+    messagingSenderId: 'mock-sender-id',
     projectId: 'mock-project',
     storageBucket: 'mock-project.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'mock-ios-api-key',
-    appId: '1:123456789:ios:abcdef1234567890',
-    messagingSenderId: '123456789',
+    appId: 'mock-ios-app-id',
+    messagingSenderId: 'mock-sender-id',
     projectId: 'mock-project',
     storageBucket: 'mock-project.firebasestorage.app',
-    iosBundleId: 'com.example.mockapp',
+    iosBundleId: 'com.example.mock',
   );
 }
