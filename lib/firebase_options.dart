@@ -47,29 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDkD6EWqMVLB-aSnknwhlX8KNMrZZ3Igvs',
-    appId: '1:733913963330:web:1c9f7025c5ecc472c706db',
-    messagingSenderId: '733913963330',
-    projectId: 'devxi-dev',
-    authDomain: 'devxi-dev.firebaseapp.com',
-    storageBucket: 'devxi-dev.firebasestorage.app',
-    measurementId: 'G-404E52P49C',
+    apiKey: 'mock-web-api-key',
+    appId: '1:123456789:web:abcdef1234567890',
+    messagingSenderId: '123456789',
+    projectId: 'mock-project',
+    authDomain: 'mock-project.firebaseapp.com',
+    storageBucket: 'mock-project.firebasestorage.app',
+    measurementId: 'G-MOCK123456',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD4URcJuVSLn4CdCYnvBYxzM-g9LuP7dK0',
-    appId: '1:733913963330:android:3cd0c4a2c71738a1c706db',
-    messagingSenderId: '733913963330',
-    projectId: 'devxi-dev',
-    storageBucket: 'devxi-dev.firebasestorage.app',
+    apiKey: 'mock-android-api-key',
+    appId: '1:123456789:android:abcdef1234567890',
+    messagingSenderId: '123456789',
+    projectId: 'mock-project',
+    storageBucket: 'mock-project.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC59KbXb5ya0rdVh8ZDc4vbcNwE8UaVcok',
-    appId: '1:733913963330:ios:9ea5714a19f4690cc706db',
-    messagingSenderId: '733913963330',
-    projectId: 'devxi-dev',
-    storageBucket: 'devxi-dev.firebasestorage.app',
-    iosBundleId: 'com.hmz.draftwing',
+    apiKey: 'mock-ios-api-key',
+    appId: '1:123456789:ios:abcdef1234567890',
+    messagingSenderId: '123456789',
+    projectId: 'mock-project',
+    storageBucket: 'mock-project.firebasestorage.app',
+    iosBundleId: 'com.example.mockapp',
   );
 }
